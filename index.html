@@ -17,6 +17,112 @@
     <title>Recipes</title>
 </head>
 
+<h1>Javascript Notes</h1>
+<h2>Primitive Types</h2>
+<h3>Numbers</h3>
+<p>1, 2, 2.4, 3.333333, -343, -3.343434 are all numbers.</p>
+<h4>NaN</h4>
+<p>Stands for "not a number", means everything which is not a number. Includes any division by 0.</p>
+<h3>Boolean</h3>
+<p>true</p>
+<p>false</p>
+<h3>String</h3>
+<p>String is any text content. Must be put inside of "" or ''.</p>
+<h4>Index[]</h4>
+myName = "Vitor"<br>
+myName[2]<br>
+//"i"<br>
+myName[0]<br>
+//"V"<br>
+myName[9]<br>
+//undefined<br>
+<h4>.length</h4>
+<p>Tells the total number of characters in that string.</p>
+myName = "Vitor"<br>
+myName.length<br>
+//5<br>
+<h4>Concatenation ""+""</h4>
+myName = "Vitor"<br>
+myLastname = "Jaguat"<br>
+myName + myLastname<br>
+//"VitorJaguat"<br>
+myName + " " + myLastname<br>
+//"Vitor Jaguat"<br>
+myName + 1<br>
+//"Vitor1" <span class="red">(transforms the number into a string)</span>
+
+
+<h3>Null</h3>
+<h3>Undefined</h3>
+<h3>Symbol</h3>
+<h3>BigInt</h3>
+
+<h2>Variables & let</h2>
+let myAge = 39<br>
+myAge = 39<br>
+let myName = "Vitor"<br>
+myName = "Vitor"<br>
+<br>
+<h3>Basic operations</h3>
+myAge + 2 <br>
+// 41 <br>
+myAge - 3 <br>
+// 37 <br>
+myAge * 2 <br>
+// 78 <br>
+myAge / 2 <br>
+// 19,5 <br>
+myAge ** 2 <br>
+// 1521 <br>
+myAge % 2 <br>
+// 1 <br>
+% stands for "module", "mod".<br>
+<br>
+<h3>Changing the Variable's value</h3>
+myAge += 1 <span class="red">adds to the Variable</span> <br>
+myAge -= 1 <span class="red">subtracts from the Variable</span><br>
+myAge *= 2 <span class="red">multiplies the Variable for...</span><br>
+myAge ++ <span class="red">adds 1 to the Variable</span><br>
+myAge -- <span class="red">subtracts 1 from the Variable</span>
+<h3>const & var</h3>
+<p>const boilingPointC = 100</p>
+<p>const boilingPointF = 212</p>
+<p>var myAge = 39 <span class="red">the same as </span>let myAge = 39</p>
+<p><i>const</i>cannot be altered in that document.</p>
+
+<h2>String Methods</h2>
+<p>myName = "Vitor" <br>
+    myName.toUpperCase()<br>
+    //"VITOR"
+    myName.toLowerCase()<br>
+    //"vitor"<br>
+</p>
+<p>myName = " Vitor "<br>
+    myName.trim() <br>
+    //"Vitor"<br>
+    myName.toUpperCase().trim()<br>
+    //"VITOR"
+</p>
+<h3>String Methods with Arguments</h3>
+<p>.indexOf('argument') indicates the first occurance of a value.</p>
+<p>let tvShow = "catdog"<br>
+    tvShow.indexOf('cat')
+    <br>//0
+    <br>tvShow.indexOf('dog')
+    <br>//3
+    <br>tvShow.indexOf('z')
+    <br>//-1 <span class="red">(not found)</span>
+</p>
+<p>.slice('argument') cuts the string before (and after) the index given in the argument.</p>
+<p>"haha that is so funny!".slice(5)
+    <br>//"that is so funny!"
+    <br>"haha that is so funny!".slice(5,9)
+    <br>//"that"
+    <br>"haha that is so funny!".slice(-6)
+    <br>//"funny!"
+</p>
+
+
 <body>
 
 
