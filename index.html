@@ -8,122 +8,522 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="app.css" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700&family=Open+Sans:wght@400;700&family=Poppins:ital,wght@0,400;1,100&display=swap"
         rel="stylesheet">
-    <title>Recipes</title>
+    <title>JS NOTES</title>
+    <script src="app.js"></script>
 </head>
 
-<h1>Javascript Notes</h1>
-<h2>Primitive Types</h2>
-<h3>Numbers</h3>
-<p>1, 2, 2.4, 3.333333, -343, -3.343434 are all numbers.</p>
-<h4>NaN</h4>
-<p>Stands for "not a number", means everything which is not a number. Includes any division by 0.</p>
-<h3>Boolean</h3>
-<p>true</p>
-<p>false</p>
-<h3>String</h3>
-<p>String is any text content. Must be put inside of "" or ''.</p>
-<h4>Index[]</h4>
-myName = "Vitor"<br>
-myName[2]<br>
-//"i"<br>
-myName[0]<br>
-//"V"<br>
-myName[9]<br>
-//undefined<br>
-<h4>.length</h4>
-<p>Tells the total number of characters in that string.</p>
-myName = "Vitor"<br>
-myName.length<br>
-//5<br>
-<h4>Concatenation ""+""</h4>
-myName = "Vitor"<br>
-myLastname = "Jaguat"<br>
-myName + myLastname<br>
-//"VitorJaguat"<br>
-myName + " " + myLastname<br>
-//"Vitor Jaguat"<br>
-myName + 1<br>
-//"Vitor1" <span class="red">(transforms the number into a string)</span>
-
-
-<h3>Null</h3>
-<h3>Undefined</h3>
-<h3>Symbol</h3>
-<h3>BigInt</h3>
-
-<h2>Variables & let</h2>
-let myAge = 39<br>
-myAge = 39<br>
-let myName = "Vitor"<br>
-myName = "Vitor"<br>
-<br>
-<h3>Basic operations</h3>
-myAge + 2 <br>
-// 41 <br>
-myAge - 3 <br>
-// 37 <br>
-myAge * 2 <br>
-// 78 <br>
-myAge / 2 <br>
-// 19,5 <br>
-myAge ** 2 <br>
-// 1521 <br>
-myAge % 2 <br>
-// 1 <br>
-% stands for "module", "mod".<br>
-<br>
-<h3>Changing the Variable's value</h3>
-myAge += 1 <span class="red">adds to the Variable</span> <br>
-myAge -= 1 <span class="red">subtracts from the Variable</span><br>
-myAge *= 2 <span class="red">multiplies the Variable for...</span><br>
-myAge ++ <span class="red">adds 1 to the Variable</span><br>
-myAge -- <span class="red">subtracts 1 from the Variable</span>
-<h3>const & var</h3>
-<p>const boilingPointC = 100</p>
-<p>const boilingPointF = 212</p>
-<p>var myAge = 39 <span class="red">the same as </span>let myAge = 39</p>
-<p><i>const</i>cannot be altered in that document.</p>
-
-<h2>String Methods</h2>
-<p>myName = "Vitor" <br>
-    myName.toUpperCase()<br>
-    //"VITOR"
-    myName.toLowerCase()<br>
-    //"vitor"<br>
-</p>
-<p>myName = " Vitor "<br>
-    myName.trim() <br>
-    //"Vitor"<br>
-    myName.toUpperCase().trim()<br>
-    //"VITOR"
-</p>
-<h3>String Methods with Arguments</h3>
-<p>.indexOf('argument') indicates the first occurance of a value.</p>
-<p>let tvShow = "catdog"<br>
-    tvShow.indexOf('cat')
-    <br>//0
-    <br>tvShow.indexOf('dog')
-    <br>//3
-    <br>tvShow.indexOf('z')
-    <br>//-1 <span class="red">(not found)</span>
-</p>
-<p>.slice('argument') cuts the string before (and after) the index given in the argument.</p>
-<p>"haha that is so funny!".slice(5)
-    <br>//"that is so funny!"
-    <br>"haha that is so funny!".slice(5,9)
-    <br>//"that"
-    <br>"haha that is so funny!".slice(-6)
-    <br>//"funny!"
-</p>
-
-
 <body>
+    <h1>Javascript Notes</h1>
+    <h2>Primitive Types</h2>
+    <h3>Numbers</h3>
+    <p>1, 2, 2.4, 3.333333, -343, -3.343434 are all numbers.</p>
+    <h4>NaN</h4>
+    <p>Stands for "not a number", means everything which is not a number. Includes any division by 0.</p>
+    <h3>Boolean</h3>
+    <p>true</p>
+    <p>false</p>
+    <h3>String</h3>
+    <p>String is any text content. Must be put inside of "" or ''.</p>
+    <h4>Index[]</h4>
+    myName = "Vitor"<br>
+    myName[2]<br>
+    //"i"<br>
+    myName[0]<br>
+    //"V"<br>
+    myName[9]<br>
+    //undefined<br>
+    <h4>.length</h4>
+    <p>Tells the total number of characters in that string.</p>
+    myName = "Vitor"<br>
+    myName.length<br>
+    //5<br>
+    <h4>Concatenation ""+""</h4>
+    myName = "Vitor"<br>
+    myLastname = "Jaguat"<br>
+    myName + myLastname<br>
+    //"VitorJaguat"<br>
+    myName + " " + myLastname<br>
+    //"Vitor Jaguat"<br>
+    myName + 1<br>
+    //"Vitor1" <span class="red">(transforms the number into a string)</span>
+
+
+    <h3>Null</h3>
+    <h3>Undefined</h3>
+    <h3>Symbol</h3>
+    <h3>BigInt</h3>
+
+    <h2>Variables & let</h2>
+    let myAge = 39<br>
+    myAge = 39<br>
+    let myName = "Vitor"<br>
+    myName = "Vitor"<br>
+    <br>
+    <h3>Basic operations</h3>
+    myAge + 2 <br>
+    // 41 <br>
+    myAge - 3 <br>
+    // 37 <br>
+    myAge * 2 <br>
+    // 78 <br>
+    myAge / 2 <br>
+    // 19,5 <br>
+    myAge ** 2 <br>
+    // 1521 <br>
+    myAge % 2 <br>
+    // 1 <br>
+    % stands for "module", "mod".<br>
+    <br>
+    <h3>Changing the Variable's value</h3>
+    myAge += 1 <span class="red">adds to the Variable</span> <br>
+    myAge -= 1 <span class="red">subtracts from the Variable</span><br>
+    myAge *= 2 <span class="red">multiplies the Variable for...</span><br>
+    myAge ++ <span class="red">adds 1 to the Variable</span><br>
+    myAge -- <span class="red">subtracts 1 from the Variable</span>
+    <h3>const & var</h3>
+    <p>const boilingPointC = 100</p>
+    <p>const boilingPointF = 212</p>
+    <p>var myAge = 39 <span class="red">the same as </span>let myAge = 39</p>
+    <p><i>const</i>cannot be altered in that document.</p>
+
+    <h2>String Methods</h2>
+    <p>myName = "Vitor" <br>
+        myName.toUpperCase()<br>
+        //"VITOR"
+        myName.toLowerCase()<br>
+        //"vitor"<br>
+    </p>
+    <p>myName = " Vitor "<br>
+        myName.trim() <br>
+        //"Vitor"<br>
+        myName.toUpperCase().trim()<br>
+        //"VITOR"
+    </p>
+    <h3>String Methods with Arguments</h3>
+    <p>.indexOf('argument') indicates the first occurance of a value.</p>
+    <p>let tvShow = "catdog"<br>
+        tvShow.indexOf('cat')
+        <br>//0
+        <br>tvShow.indexOf('dog')
+        <br>//3
+        <br>tvShow.indexOf('z')
+        <br>//-1 <span class="red">(not found)</span>
+    </p>
+    <p>.slice('argument') cuts the string before (and after) the index given in the argument.</p>
+    <p>"haha that is so funny!".slice(5)
+        <br>//"that is so funny!"
+        <br>"haha that is so funny!".slice(5,9)
+        <br>//"that"
+        <br>"haha that is so funny!".slice(-6)
+        <br>//"funny!"
+    </p>
+    <p>
+        .replace(argument,argument) replaces parts of the string for another.
+        <br>let msg = "haha that is so funny!"
+        <br>msg.replace('haha','lolololo')
+        <br>//"lolololo that is so funny!"
+        <br>msg.replace('h','H')
+        <br>//"Haha that is so funny!"
+        <br>msg.replaceAll('h','H')
+        <br>//"HaHa tHat is so funny!"
+
+    </p>
+    <p>.repeat(argument) repeats the string by the number of times specified in the argument.
+        <br>"lol".repeat(3)
+        <br>//"lollollol"
+    </p>
+
+    <h3>String Template Literals</h3>
+    let product = 'Artichoke';
+    <br>let price = '2.25';
+    <br>let qty = '5';
+    <br>"You bought " + qty + " " + product + ". Total is: " + price * qty
+    <br>//"You bought 5 Artichoke. Total is: 11.25"
+    <br>
+    <p>
+        An expression is written between backticks `expression`.</p>
+    'hello ${1+2+9}'<br>
+    //"hello ${1+2+9}"<br>
+    `hello ${1+2+9}`<br>
+    //"hello 12"<br><br>
+
+    <br>"You bought " + qty + " " + product + ". Total is: $" + price * qty
+    <br>//"You bought 5 Artichoke. Total is: $11.25"
+    <br>`You bought ${qty} ${product}. Total is: $${price*qty}`
+    <br>//"You bought 5 Artichoke. Total is: $11.25"
+    <br>`You bought ${qty} ${product.toUpperCase()}. Total is: $${price*qty}`
+    <br>//"You bought 5 ARTICHOKE. Total is: $11.25"
+
+    <h3>null & undefined</h3>
+    <p><i>null</i> is the intentional absence of any value. Must be assigned.
+        <br>let loggedInUser = null;
+        <br>a user logs in...
+        <br>loggedInUser = 'Alan Lefter'
+    </p>
+    <p><i>undefined</i> are variables that do not have an assigned value. Don't need to be assigned.
+        <br>'hello'[99]
+        <br>//undefined <span class="red">there is no value assigned to index 99 in the string 'hello'</span>
+    </p>
+
+    <h3>Math object</h3>
+    <p>Contains properties and methods for mathematical constants and functions</p>
+    <br>Math.PI
+    <br>//3.1415...
+    <br>Math.round(4.9)
+    <br>//5
+    <br>Math.abs(-456)
+    <br>//456
+    <br>Math.pow(2,5) <span class="red">raises 2 to the 5th power</span>
+    <br>//32
+    <br>Math.floor(3.9999) <span class="red">removes decimal</span>
+    <br>//3
+    <br>
+    <br>Math.random() <span class="red">gives a ramdom number between 0 and 1</span>
+    <br>//0.738848964398392
+    <br>Math.random() * 5 <span class="red">to give a number between 0 and 5</span>
+    <br>//2.378789833
+    <br>Math.floor(Math.random()*5) + 1 <span class="red">to give an integer between 1 and 5</span>
+    <br>//3
+    <br>Math.floor(Math.random()*10) + 1 <span class="red">to give an integer between 1 and 10</span>
+    <br>Math.floor(Math.random()*3) + 20 <span class="red">to give an integer between 20 and 22</span>
+    <br>//21
+    <br>Math.floor(Math.random() * 6) + 1; <span class="red">to give an integer between 1 and 6 (ROLLING A DICE!)</span>
+    <br>//5
+    <p>
+        let die1 = Math.floor(Math.random() * 6) + 1;
+        <br>let die2 = Math.floor(Math.random() * 6) + 1;
+        <br>let roll = `You rolled a ${die1} and a ${die2}. They sum to ${die1+die2}`
+        <br>roll;
+        <br>//"You rolled a 6 and a 4. They sum to 10"
+    </p>
+
+    <h2>Decision Making: Boolean Logic</h2>
+    <h3>Comparisons</h3>
+    <p>> greater than</p>
+    <br>1 > 3
+    <br>//false
+    <br>1 < 3 <br>//true
+        <br>-1 <= -1 <br>//true
+            <br>== checks for equality of value, but not equality of type; it coerces both values to the same type and
+            campares them; this can lead to unexpected results!
+            <br>1 == 1;
+            <br>//true
+            <br>1 == '1';
+            <br>//true
+            <br>'b'=='c';
+            <br>//false
+            <br>0 == '';
+            <br>//true
+            <br>true == false;
+            <br>//false
+            <br>0 == false;
+            <br>//true
+            <br>null == undefined;
+            <br>//true
+            <br>
+            <br>=== checks for equality of value and type.
+            <br>5 === 5;
+            <br>//true
+            <br>2 === '2';
+            <br>//false
+            <br>false === 0;
+            <br>//false
+            <br>same applies to != and !==
+            <br>1 != '1'
+            <br>//false
+            <br>1 !== '1'
+            <br>//true
+            <br>Always use === and !==
+
+            <h2>console.log()</h2>
+            <p>Prints arguments to the console.</p>
+            <p>alert("Do you want notifications from this website?")
+                <br>will exhibit a message in a popup on the page.
+            </p>
+            <p>prompt("Please enter a number")
+                <br>will exhibit a popup asking for an input on the page.
+                <br>let userInput = prompt("Please enter a number") <span class="red">then user entered number 97</span>
+                <br>userInput
+                <br>//"97" <span class="red">this is a string</span>
+                <br>userInput + 1
+                <br>//"971"
+                <br>parseInt(userInput)
+                <br>97 <span class="red">this is a number</span>
+                <br>parseInt(userInput) + 1
+                <br>//98
+            </p>
+            <h2>Running JavaScript from a script!</h2>
+            <p>create a .js file on VSCode</p>
+            <br>on HTML head <span class="red">actually it is better to put it at the end of body element</span>:
+            <pre>
+            <code>
+                &lt;script src="app.js"&gt;&lt;/script&gt;
+            </code>
+        </pre>
+            <h2>Conditionals</h2>
+            <h3>if statement</h3>
+            <p>Only runs code if given condition is true.</p>
+            let rating = 3;
+            <br>if (rating===3) {
+            console.log("YOU ARE A SUPERSTAR!");
+            }
+            <br><br>
+            <pre><code>
+            let random = Math.random();
+            if (random < 0.5) { 
+                console.log("YOUR NUMBER IS LESS THAN 0.5!") 
+                console.log(random); 
+            } 
+            if (random>= 0.5) {
+                console.log("YOUR NUMBER IS GREATER THAN 0.5!")
+                console.log(random);
+                }</code></pre>
+
+            <br><br>
+
+            <h3>else if</h3>
+            <p>If not the first thing, maybe this other thing?</p>
+            <pre><code>
+                const dayOfWeek = 'Monday';
+                if (dayOfWeek==='Monday') {
+                    console.log("UGHH I hate Mondays!")
+                } else if (dayOfWeek==='Saturday') {
+                    console.log("YAY I love Saturdays!")
+                } else if (dayOfWeek==='Sunday') {
+                    console.log("YAY I looove Sundays!")
+                }
+            </code></pre>
+            0-5 FREE
+            <br>5-10 CHILD $10
+            <br>10-65 ADULT $20
+            <br>65+ SENIOR $10
+            <pre><code>
+                const age = 8;
+                if (age < 5) {
+                    console.log("FREE")
+                } else if (age < 10) {
+                    console.log("CHILD $10")
+                } else if (age < 65) {
+                    console.log("ADULT $20")
+                } else if (age >= 65) {
+                    console.log("SENIOR $10")
+                }
+            </code></pre>
+
+            <h3>else</h3>
+            <p>If nothing else was true, do this...</p>
+            <pre><code>
+                let dayOfWeek = prompt('What day is today?');
+                if (dayOfWeek==='Monday') {
+                    console.log("UGHH I hate Mondays!")
+                } else if (dayOfWeek==='Saturday') {
+                    console.log("YAY I love Saturdays!")
+                } else if (dayOfWeek==='Sunday') {
+                    console.log("YAY I looove Sundays!")
+                } else {
+                    console.log("MEH");
+                }
+            </code></pre>
+            <pre><code>
+
+            </code></pre>
+            let random = Math.random();
+            if (random < 0.5) { console.log("YOUR NUMBER IS LESS THAN 0.5!") console.log(random); } else {
+                console.log("YOUR NUMBER IS GREATER THAN 0.5!") console.log(random); } </code>
+                </pre>
+
+                <h3>Nesting Conditionals</h3>
+                Eg:
+                <pre><code>const password = prompt("Please enter a new password");
+            </code></pre>
+
+                Password must be 6+ characters:
+                <pre><code>
+            if(password.length >= 6) {
+                console.log("Long enough password!")
+            } else {
+                console.log("Password too short! Must be 6+ characters")
+            }
+                </code></pre>
+                Password cannot include space:
+                <pre><code>
+                    if (password.indexOf(' ') === -1) {
+                        console.log("Good job! No space.")
+                    } else {
+                        console.log("Cannot contain spaces.")
+                    }
+                </code></pre>
+                Nesting the second conditional inside of the first:
+                <pre><code>
+                    if(password.length >= 6) {
+                        if (password.indexOf(' ') === -1) {
+                            console.log("Valid password! Thanks.")
+                        } else {
+                            console.log("Cannot contain spaces.")
+                        } 
+                    }
+                    else {
+                        console.log("Password too short! Must be 6+ characters")
+                    }
+                </code></pre>
+
+                <h3>truthy & falsy values</h3>
+                <p>
+                    Falsy values:
+                    <br>false
+                    <br>0
+                    <br>"" <span class="red">empty string</span>
+                    <br>null
+                    <br>undefined
+                    <br>NaN
+                    <br>Everything else is truthy!
+                </p>
+                <pre><code>
+                    const userInput = prompt("Enter something")
+                    if (userInput) {
+                        console.log("TRUTHY!")
+                    } else {
+                        console.log("FALSY!")
+                    }
+                </code></pre>
+                Result: if user don't write anything and hit Enter, result will be "FALSY!".
+
+                <h3>Logical operator AND</h3>
+                <p>Logical operators are operators that can combine two or more pieces of logic together.
+                </p>
+                AND is written:
+                <br>&&
+
+
+                <pre><code>
+                    1 <= 4 && 'a' === 'a';   //true 
+                    9>10 && 9>=9;     //false
+                    'abc'.length === 3 && 1+1 === 4;    //false 
+                </code></pre>
+                Combining the previous example in one IF using &&:
+                <pre><code>
+                    const password = prompt("Enter your password");
+                    if (password.length >= 6 && password.indexOf(' ') === -1) {
+                        constant.log("Valid password!")
+                    } else {
+                        constant.log("Invalid password!")
+                    }
+                </code></pre>
+
+                <h3>Logical operator OR</h3>
+                <p>If one side is true, the entire thing is true. If all sides are falsy, then the entire thing is
+                    false.</p>
+                OR is written:
+                <br>||
+                <br>1 !== 1 || 10 ===10; //true
+                <br>10/2 === 5 || null //true
+                <br>0 || undefined //false
+                <pre><code>
+                    0-5 FREE <span class="red">*</span>
+                    5-10 CHILD $10
+                    10-65 ADULT $20
+                    65+ FREE <span class="red">*</span>
+
+                    const age = 90;
+                    if (age < 5 || age >= 65) {
+                        console.log("FREE")
+                    } else if (age < 10) {
+                        console.log("$10")
+                    } else if (age < 65) {
+                        console.log("$20")
+                    }
+                </code></pre>
+                <pre><code>
+                    0-5 FREE <span class="red">*</span>
+                    5-10 CHILD $10
+                    10-65 ADULT $20
+                    65+ FREE <span class="red">*</span>
+                    Age cannot be  less than 0. <span class="red">*</span>
+
+                    const age = prompt("Enter your age please.");
+                    if (age >=0 && age < 5 || age >= 65) {
+                        console.log("FREE")
+                    } else if (age >= 5 && age < 10) {
+                        console.log("$10")
+                    } else if (age >= 10 && age < 65) {
+                        console.log("$20")
+                    } else {
+                        console.log("INVALID AGE!")
+                    }
+                </code></pre>
+                The && has priority over the ||, just as the * has priority over + or - on mathematics.
+
+                <h3>Logical operator NOT</h3>
+                <p>It turns the result of the operation into its logical opposite.</p>
+                <pre><code>
+                    !null     //true 
+                    !(0===0)  //false 
+                    !(3<=4)   //false 
+                </code></pre>
+                <pre><code>
+                    let firstName = prompt("Enter your first name:");
+                    if (!firstName) {
+                        firstName = prompt("PLEASE enter the fucking name!");
+                    }
+                </code></pre>
+                <h3>Switch</h3>
+                <p>It simplifies your code when you have multiple 'else if's.</p>
+                Converting a number from 1 to 7 into a week-day:
+                <pre><code>
+                    let day = prompt("Write a number from 1 to 7");
+                    if (day === 1) {
+                        console.log("Monday")
+                    } else if (day === 2) {
+                        console.log("Tuesday")
+                    } else if (day === 3) {
+                        console.log("Wednesday")
+                    } else if (day === 4) {
+                        console.log("Thursday")
+                    } else if (day === 5) {
+                        console.log("Friday")
+                    } else if (day === 6) {
+                        console.log("Saturday")
+                    } else if (day === 7) {
+                        console.log("Sunday")
+                    } else {
+                        console.log("I don't know that.")
+                    }
+                </code></pre>
+                Using switch it turns to:
+                <pre><code>
+                    let day = prompt("Write a number from 1 to 7");
+                    switch(day) {
+                        case "1":
+                            console.log("Monday");
+                            break;
+                        case "2":
+                            console.log("Tuesday");
+                            break;
+                        case "3":
+                            console.log("Wednesday");
+                            break;
+                        case "4":
+                            console.log("Thursday");
+                            break;
+                        case "5":
+                            console.log("Friday");
+                            break;
+                        case "6":
+                            console.log("Saturday");
+                            break;
+                        case "7":
+                            console.log("Sunday");
+                            break;
+                        default:
+                            console.log("I don't know that!")
+                    }
+                </code></pre>
 
 
 
@@ -131,16 +531,17 @@ myAge -- <span class="red">subtracts 1 from the Variable</span>
 
 
 
-    <!-- JS Code to enable bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+
+                <!-- JS Code to enable bootstrap -->
+                <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                    crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+                    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                    crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+                    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                    crossorigin="anonymous"></script>
 
 </body>
 
