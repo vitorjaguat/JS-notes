@@ -23,6 +23,8 @@
     <h2>Primitive Types</h2>
     <h3>Numbers</h3>
     <p>1, 2, 2.4, 3.333333, -343, -3.343434 are all numbers.</p>
+    <div class="alert-info">To transform non-numbers into numbers, use Number("55") or +"55", it will give //55 as a
+        result.</div>
     <h4>NaN</h4>
     <p>Stands for "not a number", means everything which is not a number. Includes any division by 0.</p>
     <h3>Boolean</h3>
@@ -30,6 +32,19 @@
     <p>false</p>
     <h3>String</h3>
     <p>String is any text content. Must be put inside of "" or ''.</p>
+    In JavaScript, there are 3 types of quotes.
+    <br>Double quotes: "Hello".
+    <br>Single quotes: 'Hello'.
+    <br>Backticks: `Hello`.
+    <br>Double and single quotes are “simple” quotes. There’s practically no difference between them in JavaScript.
+    <br>Backticks are “extended functionality” quotes. They allow us to embed variables and expressions into a string by
+    wrapping them in ${…}. The expression inside ${…} is evaluated and the result becomes a part of the string. We can
+    put anything in there: a variable like name or an arithmetical expression like 1 + 2 or something more complex.
+    <div class="alert-info">Use \ to "escape" or skip one character in the string. It is used when we want to write ' or
+        " as part of the inner part of a string. Eg:
+        <br>const bigmouth = 'I\'ve got no right to take my place...';
+        <br>console.log(bigmouth);
+    </div>
     <h4>Index[]</h4>
     myName = "Vitor"<br>
     myName[2]<br>
@@ -524,6 +539,81 @@
                             console.log("I don't know that!")
                     }
                 </code></pre>
+
+                <h2>Arrays</h2>
+                Array is a data structure, a collection of data or variables.
+                <br>let beatles = ['Paul', 'John', 'George', 'Ringo'];
+                <br>Each element in the array has an index, just like letters inside strings.
+                <br>beatles[2]; //'George'
+                <br>beatles.length; //4
+                <br>To modify arrays:
+                <br>beatles[1] = 'Lennon';
+                <br>beatles; // ['Paul', 'Lennon', 'George', 'Ringo']
+
+                <h3>Array Methods</h3>
+                <h4>push & pop</h4>
+                <p>arrayName.push('new item') adds 'new item' to the end of the array.</p>
+                <br>beatles.push('new member');
+                <br>beatles; //['Paul', 'Lennon', 'George', 'Ringo', 'new member']
+                <p>arrayName.pop() removes the last, most recently pushed item of the array.</p>
+                <br>beatles.pop();
+                <br>beatles; //['Paul', 'Lennon', 'George', 'Ringo']
+                <h4>shift & unshift</h4>
+                <p>arrayName.shift() removes the first item off the array.</p>
+                beatles.shift();
+                <br>beatles; // ['Lennon', 'George', 'Ringo']
+                <p>arrayName.unshift('new item') adds 'new item' to the beginning of the array.</p>
+                beatles.unshift('Yoko');
+                <br>beatles; //['Yoko', 'Lennon', 'George', 'Ringo']
+                <h4>concat</h4>
+                <p>Merges two arrays.</p>
+                let flowers = ['marygold','lavender'];
+                <br>let teas = ['lemmongrass','mint'];
+                <br>flowers.concat(teas);
+                <br>//['marygold','lavender','lemmongrass','mint'] <span class="red">it doesn't modify the original
+                    variables, it just returns a result of a list of the items of the two arrays together.</span>
+                <h4>includes</h4>
+                <p>arrayName.includes('cat') checks if the array includes the item 'cat' or not. Returns boolean.</p>
+                flowers.includes('marygold'); //true
+                <h4>indexOf</h4>
+                <p>arrayName.indexOf('marygold') returns the index of a given item.</p>
+                flowers.indexOf('marygold'); //0
+                <br>If the item is not found in the array, it will return -1.
+                <h4>reverse</h4>
+                <p>arrayName.reverse() will reverse the order of items in the array.</p>
+                flowers.reverse();
+                <br>flowers; //['lavender','marygold']
+                <br>It is a destructive method, i.e. it modifies the original array.
+                <h4>slice</h4>
+                <p>arrayName.slice(3) will return items from index 3 until the end, including item 3.</p>
+                <p>arrayName.slice(3,5) will return items from index 3 until index 5, including item 3 and NOT including
+                    item 5.</p>
+                <p>arrayName.slice(-2) will return last 2 items.</p>
+                <p>slice is a non-destructive method.</p>
+                <h4>splice</h4>
+                <p>arrayName.splice(1,0,'rose') will begin at index 1, cut-out 0 items, and add 'rose'.</p>
+                splice is a distructive method.
+                <h4>sort</h4>
+                <p>arrayName.sort() will organize items according to function wrapped between parenthesis.</p>
+                <h3>Reference types (arrays) and Equality tests</h3>
+                let array1 = [1,2,3];
+                <br>let array2 = [1,2,3];
+                <br>array1 === array2 //false
+                <br><br>
+                let array1 = [1,2,3];
+                <br>let array2 = array1;
+                <br>array1 === array2 //true
+                <p>What is being compared is the reference of the arrays, not the items inside of it.</p>
+                <h3>Nested arrays</h3>
+                let gameBoard = [["X", "O", "X"], ["O", null, "X"], ["O","O", "X"];
+                <br>To return the second item in second row:
+                <br>gameBoard[1][1]; //null
+
+
+
+
+
+
 
 
 
