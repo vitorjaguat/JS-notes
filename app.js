@@ -74,29 +74,77 @@
 //     firstName = prompt("PLEASE enter the fucking name!");
 // }
 
-let day = prompt("Write a number from 1 to 7");
-switch (day) {
-    case "1":
-        console.log("Monday");
-        break;
-    case "2":
-        console.log("Tuesday");
-        break;
-    case "3":
-        console.log("Wednesday");
-        break;
-    case "4":
-        console.log("Thursday");
-        break;
-    case "5":
-        console.log("Friday");
-        break;
-    case "6":
-        console.log("Saturday");
-        break;
-    case "7":
-        console.log("Sunday");
-        break;
-    default:
-        console.log("I don't know that!")
-}
+// let day = prompt("Write a number from 1 to 7");
+// switch (day) {
+//     case "1":
+//         console.log("Monday");
+//         break;
+//     case "2":
+//         console.log("Tuesday");
+//         break;
+//     case "3":
+//         console.log("Wednesday");
+//         break;
+//     case "4":
+//         console.log("Thursday");
+//         break;
+//     case "5":
+//         console.log("Friday");
+//         break;
+//     case "6":
+//         console.log("Saturday");
+//         break;
+//     case "7":
+//         console.log("Sunday");
+//         break;
+//     default:
+//         console.log("I don't know that!")
+// }
+
+// const seatingChart = [
+//     ['Kristen', 'Erik', 'Namita'],
+//     ['Geoffrey', 'Juanita', 'Antonio', 'Kevin'],
+//     ['Yuma', 'Sakura', 'Jack', 'Erika']
+// ]
+// for (let i = 0; i < seatingChart.length; i++) {
+//     const row = seatingChart[i];
+//     console.log(`ROW #${i + 1}`)
+//     for (let j = 0; j < row.length; j++) {
+//         console.log(row[j]);
+//     }
+// }
+
+// let input = prompt("Hey, say something!")
+// while (true) {
+//     input = prompt(input);
+//     if (input.toLowerCase() === "stop copying me") {
+//         break;
+//     }
+// }
+// alert("OK YOU WIN!")
+
+// let maximum = parseInt(prompt("Enter the maximum number!"));
+// while (!maximum) {
+//     maximum = parseInt(prompt("Enter a valid number!"));
+// }
+
+// const targetNum = Math.floor(Math.random() * maximum) + 1;
+
+// let guess = parseInt(prompt("Enter your first guess!"));
+// let attempts = 1;
+
+// while (parseInt(guess) !== targetNum) {
+//     if (guess === 'q' || guess === 'Q') break;
+//     attempts++;
+//     if (guess > targetNum) {
+//         guess = prompt("Too high! Enter a new guess:");
+//     } else {
+//         guess = prompt("Too low! Enter a new guess:");
+//     }
+// }
+
+// if (guess === 'q' || guess === 'Q') {
+//     alert("OK, you quit.")
+// } else {
+//     alert(`Congrats! It took you ${attempts} guesses.`)
+// }

@@ -609,9 +609,212 @@
                 <br>To return the second item in second row:
                 <br>gameBoard[1][1]; //null
 
+                <h2>Objects</h2>
+                <p>Just like arrays, objects are data structures. Inside objects, order doesn't matter. An object is
+                    formed by several properties. A property is a key-value pair, formed by a key and a value.</p>
+                <pre><code>
+                const person = {firstName: 'Pabblo', lastName: 'Vittar'};
+                const myKitchen = {
+                    isNice: true,
+                    colors: ['green','white'],
+                    sizeM2: 22
+                }
+                person["lastName"]  //'Vittar'
+                person.lastName     //'Vittar'
+                person["last"+"Name"]   //'Vittar' <span class="red">using [], you can put an operation or a variable inside the []</span>
+                </code></pre>
+                Modifying values and adding properties:
+                <pre><code>
+                myKitchen.size = 23;
+                myKitchen.isClean = true;
+                myKitchen;    //{isNice: true, colors: ['green','white'], sizeM2: 23, isClean: true}
+                </code></pre>
+                Nesting arrays and objects:
+                <pre><code>
+                    const shoppingCart = [
+                    {
+                        product: 'Jenga Classic',
+                        price: 6.88,
+                        quantity: 1,
+                    },
+                    {
+                        product: 'Echo Dot',
+                        price: 29.99,
+                        quantity: 3
+                    },
+                    {
+                        product: 'Fire Stick',
+                        price: 39.99,
+                        quantity: 2
+                    }
+                    ]
+                </code></pre>
 
+                <pre><code>
+                    const comments = [
+                        {username: 'Tammy', text: 'lolololol', votes: 9},
+                        {username: 'Fishboy', text: 'glub glub', votes: 737637}
+                    ]
+                    comments[1];   //{username: 'Tammy', text: 'lolololol', votes: 9}
+                    comments[1].text   //"glub glub"
+                </code></pre>
 
+                <h2>Loops</h2>
+                Loops are used to repeat lines of code over and over again, until the condition inside of it returns
+                false.
+                <h3>For loops</h3>
+                For loops syntax:
+                <pre><code>
+                    for (
+                        [initialExpression];
+                        [condition];
+                        [incrementExpression]
+                    )
+                </code></pre>
+                For example. To console.log a list from 1 to 10:
+                <pre><code>
+                    for (let i = 1; i <= 10; i++) {
+                        console.log(i);
+                    }
+                </code></pre>
+                Another example. To print "Da ba dee da ba daa" 6 times, no more no less than 6 times:
+                <pre><code>
+                    for (let i = 1; i <= 6; i++ ) {
+                        console.log("Da ba dee da ba daa")
+                    }
+                </code></pre>
+                Example 3. Print out all the even numbers between 0 and 20.
+                <pre><code>
+                    for (let i = 0; i <= 20; i += 2) {
+                        console.log(i)
+                    }
+                </code></pre>
+                Example 4. Count down all the multiples of 10, from 100 to 0.
+                <pre><code>
+                    for (let i = 100; i >= 0; i -= 10) {
+                        console.log(i)
+                    }
+                </code></pre>
+                Take care with infinite loops! They can cause problem, like force-quit the browser. For example:
+                <pre><code>
+                    for (let i = 20; i >= 0; i++) {
+                        console.log(i)
+                    }
+                </code></pre>
 
+                <h4>Looping over arrays</h4>
+                For example. To list every item from this array:
+                <pre><code>
+                    const animals = ['lions','tigers','bears'];
+                    for (let i = 0; i < animals.length; i++) {
+                        console.log(i, animals[i]);
+                    }
+                    //0 'lions'
+                    //1 'tigers'
+                    //2 'bears'
+                </code></pre>
+                Example 2. To list items in reverse order:
+                <pre><code>
+                    const animals = ['lions','tigers','bears'];
+                    for (let i = animals.length - 1; i >= 0; i--) {
+                        console.log(i, animals[i]);
+                    }
+                    //2 'bears'
+                    //1 'tigers'
+                    //0 'lions'
+                </code></pre>
+                Example 3. Iterating (=listing, repeating) arrays items in uppercase.
+                <pre><code>
+                    const people = ["Scooby", "Velma", "Daphne", "Shaggy", "Fred"];
+                    for (let i = 0; i < people.length; i++) {
+                        console.log(people[i].toUpperCase());
+                    }
+                </code></pre>
+
+                <h4>Nesting loops</h4>
+                Used to list every item in every nested array inside of an array.
+                <pre><code>
+                    const seatingChart = [
+                        ['Kristen', 'Erik', 'Namita'],
+                        ['Geoffrey', 'Juanita', 'Antonio', 'Kevin'],
+                        ['Yuma', 'Sakura', 'Jack', 'Erika']
+                    ]
+                    for (let i = 0; i < seatingChart.length; i++) {
+                        const row = seatingChart[i];
+                        console.log(`ROW #${i + 1}`)
+                        for (let j = 0; j < row.length; j++) {
+                            console.log(row[j])
+                        }
+                    }
+                    //ROW #1
+                    //Kristen
+                    //Erik
+                    //Namita
+                    //ROW #2
+                    //Geoffrey
+                    //Juanita
+                    //Antonio
+                    //Kevin
+                    //ROW #3
+                    //Yuma
+                    //Sakura
+                    //Jack
+                    //Erika
+                </code></pre>
+
+                <h3>While loops</h3>
+                Can do the same things as for loops, but are usually used when something needs to be repeated over and
+                over again and when it is not known when it's gonna end.
+                <pre><code>
+                    const SECRET = "BabyHippo";
+                    let guess = prompt("Enter the secret code.....");
+                    while (guess !== SECRET) {
+                        guess = prompt("Enter the secret code.....");
+                    }
+                    console.log("CONGRATS! YOU GOT IT!")
+                </code></pre>
+
+                <h4>The break keyword</h4>
+                <pre><code>
+                    let input = prompt("Hey, say something!")
+                    while (true) {
+                        input = prompt(input);
+                        if (input.toLowerCase() === "stop copying me") {
+                            break;
+                        }
+                    }
+                    alert("OK YOU WIN!")
+                </code></pre>
+
+                <h4>Writing a Guessing Game</h4>
+                <pre><code>
+                let maximum = parseInt(prompt("Enter the maximum number!"));
+                while (!maximum) {
+                    <span class="red">while maximum is a falsy (not a number, 0, etc.)</span>
+                    maximum = parseInt(prompt("Enter a valid number!"));
+                }
+
+                const targetNum = Math.floor(Math.random() * maximum) + 1;
+
+                let guess = parseInt(prompt("Enter your first guess!"));
+                let attempts = 1;
+
+                while (parseInt(guess) !== targetNum) {
+                    if (guess === 'q' || guess === 'Q') break;
+                    attempts++;
+                    if (guess > targetNum) {
+                        guess = prompt("Too high! Enter a new guess:");
+                    } else {
+                        guess = prompt("Too low! Enter a new guess:");
+                    }
+                }
+
+                if (guess === 'q' || guess === 'Q') {
+                    alert("OK, you quit.")
+                } else {
+                    alert(`Congrats! It took you ${attempts} guesses.`)
+                }
+                </code></pre>
 
 
 
