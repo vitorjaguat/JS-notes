@@ -15,7 +15,7 @@
         href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700&family=Open+Sans:wght@400;700&family=Poppins:ital,wght@0,400;1,100&display=swap"
         rel="stylesheet">
     <title>JS NOTES</title>
-    <script src="app.js"></script>
+
 </head>
 
 <body>
@@ -816,13 +816,143 @@
                 }
                 </code></pre>
 
+                <h3>For...of loops</h3>
+                <p>These are used to iterate items of an iterable (strings, arrays etc). It is also possible to
+                    use for loops for this purpose, but for...of loops are a new JS feature that does this in a simpler
+                    way.</p>
+                <pre><code>
+                    const people = ["Scooby", "Velma", "Daphne", "Shaggy", "Fred"];
+                    for (let i = 0; i < people.length; i++) {
+                        console.log(people[i].toUpperCase());
+                    }
+                    <span class="red">This is ok, but can be done in a cleaner way:</span>
+                    const people = ["Scooby", "Velma", "Daphne", "Shaggy", "Fred"];
+                    for (let person of people) {
+                        console.log(person)
+                    }
+                </code></pre>
+                Another example:
+                <pre><code>
+                    const seatingChart = [
+                        ['Kristen', 'Erik', 'Namita'],
+                        ['Geoffrey', 'Juanita', 'Antonio', 'Kevin'],
+                        ['Yuma', 'Sakura', 'Jack', 'Erika']
+                    ]
+                    for (let i = 0; i < seatingChart.length; i++) {
+                        const row = seatingChart[i];
+                        for (let j = 0; j < row.length; j++) {
+                            console.log(row[j])
+                        }
+                    }
+                    <span class="red">This is ok, but using for...of loop it is easier:</span>
+                    const seatingChart = [
+                    ['Kristen', 'Erik', 'Namita'],
+                    ['Geoffrey', 'Juanita', 'Antonio', 'Kevin'],
+                    ['Yuma', 'Sakura', 'Jack', 'Erika']
+                ]
+                    for (let line of seatingChart) {
+                        for (let person of line) {
+                            console.log(person)
+                        }
+                    }
+                </code></pre>
+
+                <h4>Iterating over Objects</h4>
+                <p>Objects are not iterable because its items are unordered and don't have an index. So you can't use
+                    for...of with them. But there are a couple of ways to iterate over objects.</p>
+                For...in loop:
+                <pre><code>
+                        const testScores = {
+                            keenan: 80,
+                            damon: 67,
+                            kim: 89,
+                            shawn: 91
+                        }
+                        for (let person in testScores) {
+                            console.log(person)
+                        }
+                        //keenan
+                        //damon
+                        //kim
+                        //shawn
+                        <span class="red">(just returns the keys, not the values)</span>
+                    </code></pre>
+
+                For...in + values
+                <pre><code>
+                        const testScores = {
+                            keenan: 80,
+                            damon: 67,
+                            kim: 89,
+                            shawn: 91
+                        }
+                        for (let person in testScores) {
+                            console.log(`${person} scored ${testScores[person]})
+                        }
+                        //keenan scored 80
+                        //damon scored 67
+                        //kim scored 89
+                        //shawn scored 91
+                    </code></pre>
+
+                Object.keys() method
+                <pre><code>
+                        const testScores = {
+                            keenan: 80,
+                            damon: 67,
+                            kim: 89,
+                            shawn: 91
+                        }
+                        console.log(Object.keys(testScores));
+                        //["keenan", "damon", "kim", "shawn"]
+                    </code></pre>
+
+                Object.values method
+                <pre><code>
+                        const testScores = {
+                            keenan: 80,
+                            damon: 67,
+                            kim: 89,
+                            shawn: 91
+                        }
+                        console.log(Object.values(testScores));
+                        //[80, 67, 89, 91]
+                    </code></pre>
+
+                Object.entries method
+                <pre><code>
+                        const testScores = {
+                            keenan: 80,
+                            damon: 67,
+                            kim: 89,
+                            shawn: 91
+                        }
+                        console.log(Object.entries(testScores));
+                        //[["keenan", 80], ["damon", 67], ["kim", 89], ["shawn", 91]]
+                    </code></pre>
+
+                Example: to sum up all of the scores and get an avarage of them.
+                <pre><code>
+                        const testScores = {
+                            keenan: 80,
+                            damon: 67,
+                            kim: 89,
+                            shawn: 91
+                        }
+                        let total = 0;
+                        let numberOfStudents = Object.values(testScores).length
+                        for (let eachScore of Object.values(testScores)) {
+                            total += eachScore;
+                        }
+                        console.log(total / numberOfStudents)
+                    </code></pre>
 
 
 
 
 
 
-
+                <script src="app.js"></script>
 
 
                 <!-- JS Code to enable bootstrap -->
@@ -835,6 +965,7 @@
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
                     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                     crossorigin="anonymous"></script>
+
 
 </body>
 

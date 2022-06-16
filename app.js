@@ -148,3 +148,68 @@
 // } else {
 //     alert(`Congrats! It took you ${attempts} guesses.`)
 // }
+
+// const seatingChart = [
+//     ['Kristen', 'Erik', 'Namita'],
+//     ['Geoffrey', 'Juanita', 'Antonio', 'Kevin'],
+//     ['Yuma', 'Sakura', 'Jack', 'Erika']
+// ]
+// for (let line of seatingChart) {
+//     for (let person of line) {
+//         console.log(person)
+//     }
+// }
+
+// const people = ["Scooby", "Velma", "Daphne", "Shaggy", "Fred"];
+// for (let person of people) {
+//     console.log(person)
+// }
+
+// const testScores = {
+//     keenan: 80,
+//     damon: 67,
+//     kim: 89,
+//     shawn: 91
+// }
+// let total = 0;
+// let numberOfStudents = Object.values(testScores).length
+// for (let eachScore of Object.values(testScores)) {
+//     total += eachScore;
+// }
+// console.log(total / numberOfStudents)
+
+//TODO list app:
+const todoList = [];
+let newTodo = [];
+let task = prompt("What would you like to do?")
+
+// while (task !== "new" && task !== "list" && task !== "delete" && task !== "quit") {
+//     alert("Please enter a valid command: new, list, delete or quit")
+// }
+
+while (true) {
+    if (task === false) {
+        break;
+    }
+    if (task === "new") {
+        newTodo = prompt("Enter new todo:");
+        todoList.push(newTodo);
+        console.log(`${newTodo} added to the list`);
+        task = prompt("What would you like to do?");
+    }
+    if (task === "list") {
+        for (todo of todoList) {
+            for (let i = 0; i < todoList.length; i++) {
+                console.log(`${i}: ${todoList[i]}`)
+            }
+            // for (let todo of todoList) {
+            //     console.log(` : ${todo}`)
+            // }
+            task = prompt("What would you like to do?");
+        }
+    }
+}
+
+
+// for (let i = 0; i < people.length; i++) {
+//     console.log(people[i]
