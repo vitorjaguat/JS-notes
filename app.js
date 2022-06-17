@@ -178,38 +178,129 @@
 // }
 // console.log(total / numberOfStudents)
 
-//TODO list app:
-const todoList = [];
-let newTodo = [];
-let task = prompt("What would you like to do?")
+//TODO list app (my answer):
+// const todoList = [];
 
-// while (task !== "new" && task !== "list" && task !== "delete" && task !== "quit") {
-//     alert("Please enter a valid command: new, list, delete or quit")
+// while (true) {
+//     let task = prompt("What would you like to do?");
+//     if (task === "quit") {
+//         console.log("Ok, you quit.");
+//         break;
+//     } else if (task === "new") {
+//         let newTodo = prompt("Enter new todo:");
+//         todoList.push(newTodo);
+//         console.log(`${newTodo} added to the list`);
+
+//     } else if (task === "list") {
+//         for (let i = 0; i < todoList.length; i++) {
+//             console.log(`${i}: ${todoList[i]}`)
+//         }
+//     } else if (task === "delete") {
+//         let deleteNumber = parseInt(prompt("What item do you want to delete?"));
+//         todoList.splice(deleteNumber, 1);
+//         console.log(`item ${deleteNumber} successfully deleted.`)
+//     }
 // }
 
-while (true) {
-    if (task === false) {
-        break;
-    }
-    if (task === "new") {
-        newTodo = prompt("Enter new todo:");
-        todoList.push(newTodo);
-        console.log(`${newTodo} added to the list`);
-        task = prompt("What would you like to do?");
-    }
-    if (task === "list") {
-        for (todo of todoList) {
-            for (let i = 0; i < todoList.length; i++) {
-                console.log(`${i}: ${todoList[i]}`)
-            }
-            // for (let todo of todoList) {
-            //     console.log(` : ${todo}`)
-            // }
-            task = prompt("What would you like to do?");
-        }
-    }
+//My version with alerts:
+// const todoList = [];
+
+// while (true) {
+//     let task = prompt("What would you like to do?");
+//     if (task === "quit") {
+//         alert("Ok, you quit.");
+//         break;
+//     } else if (task === "new") {
+//         let newTodo = prompt("Enter new todo:");
+//         todoList.push(newTodo);
+//         alert(`${newTodo} added to the list`);
+
+//     } else if (task === "list") {
+//         for (let i = 0; i < todoList.length; i++) {
+//             alert(`${i}: ${todoList[i]}`);
+//         }
+//     } else if (task === "delete") {
+//         let deleteNumber = parseInt(prompt("What item do you want to delete?"));
+//         todoList.splice(deleteNumber, 1);
+//         alert(`item ${deleteNumber} successfully deleted.`)
+//     }
+// }
+
+
+
+// TODOlist app: Colt's resolution:
+// const todos = [];
+// let input = prompt("What would you like to do?");
+// while (input !== "quit" && input !== "q") {
+//     if (input === "list") {
+//         console.log("*************");
+//         for (let i = 0; i < todos.length; i++) {
+//             console.log(`${i}: ${todos[i]}`);
+//         }
+//         console.log("*************");
+//     } else if (input === "new") {
+//         const newTodo = prompt("Ok, what is the new todo?");
+//         todos.push(newTodo);
+//         console.log(`${newTodo} added to the list!`);
+//     } else if (input === "delete") {
+//         const index = parseInt(prompt("Ok, enter an index to delete:"));
+//         if (!Number.isNaN(index)) {
+//             const deleted = todos.splice(index, 1);
+//             console.log(`OK, deleted ${deleted[0]}.`)
+//         } else {
+//             console.log("Unknown index")
+//             //This if is only to check if the index is really valid, because any string would be converted to a number and could delete unwanted items.
+//         }
+//     }
+//     input = prompt("What would you like to do?")
+// }
+// console.log("OK, YOU QUIT THE APP.");
+
+
+// function greet(firstName) {
+//     console.log(`Hi, ${firstName}!`);
+// }
+// greet('Nona');
+
+// function rant(message) {
+//     console.log(message.toUpperCase());
+//     console.log(message.toUpperCase());
+// }
+// rant('I hate beets!');
+
+// function repeat(message, numTimes) {
+//     let result = '';
+//     for (let i = 0; i < numTimes; i++) {
+//         result += message;
+//     }
+//     console.log(result);
+// }
+// repeat('HELLO', 5);
+
+// Jonas challenge#1
+let massMark = 78;
+let heightMark = 1.69;
+let massJohn = 92;
+let heightJohn = 1.95;
+
+// Data2
+massMark = 95;
+massJohn = 85;
+heightMark = 1.88;
+heightJohn = 1.76;
+
+let markHigherBMI;
+let markBMI = massMark / heightMark ** 2;
+let johnBMI = massJohn / heightJohn ** 2;
+
+
+
+
+
+if (markBMI > johnBMI) {
+    markHigherBMI = true;
+} else {
+    markHigherBMI = false;
 }
 
 
-// for (let i = 0; i < people.length; i++) {
-//     console.log(people[i]

@@ -223,73 +223,73 @@
     <p>> greater than</p>
     <br>1 > 3
     <br>//false
-    <br>1 < 3 <br>//true
-        <br>-1 <= -1 <br>//true
-            <br>== checks for equality of value, but not equality of type; it coerces both values to the same type and
-            campares them; this can lead to unexpected results!
-            <br>1 == 1;
-            <br>//true
-            <br>1 == '1';
-            <br>//true
-            <br>'b'=='c';
-            <br>//false
-            <br>0 == '';
-            <br>//true
-            <br>true == false;
-            <br>//false
-            <br>0 == false;
-            <br>//true
-            <br>null == undefined;
-            <br>//true
-            <br>
-            <br>=== checks for equality of value and type.
-            <br>5 === 5;
-            <br>//true
-            <br>2 === '2';
-            <br>//false
-            <br>false === 0;
-            <br>//false
-            <br>same applies to != and !==
-            <br>1 != '1'
-            <br>//false
-            <br>1 !== '1'
-            <br>//true
-            <br>Always use === and !==
+    <br>1 &lt; 3 <br>//true
+    <br>-1 &lt;= -1 <br>//true
+    <br>== checks for equality of value, but not equality of type; it coerces both values to the same type and compares
+    them; this can lead to unexpected results!
+    <br>1 == 1;
+    <br>//true
+    <br>1 == '1';
+    <br>//true
+    <br>'b'=='c';
+    <br>//false
+    <br>0 == '';
+    <br>//true
+    <br>true == false;
+    <br>//false
+    <br>0 == false;
+    <br>//true
+    <br>null == undefined;
+    <br>//true
+    <br>
+    <br>=== checks for equality of value and type.
+    <br>5 === 5;
+    <br>//true
+    <br>2 === '2';
+    <br>//false
+    <br>false === 0;
+    <br>//false
+    <br>same applies to != and !==
+    <br>1 != '1'
+    <br>//false
+    <br>1 !== '1'
+    <br>//true
+    <br>Always use === and !==
 
-            <h2>console.log()</h2>
-            <p>Prints arguments to the console.</p>
-            <p>alert("Do you want notifications from this website?")
-                <br>will exhibit a message in a popup on the page.
-            </p>
-            <p>prompt("Please enter a number")
-                <br>will exhibit a popup asking for an input on the page.
-                <br>let userInput = prompt("Please enter a number") <span class="red">then user entered number 97</span>
-                <br>userInput
-                <br>//"97" <span class="red">this is a string</span>
-                <br>userInput + 1
-                <br>//"971"
-                <br>parseInt(userInput)
-                <br>97 <span class="red">this is a number</span>
-                <br>parseInt(userInput) + 1
-                <br>//98
-            </p>
-            <h2>Running JavaScript from a script!</h2>
-            <p>create a .js file on VSCode</p>
-            <br>on HTML head <span class="red">actually it is better to put it at the end of body element</span>:
-            <pre>
+    <h2>console.log()</h2>
+    <p>Prints arguments to the console.</p>
+    <p>alert("Do you want notifications from this website?")
+        <br>will exhibit a message in a popup on the page.
+    </p>
+    <p>prompt("Please enter a number")
+        <br>will exhibit a popup asking for an input on the page.
+        <br>let userInput = prompt("Please enter a number") <span class="red">then user entered number 97</span>
+        <br>userInput
+        <br>//"97" <span class="red">this is a string</span>
+        <br>userInput + 1
+        <br>//"971"
+        <br>parseInt(userInput)
+        <br>97 <span class="red">this is a number</span>
+        <br>parseInt(userInput) + 1
+        <br>//98
+    </p>
+    <h2>Running JavaScript from a script!</h2>
+    <p>create a .js file on VSCode</p>
+    <br>on HTML head <span class="red">actually it is better to put it at the end of body element</span>:
+    <pre>
             <code>
                 &lt;script src="app.js"&gt;&lt;/script&gt;
             </code>
         </pre>
-            <h2>Conditionals</h2>
-            <h3>if statement</h3>
-            <p>Only runs code if given condition is true.</p>
-            let rating = 3;
-            <br>if (rating===3) {
-            console.log("YOU ARE A SUPERSTAR!");
-            }
-            <br><br>
-            <pre><code>
+    <h2>Conditionals</h2>
+    <h3>if statement</h3>
+    <p>Only runs code if given condition is true.</p>
+    let rating = 3;
+    <br>if (rating===3) {
+    console.log("YOU ARE A SUPERSTAR!");
+    }
+    <br><br>
+    <pre><code>
             let random = Math.random();
             if (random < 0.5) { 
                 console.log("YOUR NUMBER IS LESS THAN 0.5!") 
@@ -300,11 +300,11 @@
                 console.log(random);
                 }</code></pre>
 
-            <br><br>
+    <br><br>
 
-            <h3>else if</h3>
-            <p>If not the first thing, maybe this other thing?</p>
-            <pre><code>
+    <h3>else if</h3>
+    <p>If not the first thing, maybe this other thing?</p>
+    <pre><code>
                 const dayOfWeek = 'Monday';
                 if (dayOfWeek==='Monday') {
                     console.log("UGHH I hate Mondays!")
@@ -314,11 +314,11 @@
                     console.log("YAY I looove Sundays!")
                 }
             </code></pre>
-            0-5 FREE
-            <br>5-10 CHILD $10
-            <br>10-65 ADULT $20
-            <br>65+ SENIOR $10
-            <pre><code>
+    0-5 FREE
+    <br>5-10 CHILD $10
+    <br>10-65 ADULT $20
+    <br>65+ SENIOR $10
+    <pre><code>
                 const age = 8;
                 if (age < 5) {
                     console.log("FREE")
@@ -331,9 +331,9 @@
                 }
             </code></pre>
 
-            <h3>else</h3>
-            <p>If nothing else was true, do this...</p>
-            <pre><code>
+    <h3>else</h3>
+    <p>If nothing else was true, do this...</p>
+    <pre><code>
                 let dayOfWeek = prompt('What day is today?');
                 if (dayOfWeek==='Monday') {
                     console.log("UGHH I hate Mondays!")
@@ -345,37 +345,37 @@
                     console.log("MEH");
                 }
             </code></pre>
-            <pre><code>
+    <pre><code>
 
             </code></pre>
-            let random = Math.random();
-            if (random < 0.5) { console.log("YOUR NUMBER IS LESS THAN 0.5!") console.log(random); } else {
-                console.log("YOUR NUMBER IS GREATER THAN 0.5!") console.log(random); } </code>
-                </pre>
+    let random = Math.random();
+    if (random < 0.5) { console.log("YOUR NUMBER IS LESS THAN 0.5!") console.log(random); } else { console.log("YOUR
+        NUMBER IS GREATER THAN 0.5!") console.log(random); } </code>
+        </pre>
 
-                <h3>Nesting Conditionals</h3>
-                Eg:
-                <pre><code>const password = prompt("Please enter a new password");
+        <h3>Nesting Conditionals</h3>
+        Eg:
+        <pre><code>const password = prompt("Please enter a new password");
             </code></pre>
 
-                Password must be 6+ characters:
-                <pre><code>
+        Password must be 6+ characters:
+        <pre><code>
             if(password.length >= 6) {
                 console.log("Long enough password!")
             } else {
                 console.log("Password too short! Must be 6+ characters")
             }
                 </code></pre>
-                Password cannot include space:
-                <pre><code>
+        Password cannot include space:
+        <pre><code>
                     if (password.indexOf(' ') === -1) {
                         console.log("Good job! No space.")
                     } else {
                         console.log("Cannot contain spaces.")
                     }
                 </code></pre>
-                Nesting the second conditional inside of the first:
-                <pre><code>
+        Nesting the second conditional inside of the first:
+        <pre><code>
                     if(password.length >= 6) {
                         if (password.indexOf(' ') === -1) {
                             console.log("Valid password! Thanks.")
@@ -388,18 +388,18 @@
                     }
                 </code></pre>
 
-                <h3>truthy & falsy values</h3>
-                <p>
-                    Falsy values:
-                    <br>false
-                    <br>0
-                    <br>"" <span class="red">empty string</span>
-                    <br>null
-                    <br>undefined
-                    <br>NaN
-                    <br>Everything else is truthy!
-                </p>
-                <pre><code>
+        <h3>truthy & falsy values</h3>
+        <p>
+            Falsy values:
+            <br>false
+            <br>0
+            <br>"" <span class="red">empty string</span>
+            <br>null
+            <br>undefined
+            <br>NaN
+            <br>Everything else is truthy!
+        </p>
+        <pre><code>
                     const userInput = prompt("Enter something")
                     if (userInput) {
                         console.log("TRUTHY!")
@@ -407,22 +407,22 @@
                         console.log("FALSY!")
                     }
                 </code></pre>
-                Result: if user don't write anything and hit Enter, result will be "FALSY!".
+        Result: if user don't write anything and hit Enter, result will be "FALSY!".
 
-                <h3>Logical operator AND</h3>
-                <p>Logical operators are operators that can combine two or more pieces of logic together.
-                </p>
-                AND is written:
-                <br>&&
+        <h3>Logical operator AND</h3>
+        <p>Logical operators are operators that can combine two or more pieces of logic together.
+        </p>
+        AND is written:
+        <br>&&
 
 
-                <pre><code>
+        <pre><code>
                     1 <= 4 && 'a' === 'a';   //true 
                     9>10 && 9>=9;     //false
                     'abc'.length === 3 && 1+1 === 4;    //false 
                 </code></pre>
-                Combining the previous example in one IF using &&:
-                <pre><code>
+        Combining the previous example in one IF using &&:
+        <pre><code>
                     const password = prompt("Enter your password");
                     if (password.length >= 6 && password.indexOf(' ') === -1) {
                         constant.log("Valid password!")
@@ -431,15 +431,15 @@
                     }
                 </code></pre>
 
-                <h3>Logical operator OR</h3>
-                <p>If one side is true, the entire thing is true. If all sides are falsy, then the entire thing is
-                    false.</p>
-                OR is written:
-                <br>||
-                <br>1 !== 1 || 10 ===10; //true
-                <br>10/2 === 5 || null //true
-                <br>0 || undefined //false
-                <pre><code>
+        <h3>Logical operator OR</h3>
+        <p>If one side is true, the entire thing is true. If all sides are falsy, then the entire thing is
+            false.</p>
+        OR is written:
+        <br>||
+        <br>1 !== 1 || 10 ===10; //true
+        <br>10/2 === 5 || null //true
+        <br>0 || undefined //false
+        <pre><code>
                     0-5 FREE <span class="red">*</span>
                     5-10 CHILD $10
                     10-65 ADULT $20
@@ -454,7 +454,7 @@
                         console.log("$20")
                     }
                 </code></pre>
-                <pre><code>
+        <pre><code>
                     0-5 FREE <span class="red">*</span>
                     5-10 CHILD $10
                     10-65 ADULT $20
@@ -472,25 +472,25 @@
                         console.log("INVALID AGE!")
                     }
                 </code></pre>
-                The && has priority over the ||, just as the * has priority over + or - on mathematics.
+        The && has priority over the ||, just as the * has priority over + or - on mathematics.
 
-                <h3>Logical operator NOT</h3>
-                <p>It turns the result of the operation into its logical opposite.</p>
-                <pre><code>
+        <h3>Logical operator NOT</h3>
+        <p>It turns the result of the operation into its logical opposite.</p>
+        <pre><code>
                     !null     //true 
                     !(0===0)  //false 
                     !(3<=4)   //false 
                 </code></pre>
-                <pre><code>
+        <pre><code>
                     let firstName = prompt("Enter your first name:");
                     if (!firstName) {
                         firstName = prompt("PLEASE enter the fucking name!");
                     }
                 </code></pre>
-                <h3>Switch</h3>
-                <p>It simplifies your code when you have multiple 'else if's.</p>
-                Converting a number from 1 to 7 into a week-day:
-                <pre><code>
+        <h3>Switch</h3>
+        <p>It simplifies your code when you have multiple 'else if's.</p>
+        Converting a number from 1 to 7 into a week-day:
+        <pre><code>
                     let day = prompt("Write a number from 1 to 7");
                     if (day === 1) {
                         console.log("Monday")
@@ -510,8 +510,8 @@
                         console.log("I don't know that.")
                     }
                 </code></pre>
-                Using switch it turns to:
-                <pre><code>
+        Using switch it turns to:
+        <pre><code>
                     let day = prompt("Write a number from 1 to 7");
                     switch(day) {
                         case "1":
@@ -540,79 +540,79 @@
                     }
                 </code></pre>
 
-                <h2>Arrays</h2>
-                Array is a data structure, a collection of data or variables.
-                <br>let beatles = ['Paul', 'John', 'George', 'Ringo'];
-                <br>Each element in the array has an index, just like letters inside strings.
-                <br>beatles[2]; //'George'
-                <br>beatles.length; //4
-                <br>To modify arrays:
-                <br>beatles[1] = 'Lennon';
-                <br>beatles; // ['Paul', 'Lennon', 'George', 'Ringo']
+        <h2>Arrays</h2>
+        Array is a data structure, a collection of data or variables.
+        <br>let beatles = ['Paul', 'John', 'George', 'Ringo'];
+        <br>Each element in the array has an index, just like letters inside strings.
+        <br>beatles[2]; //'George'
+        <br>beatles.length; //4
+        <br>To modify arrays:
+        <br>beatles[1] = 'Lennon';
+        <br>beatles; // ['Paul', 'Lennon', 'George', 'Ringo']
 
-                <h3>Array Methods</h3>
-                <h4>push & pop</h4>
-                <p>arrayName.push('new item') adds 'new item' to the end of the array.</p>
-                <br>beatles.push('new member');
-                <br>beatles; //['Paul', 'Lennon', 'George', 'Ringo', 'new member']
-                <p>arrayName.pop() removes the last, most recently pushed item of the array.</p>
-                <br>beatles.pop();
-                <br>beatles; //['Paul', 'Lennon', 'George', 'Ringo']
-                <h4>shift & unshift</h4>
-                <p>arrayName.shift() removes the first item off the array.</p>
-                beatles.shift();
-                <br>beatles; // ['Lennon', 'George', 'Ringo']
-                <p>arrayName.unshift('new item') adds 'new item' to the beginning of the array.</p>
-                beatles.unshift('Yoko');
-                <br>beatles; //['Yoko', 'Lennon', 'George', 'Ringo']
-                <h4>concat</h4>
-                <p>Merges two arrays.</p>
-                let flowers = ['marygold','lavender'];
-                <br>let teas = ['lemmongrass','mint'];
-                <br>flowers.concat(teas);
-                <br>//['marygold','lavender','lemmongrass','mint'] <span class="red">it doesn't modify the original
-                    variables, it just returns a result of a list of the items of the two arrays together.</span>
-                <h4>includes</h4>
-                <p>arrayName.includes('cat') checks if the array includes the item 'cat' or not. Returns boolean.</p>
-                flowers.includes('marygold'); //true
-                <h4>indexOf</h4>
-                <p>arrayName.indexOf('marygold') returns the index of a given item.</p>
-                flowers.indexOf('marygold'); //0
-                <br>If the item is not found in the array, it will return -1.
-                <h4>reverse</h4>
-                <p>arrayName.reverse() will reverse the order of items in the array.</p>
-                flowers.reverse();
-                <br>flowers; //['lavender','marygold']
-                <br>It is a destructive method, i.e. it modifies the original array.
-                <h4>slice</h4>
-                <p>arrayName.slice(3) will return items from index 3 until the end, including item 3.</p>
-                <p>arrayName.slice(3,5) will return items from index 3 until index 5, including item 3 and NOT including
-                    item 5.</p>
-                <p>arrayName.slice(-2) will return last 2 items.</p>
-                <p>slice is a non-destructive method.</p>
-                <h4>splice</h4>
-                <p>arrayName.splice(1,0,'rose') will begin at index 1, cut-out 0 items, and add 'rose'.</p>
-                splice is a distructive method.
-                <h4>sort</h4>
-                <p>arrayName.sort() will organize items according to function wrapped between parenthesis.</p>
-                <h3>Reference types (arrays) and Equality tests</h3>
-                let array1 = [1,2,3];
-                <br>let array2 = [1,2,3];
-                <br>array1 === array2 //false
-                <br><br>
-                let array1 = [1,2,3];
-                <br>let array2 = array1;
-                <br>array1 === array2 //true
-                <p>What is being compared is the reference of the arrays, not the items inside of it.</p>
-                <h3>Nested arrays</h3>
-                let gameBoard = [["X", "O", "X"], ["O", null, "X"], ["O","O", "X"];
-                <br>To return the second item in second row:
-                <br>gameBoard[1][1]; //null
+        <h3>Array Methods</h3>
+        <h4>push & pop</h4>
+        <p>arrayName.push('new item') adds 'new item' to the end of the array.</p>
+        <br>beatles.push('new member');
+        <br>beatles; //['Paul', 'Lennon', 'George', 'Ringo', 'new member']
+        <p>arrayName.pop() removes the last, most recently pushed item of the array.</p>
+        <br>beatles.pop();
+        <br>beatles; //['Paul', 'Lennon', 'George', 'Ringo']
+        <h4>shift & unshift</h4>
+        <p>arrayName.shift() removes the first item off the array.</p>
+        beatles.shift();
+        <br>beatles; // ['Lennon', 'George', 'Ringo']
+        <p>arrayName.unshift('new item') adds 'new item' to the beginning of the array.</p>
+        beatles.unshift('Yoko');
+        <br>beatles; //['Yoko', 'Lennon', 'George', 'Ringo']
+        <h4>concat</h4>
+        <p>Merges two arrays.</p>
+        let flowers = ['marygold','lavender'];
+        <br>let teas = ['lemmongrass','mint'];
+        <br>flowers.concat(teas);
+        <br>//['marygold','lavender','lemmongrass','mint'] <span class="red">it doesn't modify the original
+            variables, it just returns a result of a list of the items of the two arrays together.</span>
+        <h4>includes</h4>
+        <p>arrayName.includes('cat') checks if the array includes the item 'cat' or not. Returns boolean.</p>
+        flowers.includes('marygold'); //true
+        <h4>indexOf</h4>
+        <p>arrayName.indexOf('marygold') returns the index of a given item.</p>
+        flowers.indexOf('marygold'); //0
+        <br>If the item is not found in the array, it will return -1.
+        <h4>reverse</h4>
+        <p>arrayName.reverse() will reverse the order of items in the array.</p>
+        flowers.reverse();
+        <br>flowers; //['lavender','marygold']
+        <br>It is a destructive method, i.e. it modifies the original array.
+        <h4>slice</h4>
+        <p>arrayName.slice(3) will return items from index 3 until the end, including item 3.</p>
+        <p>arrayName.slice(3,5) will return items from index 3 until index 5, including item 3 and NOT including
+            item 5.</p>
+        <p>arrayName.slice(-2) will return last 2 items.</p>
+        <p>slice is a non-destructive method.</p>
+        <h4>splice</h4>
+        <p>arrayName.splice(1,0,'rose') will begin at index 1, cut-out 0 items, and add 'rose'.</p>
+        splice is a distructive method.
+        <h4>sort</h4>
+        <p>arrayName.sort() will organize items according to function wrapped between parenthesis.</p>
+        <h3>Reference types (arrays) and Equality tests</h3>
+        let array1 = [1,2,3];
+        <br>let array2 = [1,2,3];
+        <br>array1 === array2 //false
+        <br><br>
+        let array1 = [1,2,3];
+        <br>let array2 = array1;
+        <br>array1 === array2 //true
+        <p>What is being compared is the reference of the arrays, not the items inside of it.</p>
+        <h3>Nested arrays</h3>
+        let gameBoard = [["X", "O", "X"], ["O", null, "X"], ["O","O", "X"];
+        <br>To return the second item in second row:
+        <br>gameBoard[1][1]; //null
 
-                <h2>Objects</h2>
-                <p>Just like arrays, objects are data structures. Inside objects, order doesn't matter. An object is
-                    formed by several properties. A property is a key-value pair, formed by a key and a value.</p>
-                <pre><code>
+        <h2>Objects</h2>
+        <p>Just like arrays, objects are data structures. Inside objects, order doesn't matter. An object is
+            formed by several properties. A property is a key-value pair, formed by a key and a value.</p>
+        <pre><code>
                 const person = {firstName: 'Pabblo', lastName: 'Vittar'};
                 const myKitchen = {
                     isNice: true,
@@ -623,14 +623,14 @@
                 person.lastName     //'Vittar'
                 person["last"+"Name"]   //'Vittar' <span class="red">using [], you can put an operation or a variable inside the []</span>
                 </code></pre>
-                Modifying values and adding properties:
-                <pre><code>
+        Modifying values and adding properties:
+        <pre><code>
                 myKitchen.size = 23;
                 myKitchen.isClean = true;
                 myKitchen;    //{isNice: true, colors: ['green','white'], sizeM2: 23, isClean: true}
                 </code></pre>
-                Nesting arrays and objects:
-                <pre><code>
+        Nesting arrays and objects:
+        <pre><code>
                     const shoppingCart = [
                     {
                         product: 'Jenga Classic',
@@ -650,7 +650,7 @@
                     ]
                 </code></pre>
 
-                <pre><code>
+        <pre><code>
                     const comments = [
                         {username: 'Tammy', text: 'lolololol', votes: 9},
                         {username: 'Fishboy', text: 'glub glub', votes: 737637}
@@ -659,52 +659,52 @@
                     comments[1].text   //"glub glub"
                 </code></pre>
 
-                <h2>Loops</h2>
-                Loops are used to repeat lines of code over and over again, until the condition inside of it returns
-                false.
-                <h3>For loops</h3>
-                For loops syntax:
-                <pre><code>
+        <h2>Loops</h2>
+        Loops are used to repeat lines of code over and over again, until the condition inside of it returns
+        false.
+        <h3>For loops</h3>
+        For loops syntax:
+        <pre><code>
                     for (
                         [initialExpression];
                         [condition];
                         [incrementExpression]
                     )
                 </code></pre>
-                For example. To console.log a list from 1 to 10:
-                <pre><code>
+        For example. To console.log a list from 1 to 10:
+        <pre><code>
                     for (let i = 1; i <= 10; i++) {
                         console.log(i);
                     }
                 </code></pre>
-                Another example. To print "Da ba dee da ba daa" 6 times, no more no less than 6 times:
-                <pre><code>
+        Another example. To print "Da ba dee da ba daa" 6 times, no more no less than 6 times:
+        <pre><code>
                     for (let i = 1; i <= 6; i++ ) {
                         console.log("Da ba dee da ba daa")
                     }
                 </code></pre>
-                Example 3. Print out all the even numbers between 0 and 20.
-                <pre><code>
+        Example 3. Print out all the even numbers between 0 and 20.
+        <pre><code>
                     for (let i = 0; i <= 20; i += 2) {
                         console.log(i)
                     }
                 </code></pre>
-                Example 4. Count down all the multiples of 10, from 100 to 0.
-                <pre><code>
+        Example 4. Count down all the multiples of 10, from 100 to 0.
+        <pre><code>
                     for (let i = 100; i >= 0; i -= 10) {
                         console.log(i)
                     }
                 </code></pre>
-                Take care with infinite loops! They can cause problem, like force-quit the browser. For example:
-                <pre><code>
+        Take care with infinite loops! They can cause problem, like force-quit the browser. For example:
+        <pre><code>
                     for (let i = 20; i >= 0; i++) {
                         console.log(i)
                     }
                 </code></pre>
 
-                <h4>Looping over arrays</h4>
-                For example. To list every item from this array:
-                <pre><code>
+        <h4>Looping over arrays</h4>
+        For example. To list every item from this array:
+        <pre><code>
                     const animals = ['lions','tigers','bears'];
                     for (let i = 0; i < animals.length; i++) {
                         console.log(i, animals[i]);
@@ -713,8 +713,8 @@
                     //1 'tigers'
                     //2 'bears'
                 </code></pre>
-                Example 2. To list items in reverse order:
-                <pre><code>
+        Example 2. To list items in reverse order:
+        <pre><code>
                     const animals = ['lions','tigers','bears'];
                     for (let i = animals.length - 1; i >= 0; i--) {
                         console.log(i, animals[i]);
@@ -723,17 +723,17 @@
                     //1 'tigers'
                     //0 'lions'
                 </code></pre>
-                Example 3. Iterating (=listing, repeating) arrays items in uppercase.
-                <pre><code>
+        Example 3. Iterating (=listing, repeating) arrays items in uppercase.
+        <pre><code>
                     const people = ["Scooby", "Velma", "Daphne", "Shaggy", "Fred"];
                     for (let i = 0; i < people.length; i++) {
                         console.log(people[i].toUpperCase());
                     }
                 </code></pre>
 
-                <h4>Nesting loops</h4>
-                Used to list every item in every nested array inside of an array.
-                <pre><code>
+        <h4>Nesting loops</h4>
+        Used to list every item in every nested array inside of an array.
+        <pre><code>
                     const seatingChart = [
                         ['Kristen', 'Erik', 'Namita'],
                         ['Geoffrey', 'Juanita', 'Antonio', 'Kevin'],
@@ -762,10 +762,10 @@
                     //Erika
                 </code></pre>
 
-                <h3>While loops</h3>
-                Can do the same things as for loops, but are usually used when something needs to be repeated over and
-                over again and when it is not known when it's gonna end.
-                <pre><code>
+        <h3>While loops</h3>
+        Can do the same things as for loops, but are usually used when something needs to be repeated over and
+        over again and when it is not known when it's gonna end.
+        <pre><code>
                     const SECRET = "BabyHippo";
                     let guess = prompt("Enter the secret code.....");
                     while (guess !== SECRET) {
@@ -774,8 +774,8 @@
                     console.log("CONGRATS! YOU GOT IT!")
                 </code></pre>
 
-                <h4>The break keyword</h4>
-                <pre><code>
+        <h4>The break keyword</h4>
+        <pre><code>
                     let input = prompt("Hey, say something!")
                     while (true) {
                         input = prompt(input);
@@ -786,8 +786,8 @@
                     alert("OK YOU WIN!")
                 </code></pre>
 
-                <h4>Writing a Guessing Game</h4>
-                <pre><code>
+        <h4>Writing a Guessing Game</h4>
+        <pre><code>
                 let maximum = parseInt(prompt("Enter the maximum number!"));
                 while (!maximum) {
                     <span class="red">while maximum is a falsy (not a number, 0, etc.)</span>
@@ -816,11 +816,11 @@
                 }
                 </code></pre>
 
-                <h3>For...of loops</h3>
-                <p>These are used to iterate items of an iterable (strings, arrays etc). It is also possible to
-                    use for loops for this purpose, but for...of loops are a new JS feature that does this in a simpler
-                    way.</p>
-                <pre><code>
+        <h3>For...of loops</h3>
+        <p>These are used to iterate items of an iterable (strings, arrays etc). It is also possible to
+            use for loops for this purpose, but for...of loops are a new JS feature that does this in a simpler
+            way.</p>
+        <pre><code>
                     const people = ["Scooby", "Velma", "Daphne", "Shaggy", "Fred"];
                     for (let i = 0; i < people.length; i++) {
                         console.log(people[i].toUpperCase());
@@ -831,8 +831,8 @@
                         console.log(person)
                     }
                 </code></pre>
-                Another example:
-                <pre><code>
+        Another example:
+        <pre><code>
                     const seatingChart = [
                         ['Kristen', 'Erik', 'Namita'],
                         ['Geoffrey', 'Juanita', 'Antonio', 'Kevin'],
@@ -857,11 +857,11 @@
                     }
                 </code></pre>
 
-                <h4>Iterating over Objects</h4>
-                <p>Objects are not iterable because its items are unordered and don't have an index. So you can't use
-                    for...of with them. But there are a couple of ways to iterate over objects.</p>
-                For...in loop:
-                <pre><code>
+        <h4>Iterating over Objects</h4>
+        <p>Objects are not iterable because its items are unordered and don't have an index. So you can't use
+            for...of with them. But there are a couple of ways to iterate over objects.</p>
+        For...in loop:
+        <pre><code>
                         const testScores = {
                             keenan: 80,
                             damon: 67,
@@ -878,8 +878,8 @@
                         <span class="red">(just returns the keys, not the values)</span>
                     </code></pre>
 
-                For...in + values
-                <pre><code>
+        For...in + values
+        <pre><code>
                         const testScores = {
                             keenan: 80,
                             damon: 67,
@@ -895,8 +895,8 @@
                         //shawn scored 91
                     </code></pre>
 
-                Object.keys() method
-                <pre><code>
+        Object.keys() method
+        <pre><code>
                         const testScores = {
                             keenan: 80,
                             damon: 67,
@@ -907,8 +907,8 @@
                         //["keenan", "damon", "kim", "shawn"]
                     </code></pre>
 
-                Object.values method
-                <pre><code>
+        Object.values method
+        <pre><code>
                         const testScores = {
                             keenan: 80,
                             damon: 67,
@@ -919,8 +919,8 @@
                         //[80, 67, 89, 91]
                     </code></pre>
 
-                Object.entries method
-                <pre><code>
+        Object.entries method
+        <pre><code>
                         const testScores = {
                             keenan: 80,
                             damon: 67,
@@ -931,8 +931,8 @@
                         //[["keenan", 80], ["damon", 67], ["kim", 89], ["shawn", 91]]
                     </code></pre>
 
-                Example: to sum up all of the scores and get an avarage of them.
-                <pre><code>
+        Example: to sum up all of the scores and get an avarage of them.
+        <pre><code>
                         const testScores = {
                             keenan: 80,
                             damon: 67,
@@ -947,24 +947,489 @@
                         console.log(total / numberOfStudents)
                     </code></pre>
 
+        <h3>Functions</h3>
+        <p>Functions allow us to write reusable, modular code. With them, we define a "chunk" of code that we
+            can execute at a later point.</p>
+        <p>First, we have to define and "register" the function. Then we have to run it anywhere in our code.
+        </p>
+        <p>Defining a function:</p>
+        <pre><code>
+                        function funcName() {
+                            //do something
+                        }
+                    </code></pre>
+        Defining and running a function 2 times:
+        <pre><code>
+                        function singSong(){
+                            console.log(DO);
+                            console.log(RE);
+                            console.log(MI);
+                        }
+                        singSong();
+                        singSong();
+                        //DO
+                        //RE
+                        //MI
+                        //DO
+                        //RE
+                        //MI
+                    </code></pre>
+
+        <h4>Functions with parameter/arguments</h4>
+        <p>Arguments are values which we put inside the parenthesis of a function, providing the function with a
+            certain input.</p>
+        <p>Parameter are the value we set inside parenthesis when a function is defined. So, don't confuse
+            paramenter with argument!</p>
+        <pre><code>
+                        function greet(firstName) { <span class="red">firstName is a parameter</span>
+                            console.log(`Hi, ${firstName}!`);
+                        }
+                        greet('Elvis'); <span class="red">Elvis is an argument</span>
+                        //Hi, Elvis!
+                 </code></pre>
+        <pre><code>
+                    function rant(message){
+                        console.log(message.toUpperCase());
+                        console.log(message.toUpperCase());
+                    }
+                    rant('I hate beets!');
+                    //I HATE BEETS!
+                    //I HATE BEETS!
+                 </code></pre>
+
+        <h4>Functions with more than one parameter</h4>
+        <p>The order of the arguments matters, because the first will correspond to the first parameter, and so
+            on.</p>
+        <pre><code>
+                 function greet(firstName, lastName) {
+                     console.log(`Hi, ${firstName} ${lastName[0].});
+                 }
+                 greet('Elvis','Presley');
+                 //Hi, Elvis P.
+                </code></pre>
+        Example 2: repeat a message X times in a same string:
+        <pre><code>
+                    function repeat(message, numTimes){
+                        let result = '';
+                        for (let i = 0; i < numTimes; i++) {
+                            result += message;
+                        }
+                        console.log(result);
+                    }
+                    repeat(HELLO,5);
+                    //HELLOHELLOHELLOHELLOHELLO
+                </code></pre>
+        In some dice games like Craps, a roll of two 1's is called 'Snake Eyes'. It is generally not a good
+        roll. Please write a function called isSnakeEyes, which accepts two numbers as inputs, representing two
+        dice. If the two numbers are both 1's, please print 'Snake Eyes!', otherwise print 'Not Snake Eyes!'.
+        <pre><code>
+                    function isSnakeEyes(num1,num2){
+                        if (num1===1 && num2===1){
+                            console.log("Snake Eyes!")
+                        } else {
+                            console.log("Not Snake Eyes!")
+                        }
+                    }
+                    isSnakeEyes(1,2);
+                    //Not Snake Eyes!
+                    isSnakeEyes(3,6);
+                    //Not Snake Eyes!
+                    isSnakeEyes(1,1);
+                    //Snake Eyes!
+                </code></pre>
+
+        <h4>The return keyword</h4>
+        <p></p>
+        <pre><code>
+                    function(x,y){
+                        console.log(x+y);
+                    }
+                    add(9,4);
+                    //13
+                    let total = add(9,4);
+                    total;
+                    //undefined  <span class="red">this is because if the return keyword has not been used, the function is not a capturable value.</span>
+                </code></pre>
+        <p>The return keyword is used to be able to capture the value of a function in a variable.</p>
+        <pre><code>
+                    function(x,y){
+                        return x + y;
+                    }
+                    add(9,4);
+                    //13
+                    let total = add(9,4);
+                    total;
+                    //13
+                </code></pre>
+        <p>The return keyword interrupts the function where it appears, so that the following lines of the
+            function will never be executed.</p>
+        <pre><code>
+                    function add(x,y){
+                        if (typeof x !== 'number' || typeof y !== 'number') {
+                            return false;
+                        }
+                        return x + y;
+                    }
+                    add(2,3);
+                    //5
+                    add(2,'a');
+                    //false
+                    add(5,add(6,7));
+                    //18
+                </code></pre>
+
+        <h4>Exercises (functions)</h4>
+        <p>1. Define a function called rant which accepts a string argument called massage. The function should print
+            out an uppercased version of message 3 times (with 3 separate calls to console.log).</p>
+        <pre><code>
+                    function rant(message){
+                        console.log(message.toUpperCase());
+                        console.log(message.toUpperCase());
+                        console.log(message.toUpperCase());
+                    }
+                    rant("I hate beets");
+                    //I HATE BEETS
+                    //I HATE BEETS
+                    //I HATE BEETS
+                </code></pre>
+
+        <p>2. Write a simple function called multiply which accepts two numerical arguments and return their product
+            (multiply them together). Make sure to return the value instead of printing it.</p>
+        <pre><code>
+                    function multiply(num1,num2){
+                        return num1 * num2;
+                    }
+                    multiply(3,4);
+                    //12
+        </code></pre>
+        <p>3. I often struggle to know whether I should wear shorts or pants on a given day. Please help me decide by
+            writing me a function called isShortsWeather. It should accept a single number argument which we will call
+            temperature. If temperature is greater than 75, return true. Otherwise, return false. </p>
+        <pre><code>
+            function isShortsWeather(temperature){
+                if (temperature >= 75) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            isShortsWeather(60);
+            //false
+            isShortsWeather(78);
+            //true
+        </code></pre>
+        <p>4. Write a function called lastElement which accepts a single array argument. The function should return the
+            last element of the array (without removing the element). If the array is empty, the function should return
+            null.</p>
+        <pre><code>
+            function lastElement(myArray) {
+                if (myArray.length === 0) {
+                    return null;
+                }
+                return myArray[myArray.length-1];
+            }
+            lastElement([3,5,7]);
+            //7
+            lastElement([]);
+            //null 
+        </code></pre>
+        <p>5. Define a function called capitalize that accepts a string argument and returns a new string with the first
+            letter capitalized(but the rest of the string unchanged). For example: capitalize('eggplant') //"Eggplant"
+        </p>
+        Hints:
+        <br>Remember that strings are immutable, meaning that you cannot simply change the first letter in the original
+        string. You will need to make a new string that you return.
+        <br>Single out the first letter and capitalize it. (use a string method!)
+        <br>Add the first letter to the rest of the original string, sliced to omit the first letter. (use a string
+        method!)
+        <br>For example: 'eggplant' becomes 'E'+'ggplant'
+        <pre><code>
+            function capitalize(string) {
+                return string[0].toUpperCase() + string.slice(1)
+            }
+            capitalize('wonderful');
+            //Wonderful
+        </code></pre>
+        <p>6. Write a function called sumArray which accepts a single argument: an array of numbers. It should return
+            the sum of all the numbers in the array. Ex: sumArray([1,2,3]); //6</p>
+        Hints:
+        <br>You'll need a variable to keep track of the total. It should start out as 0.
+        <br>Loop over the array and for each element, add it to the total variable.
+        <br>After you have added every number to total, return total.
+        <pre><code>
+            function sumArray(array) {
+                let sum = 0;
+                for (let num of array) {
+                    sum += num;
+                }
+                return sum;
+            }
+            sumArray([2,3,4]);
+            //9
+        </code></pre>
+        <p>7. Write a function called returnDay. This function takes in one parameter (a number from 1-7) and returns
+            the day of the week (1 for Monday, 2 for Tuesday,...) If the number is less than 1 or greater than 7, the
+            function should return null. </p>
+        Hint: store the days of the week in an array, or use an object with numerical keys. When the function is called,
+        plug the number into the array/object you've created to retrieve the corresponding day name and then return that
+        value.
+        <br>Using if, else if:
+        <pre><code>
+            function returnDay(num) {
+                if (num < 1 || num > 7) {
+                    return null;
+                } else if (num===1){
+                    return "Monday";
+                } else if (num===2){
+                    return "Tuesday";
+                } else if (num===3){
+                    return "Wednesday";
+                } else if (num===4){
+                    return "Thursday";
+                } else if (num===5){
+                    return "Friday";
+                } else if (num===6){
+                    return "Saturday";
+                } else if (num===7){
+                    return "Sunday";
+                }
+            }
+        </code></pre>
+        Using array:
+        <pre><code>
+            function returnDay(num) {
+                if (num < 1 || num > 7) {
+                    return null;
+                } else {
+                    let days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                    return days[num-1];
+                }
+            }
+        </code></pre>
+        Using object:
+        <pre><code>
+            function returnDay(num) {
+                if (num < 1 || num > 7) {
+                    return null;
+                } else {
+                    let days = {1:'Monday', 2:'Tuesday', 3:'Wednesday', 4:'Thursday', 5:'Friday', 6:'Saturday', 7:'Sunday'};
+                    return days[num];
+                }
+            }
+        </code></pre>
+
+        <h4>Scope</h4>
+        <p>A variable let or const declared inside of a function{} or inside of a conditional{} cannot be expressed
+            outside of this {}.</p>
+        <pre><code>
+            let animal = "Octopus";
+            function observe() {
+                let animal = "Squid";
+                console.log(animal);
+            }
+            observe();
+            //"Squid"
+            animal;
+            //"Octopus"
+        
+        </code></pre>
+        <pre><code>
+            const creature = "Dragon";
+            function captureCreature(){
+                const creature = "Fish";
+                console.log(creature);
+            }
+            captureCreature();
+            //"Fish"
+            creature;
+            //"Dragon"
+        </code></pre>
+        <pre><code>
+            let deadlyAnimal = "Octopus";
+            function handleAnimal(){
+                let deadlyAnimal = "Scorpion";
+                console.log(deadlyAnimal);
+            }
+            handleAnimal();
+            //"Scorpion"
+            console.log(deadlyAnimal);
+            //"Octopus"
+        </code></pre>
+        <p>If there is a function nested inside of a function, the variables defined inside of the parent function is
+            also valid inside of the nested function.</p>
+        <pre><code>
+            function outer(){
+                let hero = "Black Panther";
+                function inner(){
+                    let cryForHelp = `${hero}, please save me!`;
+                    console.log(cryForHelp);
+                }
+                inner();
+            }
+            outer();
+            //Black Panther, please save me!
+
+        </code></pre>
+        <p>PS: but variables declared using the var key won`t obey any scope, and will be valid all along the js file
+            once they've been declared.</p>
+
+        <h4>Function expressions</h4>
+        It is another way of defining a function, through assigning it to a variable.
+        <pre><code>
+            const square = function(num){
+                return num*num;
+            }
+            square(7);
+            //49
+        </code></pre>
+
+        <h4>Higher order functions</h4>
+        Using a function as an argument to an other function. For example, creating a function to run twice another
+        function:
+        <pre><code>
+            function callTwice(func){
+                func();
+                func();
+            }
+            function rollDie(){
+                const roll = Math.floor(Math.random() * 6) + 1;
+                console.log(roll);
+            }
+            callTwice(rollDie);
+            //4
+            //3
+        </code></pre>
+        For example, creating a function to run ten times another function:
+        <pre><code>
+            function callTenTimes(funct){
+                for (let i=0; i<10; i++) {
+                    funct();
+                }
+            }
+            
+            function rollDie(){
+                const roll = Math.floor(Math.random() * 6) + 1;
+                console.log(roll);
+            }
+
+            callTenTimes(rollDie);
+        </code></pre>
+
+        <h4>Return function</h4>
+        <p>Returning a function as a value from within a function.</p>
+        <pre><code>
+            function makeBetweenFunc(min, max){
+                return function(num){
+                    num >= min && num <= max;
+                }
+            }
+            const isChild = makeBetweenFunc(0,18);
+            isChild(40);
+            //false
+            isChild(7);
+            //true 
+            const isAdult = makeBetweenFunc(19,64);
+            const isSenior = makeBetweenFunc(65,120);
+            isAdult(17);
+            //false 
+            isSenior(66);
+            //true 
+            
+        </code></pre>
+
+        <h4>Defining Methods</h4>
+        <p>We can add functions as properties on objects. We call them methods. </p>
+        <p>Every method is a function (for ex., "hello".toUpperCase), but not all function is a method.</p>
+        <pre><code>
+            const myMath = {
+                PI: 3.14159,
+                square: function (num) {
+                    return num * num;
+                },
+                cube: function (num) {
+                    return num ** 3;
+                }
+            }
+            myMath.PI;
+            //3.14159
+            myMath.square(3);
+            //9
+            myMath.cube(2);
+            //8
+        </code></pre>
+        We do this so often that there's a new shorthand for adding methods:
+        <pre><code>
+            const myMath = {
+                PI: 3.14159,
+                square(num) {
+                    return num * num;
+                },
+                cube(num) {
+                    return num ** 3;
+                }
+            }
+        </code></pre>
+
+        <h4>The keyword "this"</h4>
+        <p>In methods inside of an object, use "this" to access other properties on the same object. This keyword is a
+            complicated one, so just keep this simple concept.</p>
+        <p>Example. Define an object called hen. It should have three properties:
+            <br>name should be set to "Helen".
+            <br>eggCount should be set to 0.
+            <br>layAnEgg should be a method which increments the value of eggCount by 1 and returns the string "EGG".
+        </p>
+        <pre><code>
+            const hen = {
+                name: "Helen",
+                eggCount: 0,
+                layAnEgg(){
+                    this.eggCount++;
+                    return "EGG";
+                }
+            }
+            hen.name;
+            //"Helen"
+            hen.eggCount;
+            //0
+            hen.layAnEgg();
+            //"EGG"
+            hen.layAnEgg();
+            //"EGG"
+            hen.eggCount;
+            //2
+
+        </code></pre>
+
+        <h4>The try / catch statements</h4>
+        <p>These statements are used to prevent errors to crash the whole code.</p>
+        <pre><code>
+            hello.toUpperCase();
+            // Uncaught reference error etc etc...  <span class="red">this stops the code from this point on</span>
 
 
+            try {
+                hello.toUpperCase();
+            } catch {
+                console.log("THERE IS AN ERROR")
+            }
+            //"THERE IS AN ERROR"  <span class="red">this just advices that there was an error, but the code is not stopped</span>
+
+        </code></pre>
 
 
+        <script src="app.js"></script>
 
-                <script src="app.js"></script>
 
-
-                <!-- JS Code to enable bootstrap -->
-                <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                    crossorigin="anonymous"></script>
-                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-                    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-                    crossorigin="anonymous"></script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-                    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-                    crossorigin="anonymous"></script>
+        <!-- JS Code to enable bootstrap -->
+        <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script> -->
 
 
 </body>
