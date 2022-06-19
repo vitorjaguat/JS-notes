@@ -378,21 +378,136 @@
 
 
 //Jonas sc3 challenge 1:
-const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3;
+// const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3;
 
-const scoreAverageD1 = calcAverage(44, 23, 71);
-const scoreAverageK1 = calcAverage(65, 54, 49);
-const scoreAverageD2 = calcAverage(85, 54, 41);
-const scoreAverageK2 = calcAverage(23, 34, 27);
+// const scoreAverageD1 = calcAverage(44, 23, 71);
+// const scoreAverageK1 = calcAverage(65, 54, 49);
+// const scoreAverageD2 = calcAverage(85, 54, 41);
+// const scoreAverageK2 = calcAverage(23, 34, 27);
 
-const checkWinner = function (avgD, avgK) {
-    if (avgD >= 2 * avgK) {
-        console.log(`Dolphins win (${avgD} vs. ${avgK})`);
-    } else if (avgK >= 2 * avgD) {
-        console.log(`Koalas win (${avgK} vs. ${avgD})`);
-    } else {
-        console.log(`No team wins! (${avgK} vs. ${avgD})`);
+// const checkWinner = function (avgD, avgK) {
+//     if (avgD >= 2 * avgK) {
+//         console.log(`Dolphins win (${avgD} vs. ${avgK})`);
+//     } else if (avgK >= 2 * avgD) {
+//         console.log(`Koalas win (${avgK} vs. ${avgD})`);
+//     } else {
+//         console.log(`No team wins! (${avgK} vs. ${avgD})`);
+//     }
+// }
+// checkWinner(scoreAverageD1, scoreAverageK1);
+// checkWinner(scoreAverageD2, scoreAverageK2);
+
+//Jonas sc3 challenge 3:
+// function calcTip(bill) {
+//     let tip;
+//     bill >= 50 && bill <= 300 ? tip = 0.15 * bill : tip = 0.2 * bill;
+//     return tip;
+// }
+// console.log(calcTip(100));
+// const bills = [125, 555, 44];
+// const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+// console.log(tips)
+// const total = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
+// console.log(total)
+
+//Jonas' solution:
+// const calcTip = function(bill) {
+//     return bill >= 50 && bill <= 300 ? bill*0.15 : bill*0.2;
+// }
+// //Arrow function: 
+// //  const calcTip = bill => bill >= 50 && bill <= 300 ? bill*0.15 : bill*0.2;
+// const bills = [125, 555, 44];
+
+// const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+// console.log(tips)
+// const total = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
+// console.log(total)
+
+
+//Jonas video 44 (Object Methods), challenge:
+// const jonas = {
+//     firstName: 'Jonas',
+//     lastName: 'Schmedtmann',
+//     birthYear: 1991,
+//     job: 'teacher',
+//     friends: ['Micheal', 'Peter', 'Steven'],
+//     hasDriversLicense: true,
+//     driversLicense: function () {
+//         if (this.hasDriversLicense) {
+//             return 'a';
+//         } else {
+//             return 'no';
+//         }
+//     },
+//     calcAge: function () {
+//         return 2022 - this.birthYear;
+//     }
+// }
+
+// console.log(jonas.calcAge());
+// //31
+
+// //First try (ok):
+
+// // let canDrive;
+
+// // jonas.hasDriversLicense ? canDrive = 'a' : canDrive = 'no';
+
+// // console.log(`${jonas.firstName} is a ${jonas.calcAge()}-year old teacher, and he has ${canDrive} driver's license.`)
+
+// //Second try:
+// console.log(`${jonas.firstName} is a ${jonas.calcAge()}-year old teacher, and he has ${jonas.driversLicense()} driver's license.`)
+
+//Jonas' solution:
+
+// const jonas = {
+//     firstName: 'Jonas',
+//     lastName: 'Schmedtmann',
+//     birthYear: 1991,
+//     job: 'teacher',
+//     friends: ['Micheal', 'Peter', 'Steven'],
+//     hasDriversLicense: true,
+//     driversLicense: function () {
+//         if (this.hasDriversLicense) {
+//             return 'a';
+//         } else {
+//             return 'no';
+//         }
+//     },
+//     calcAge: function () {
+//         return 2022 - this.birthYear;
+//     },
+//     getSummary: function () {
+//         return `${this.firstName} is a ${this.calcAge()}-years old ${this.job}, and he has ${this.hasDriversLicense ? 'a' : 'no'} driver's license.`
+//     }
+// }
+// console.log(jonas.getSummary());
+
+//Jonas sc3 challenge 3:
+const mark = {
+    fullName: 'Mark Miller',
+    mass: 78,
+    height: 1.69,
+    calcBMI: function () {
+        return this.mass / this.height ** 2;
     }
 }
-checkWinner(scoreAverageD1, scoreAverageK1);
-checkWinner(scoreAverageD2, scoreAverageK2);
+const john = {
+    fullName: 'John Smith',
+    mass: 92,
+    height: 1.95,
+    calcBMI: function () {
+        return this.mass / this.height ** 2;
+    }
+}
+console.log(mark.calcBMI(), john.calcBMI())
+
+//Hardcoding the phrase:
+console.log(`Mark Miller's BMI (${mark.calcBMI()}) is higher than John Smith's (${john.calcBMI()})`)
+
+//Making a conditional to discover who's BMI is higher:
+if (mark.calcBMI() > john.calcBMI()) {
+    console.log(`${mark.fullName}'s BMI (${mark.calcBMI()}) is higher than ${john.fullName}'s (${john.calcBMI()})`);
+} else if (john.calcBMI() > mark.calcBMI()) {
+    console.log(`${john.fullName}'s BMI (${john.calcBMI()}) is higher than ${mark.fullName}'s (${mark.calcBMI()})`);
+}
