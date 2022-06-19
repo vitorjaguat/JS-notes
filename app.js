@@ -277,30 +277,122 @@
 // }
 // repeat('HELLO', 5);
 
-// Jonas challenge#1
-let massMark = 78;
-let heightMark = 1.69;
-let massJohn = 92;
-let heightJohn = 1.95;
+// // Jonas sc2 challenge#1
+// let massMark = 78;
+// let heightMark = 1.69;
+// let massJohn = 92;
+// let heightJohn = 1.95;
 
-// Data2
-massMark = 95;
-massJohn = 85;
-heightMark = 1.88;
-heightJohn = 1.76;
+// // Data2
+// massMark = 95;
+// massJohn = 85;
+// heightMark = 1.88;
+// heightJohn = 1.76;
 
-let markHigherBMI;
-let markBMI = massMark / heightMark ** 2;
-let johnBMI = massJohn / heightJohn ** 2;
+// let markHigherBMI;
+// let markBMI = massMark / heightMark ** 2;
+// let johnBMI = massJohn / heightJohn ** 2;
+
+// if (markBMI > johnBMI) {
+//     markHigherBMI = true;
+// } else {
+//     markHigherBMI = false;
+// }
+
+// Jonas sc 2 challenge 2
+// let massMark = 78;
+// let heightMark = 1.69;
+// let massJohn = 92;
+// let heightJohn = 1.95;
+
+// // Data2
+// massMark = 95;
+// massJohn = 85;
+// heightMark = 1.88;
+// heightJohn = 1.76;
 
 
+// let markBMI = massMark / heightMark ** 2;
+// let johnBMI = massJohn / heightJohn ** 2;
+// let markHigherBMI = markBMI > johnBMI;
+
+// if (markHigherBMI) {
+//     console.log(`Mark's BMI (${markBMI}) is higher than John's (${johnBMI})!`);
+// } else console.log(`Mark's BMI (${markBMI}) is lower than John's (${johnBMI})!`);
+
+//Using ternary operator:
+// markHigherBMI ? console.log(`Mark's BMI (${markBMI}) is higher than John's (${johnBMI})!`) : console.log(`Mark's BMI (${markBMI}) is lower than John's (${johnBMI})!`);
+
+// Jonas sc2 challenge 3
+// let dolphinsScore = (96 + 108 + 89) / 2;
+// let koalaScore = (88 + 91 + 110) / 2;
 
 
+// if (dolphinsScore >= 100 && dolphinsScore > koalaScore) {
+//     console.log(`Dolphins are the winners, they got ${dolphinsScore} points!`);
+// } else if (koalaScore >= 100 && koalaScore > dolphinsScore) {
+//     console.log(`Koalas are the winners, they got ${koalaScore} points!`);
+// } else if (koalaScore === dolphinsScore && koalaScore >= 100) {
+//     console.log(`There was a draw! Both teams scored ${dolphinsScore} points.`);
+// } else {
+//     console.log("There was no winner, because the highest score was less than 100.")
+// }
 
-if (markBMI > johnBMI) {
-    markHigherBMI = true;
-} else {
-    markHigherBMI = false;
+// //Data bonus 1
+// dolphinsScore = (97 + 112 + 101) / 2;
+// koalaScore = (109 + 95 + 123) / 2;
+// if (dolphinsScore >= 100 && dolphinsScore > koalaScore) {
+//     console.log(`Dolphins are the winners, they got ${dolphinsScore} points!`);
+// } else if (koalaScore >= 100 && koalaScore > dolphinsScore) {
+//     console.log(`Koalas are the winners, they got ${koalaScore} points!`);
+// } else if (koalaScore === dolphinsScore && koalaScore >= 100) {
+//     console.log(`There was a draw! Both teams scored ${dolphinsScore} points.`);
+// } else {
+//     console.log("There was no winner, because the highest score was less than 100.")
+// }
+
+// //Data bonus 2
+// dolphinsScore = (97 + 112 + 101) / 2;
+// koalaScore = (109 + 95 + 106) / 2;
+// if (dolphinsScore >= 100 && dolphinsScore > koalaScore) {
+//     console.log(`Dolphins are the winners, they got ${dolphinsScore} points!`);
+// } else if (koalaScore >= 100 && koalaScore > dolphinsScore) {
+//     console.log(`Koalas are the winners, they got ${koalaScore} points!`);
+// } else if (koalaScore === dolphinsScore && koalaScore >= 100) {
+//     console.log(`There was a draw! Both teams scored ${dolphinsScore} points.`);
+// } else {
+//     console.log("There was no winner, because the highest score was less than 100.")
+// }
+
+
+//Jonas sc2 challenge 4
+// let tip;
+// let bill = 430;
+// bill >= 50 && bill <= 300 ? tip = 0.15 * bill : tip = 0.2 * bill;
+// console.log(`The bill was ${bill}, the tip was ${tip} and the total value ${bill + tip}`);
+
+//Jonas' answer:
+// const bill = 275;
+// const tip = bill <= 300 && bill >=50 ? bill * 0.15 : bill * 0.2;
+// console.log(`The bill was ${bill}, the tip was ${tip} and the total value ${bill + tip}`);
+
+
+//Jonas sc3 challenge 1:
+const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3;
+
+const scoreAverageD1 = calcAverage(44, 23, 71);
+const scoreAverageK1 = calcAverage(65, 54, 49);
+const scoreAverageD2 = calcAverage(85, 54, 41);
+const scoreAverageK2 = calcAverage(23, 34, 27);
+
+const checkWinner = function (avgD, avgK) {
+    if (avgD >= 2 * avgK) {
+        console.log(`Dolphins win (${avgD} vs. ${avgK})`);
+    } else if (avgK >= 2 * avgD) {
+        console.log(`Koalas win (${avgK} vs. ${avgD})`);
+    } else {
+        console.log(`No team wins! (${avgK} vs. ${avgD})`);
+    }
 }
-
-
+checkWinner(scoreAverageD1, scoreAverageK1);
+checkWinner(scoreAverageD2, scoreAverageK2);

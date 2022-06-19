@@ -1415,6 +1415,26 @@
             //"THERE IS AN ERROR"  <span class="red">this just advices that there was an error, but the code is not stopped</span>
 
         </code></pre>
+        <div class="alert-info p-3">
+            <h5>Functions Review</h5>
+            Function declaration: can be used before it's declared.
+            <pre><code>
+            function calcAge(birthYear){
+                return 2022 - birthYear;
+            }
+        </code></pre>
+            Function expression: essencially a function value stored in a variable.
+            <pre><code>
+            const calcAge = function (birthYear) {
+                return 2022 - birthYear;
+            }
+        </code></pre>
+            Arrow function: great for quick one-line functions. Doesn't accept "this" keyword.
+            <pre><code>
+            const calcAge = birthYear => 2022 - birthYear;
+        </code></pre>
+        </div>
+
 
 
         <script src="app.js"></script>
