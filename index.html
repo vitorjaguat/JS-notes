@@ -730,6 +730,67 @@
                         console.log(people[i].toUpperCase());
                     }
                 </code></pre>
+        Example 4. Iterating an array and creating another array based on the iteration:
+        <pre><code>
+            const jonas = [
+            'Jonas',
+            'Schmedtmann',
+            2022-1991,
+            'teacher',
+            ['Micheal', 'Peter', 'Steven'],
+            true
+            ];
+            const types = [];
+            for (let i=0; i<jonas.length; i++) {
+                types[i] = typeof jonas[i];
+                <span class="red">this will create an array formed by the types of the elements in the jonas array</span>
+            }
+            console.log(types);
+            //['string', 'string', 'number', 'string', 'object', 'boolean']
+
+        </code></pre>
+        This example can also have this other (more simple) solution:
+        <pre><code>
+            const jonas = [
+            'Jonas',
+            'Schmedtmann',
+            2022-1991,
+            'teacher',
+            ['Micheal', 'Peter', 'Steven'],
+            true
+            ];
+            const types = [];
+            for (let i=0; i<jonas.length; i++) {
+                types.push(typeof jonas[i]);
+                <span class="red">this also will create an array formed by the types of the elements in the jonas array, but this time the push method is being used.</span>
+            }
+            console.log(types);
+            //['string', 'string', 'number', 'string', 'object', 'boolean']
+        </code></pre>
+        Example 5. Picking an array of years and calculating a new array of ages.
+        <pre><code>
+            const years = [1991, 2007, 1983, 1984, 1990];
+            const ages = [];
+            for (let i=0; i<years.length; i++) {
+                ages.push(2022-years[i])
+            }
+        </code></pre>
+        Example 6. Iterating array backwards.
+        <pre><code>
+            const jonas = [
+    'Jonas',
+    'Schmedtmann',
+    2022 - 1991,
+    'teacher',
+    ['Micheal', 'Peter', 'Steven'],
+    true
+];
+const jonasBW = [];
+for (let i = jonas.length - 1; i >= 0; i--) {
+    jonasBW.push(jonas[i]);
+}
+        </code></pre>
+
 
         <h4>Nesting loops</h4>
         Used to list every item in every nested array inside of an array.
@@ -761,6 +822,31 @@
                     //Jack
                     //Erika
                 </code></pre>
+        Example 2. Creating an array with multiple arrays inside of it.
+        <pre><code>
+            const workout = [];
+for (let exercise = 1; exercise < 4; exercise++) {
+    for (let repetition = 1; repetition < 6; repetition++) {
+        workout.push([`Exercise ${exercise}: repetition ${repetition}`]);
+    }
+}
+workout;
+//[['Exercise 1: repetition 1'], 
+['Exercise 1: repetition 2'], 
+['Exercise 1: repetition 3'], 
+['Exercise 1: repetition 4'], 
+['Exercise 1: repetition 5'], 
+['Exercise 2: repetition 1'], 
+['Exercise 2: repetition 2'], 
+['Exercise 2: repetition 3'], 
+['Exercise 2: repetition 4'], 
+['Exercise 2: repetition 5'], 
+['Exercise 3: repetition 1'], 
+['Exercise 3: repetition 2'], 
+['Exercise 3: repetition 3'], 
+['Exercise 3: repetition 4'], 
+['Exercise 3: repetition 5']]
+        </code></pre>
 
         <h3>While loops</h3>
         Can do the same things as for loops, but are usually used when something needs to be repeated over and
@@ -773,6 +859,31 @@
                     }
                     console.log("CONGRATS! YOU GOT IT!")
                 </code></pre>
+        Example 2. Translating a for loop into a while loop:
+        <pre><code>
+            <span class="red">for loop:</span>
+            for (let rep=1; rep<=3; rep++) {
+                console.log(`Lifting weight repetition ${rep}`);
+            }
+            <span class="red">while loop:</span>
+            let rep = 1;
+            while (rep<=3) {
+                console.log(`Lifting weight repetition ${rep}`);
+                rep++;
+            }
+        </code></pre>
+
+        Example 3. Rolling a die until the result is 6.
+        <pre><code>
+            let dice = Math.trunc(Math.random() * 6) + 1 <span class="red">Math.trunc is conceptually different from Math.floor, but they do the same thing. Math.trunc erases all decimals, Math.floor rounds towards closest integer number.</span>
+            while (dice !== 6) {
+                console.log(`You rolled a ${dice}`);
+                if (dice===6){
+                    console.log("You got a 6!");
+                }
+                dice = Math.trunc(Math.random() * 6) + 1;
+            }
+        </code></pre>
 
         <h4>The break keyword</h4>
         <pre><code>
@@ -784,6 +895,22 @@
                         }
                     }
                     alert("OK YOU WIN!")
+                </code></pre>
+        The "opposite" of the break keyword is the continue keyword. It tells the code to skip that one iteration when
+        some condition is found.
+        <pre><code>
+                    const jonas = [
+                    'Jonas',
+                    'Schmedtmann',
+                    2022-1991,
+                    'teacher',
+                    ['Michael','Peter','Steven']
+                    ]
+                    for (let i=0; i>jonas.length; i++) {
+                        if(typeof jonas[i]!=='string') continue; <span class="red">if the content of that given item is not a string, it will be skipped.</span>
+                        console.log(jonas[i], typeof jonas[i]);
+                    }
+                    
                 </code></pre>
 
         <h4>Writing a Guessing Game</h4>
@@ -1322,14 +1449,14 @@
                 return function(num){
                     num >= min && num <= max;
                 }
-            }
-            const isChild = makeBetweenFunc(0,18);
+            } <span class="red">This is a factory function! It helps creating other functions.</span>
+            const isChild = makeBetweenFunc(0,18); <span class="red">Now I'm creating a function using the factory function!</span>
             isChild(40);
             //false
             isChild(7);
             //true 
-            const isAdult = makeBetweenFunc(19,64);
-            const isSenior = makeBetweenFunc(65,120);
+            const isAdult = makeBetweenFunc(19,64); <span class="red">Now I'm creating another one!</span>
+            const isSenior = makeBetweenFunc(65,120); <span class="red">And another!</span>
             isAdult(17);
             //false 
             isSenior(66);
@@ -1472,12 +1599,200 @@
             }
         </code></pre>
             Arrow function: great for quick one-line functions. Doesn't accept "this" keyword.
+
             <pre><code>
             const calcAge = birthYear => 2022 - birthYear;
         </code></pre>
+
         </div>
 
+        <h3>Methods that accept function as parameters</h3>
+        <h4>ForEach</h4>
+        <p>Today it is not very used, because we already have for...of.</p>
+        <pre><code>
+            const numbers = [1,2,3,4];
+            <span class="red">Using for...of:</span>
+            <br>for (let el of numbers) {
+                console.log(el);
+            }
+            <span class="red">Using forEach:</span>
+            <br>numbers.forEach(function(el) {
+                console.log(el);
+            })
+        </code></pre>
 
+        <h4>Maps</h4>
+        <p>Calls the function for each element and creates a new array for them.</p>
+        <pre><code>
+            const numbers = [1,2,3,4];
+
+            const doubles = numbers.map(function(num){
+                return num * 2;
+            })
+
+            doubles;
+            //[2,4,6,8]
+        </code></pre>
+
+        <h3>Arrow functions</h3>
+        <p>Arrow functions are a more modern, more simple way of making a function expression.</p>
+        <pre><code>
+            const add = (x, y) => {
+                return x + y;
+            }
+        </code></pre>
+        <pre><code>
+            const square = num => {
+                return num * num;
+            }
+            <span class="red">in this case, there is only one parameter, so the parenthesis are optional.</span>
+        </code></pre>
+        <pre><code>
+            const rollDie = () => {
+                return Math.floor(Math.random() * 6 + 1);
+            }
+            <span class="red">in this case, there is no parameter, but the parenthesis are mandatory.</span>
+        </code></pre>
+        Implicit return:
+        <pre><code>
+            const isEven = num => {
+                return num%2 === 0;
+            }
+            <span class="red">you can ommit the "return" keyword and add parenthesis instead of curly braces:</span>
+            const isEven = num => {}
+                num%2 === 0;
+            )
+            <span class="red">you can also ommit the parenthesis:</span>
+            const isEven = num => num%2 === 0;
+        </code></pre>
+        Using arrow functions and implicit return in the functions inside maps:
+        <pre><code>
+            const numbers = [1,2,3,4];
+
+            const doubles = numbers.map((num) => {
+                return num * 2;
+            })
+
+            doubles;
+            //[2,4,6,8]
+        </code></pre>
+        <pre><code>
+            const numbers = [1,2,3,4];
+
+            const doubles = numbers.map(num => (
+                num * 2;
+            ));
+
+            doubles;
+            //[2,4,6,8]
+        </code></pre>
+        <pre><code>
+            const numbers = [1,2,3,4];
+
+            const doubles = numbers.map(num => num * 2);
+
+            doubles;
+            //[2,4,6,8]
+        </code></pre>
+
+        <h4>setTimeout, setInterval</h4>
+        <p>setTimeout sets up a callback (a function), and a delay (in ms miliseconds). The function will only be
+            executed once the delay has finished.</p>
+        <pre><code>
+        setTimeout(() => {
+            console.log("HELLO!!!");
+        }, 3000)
+        <span class="red">the message HELLO!!! will be printed 3s after the code is loaded.</span>
+        </code></pre>
+
+        <p>setInterval calls a given function every X miliseconds of time.</p>
+        <pre><code>
+            setInterval(() => {
+                console.log(Math.random())
+            }, 2000);
+            <span class="red">a random number will be printed every 2 seconds.</span>
+        </code></pre>
+        setInterval will continue to repeat the function over and over again, unless you save the setInterval value into
+        an variable called id, and then call clearInterval(id).
+
+        <h4>filter Method</h4>
+        <p>Creates a new array with all elements that pass the test implemented by the provided function.</p>
+        <pre><code>
+            const nums = [9,8,7,6,5,4,3,2,1];
+
+            const odds = nums.filter(n => {
+                return n % 2 === 1;
+            });
+            //[9,7,5,3,1]
+        </code></pre>
+        Which is the same as:
+        <pre><code>
+            const nums = [9,8,7,6,5,4,3,2,1];
+
+            const odds = nums.filter(n => n%2===1);
+            //[9,7,5,3,1]
+        </code></pre>
+
+        Combining maps and filter:
+
+        <pre><code>
+            const movies = [
+            {
+                title: 'Amadeus',
+                score: 99,
+                year: 1984
+            },
+            {
+                title: 'Sharknado',
+                score: 35,
+                year: 2013
+            },
+            {
+                title: '13 Going On 30',
+                score: 70,
+                year: 2004
+            },
+            {
+                title: 'Stand by me',
+                score: 85,
+                year: 1986
+            },
+            {
+                title: 'Parasite',
+                score: 95,
+                year: 2019
+            }
+            ]
+
+            const goodMovies = movies.filter(movie => {
+                return movie.score > 80;
+            }) 
+            <span class="red">will return an array formed by all movies with scores over 80</span>
+
+            const goodTitles = goodMovies.map(movie => movie.title);
+            <span class="red">this will return only the titles of the objects</span>
+
+            const goodTitles = movies.filter(movie => movie.score > 80).map(movie => movie.title);
+            <span class="red">this will return only the titles of the movies with scores higher than 80</span>
+        </code></pre>
+
+        <h4>every and some Methods</h4>
+        <p>The every Method tests whether ALL elements in the array pass the provided function. It returns a boolean
+            value.</p>
+        <pre><code>
+            const examsScores = [90,49,92,99,76,83];
+            examsScores.every(score => score >= 60);
+            //false
+            <span class="red">it returned "false" because one score is less than 60</span>
+        </code></pre>
+        <p>The some Method is similar to every, but returns true if ANY of the array elements pass the test function.
+        </p>
+        <pre><code>
+            const examsScores = [90,49,92,99,76,83];
+            examsScores.some(score => score >=60);
+            //true
+            <span class="red">it returned "true" because at least one score is greater than 60</span>
+        </code></pre>
 
         <script src="app.js"></script>
 
