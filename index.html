@@ -1794,6 +1794,64 @@ workout;
             <span class="red">it returned "true" because at least one score is greater than 60</span>
         </code></pre>
 
+        <h2>Newer JS Features</h2>
+        <h3>Defaut Param</h3>
+        <p>Sets up a default argument for a given param in a function.</p>
+        This is the old way of doing it:
+        <pre><code>
+            function rollDie(numSides) {
+                if (numSides === undefined) {
+                    numSides = 6;
+                }
+                return Math.floor(Math.random() * numSides) + 1;
+            }
+            <span class="red">creates a function where the user will have to input a numSides argument to choose the number of sides of the dice; if the user doesn`t choose any number, the number of sides will be 6</span>
+        </code></pre>
+        Using new defaut param feat:
+        <pre><code>
+            function rollDie(numSides = 6) {
+                return Math.floor(Math.random() * numSides) + 1;
+            }
+            <span class="red">it's easy, just add "= defaultArgument"</span>
+        </code></pre>
+
+        <h3>Spread</h3>
+        <p>Spread syntax (...) allows an iterable such as an array to be <b>expanded</b> in places where zero or more
+            arguments (for function calls) or elements (for array literals) are expected, or an object expression to be
+            expanded in places where zero or more key-value pairs (for object literals) are expected.</p>
+        <pre><code>
+            Math.max(3,4,32,5,76,54,32345);
+            //32345 <span class="red">this Math returns the higher number amongst its arguments.</span>
+            
+            const nums = [3,4,32,5,76,54,32345];
+            Math.max(nums);
+            //NaN
+            Math.max(...nums);
+            //32345
+            <span class="red">Spand syntax (...) "spreads out" the elements of the array into separated arguments.</span>
+
+            console.log(..."hello");
+            //h e l l o
+
+        </code></pre>
+
+        <h4>Spread with arrays</h4>
+        <p>Merging two arrays in a new array:</p>
+        <pre><code>
+            const cats = ['Jojo','Lili'];
+            const dogs = ['Toto','Tutu'];
+
+            const allPets = [...cats, ...dogs];
+            allPets;
+            //['Jojo','Lili','Toto','Tutu']
+        </code></pre>
+
+        <h4>Spread with objects</h4>
+        Copies proprieties from one object into another object. If there is a key that is present in both objects, the
+        last object spreaded will win.
+
+
+
         <script src="app.js"></script>
 
 
