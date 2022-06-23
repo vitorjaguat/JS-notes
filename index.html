@@ -1850,6 +1850,188 @@ workout;
         Copies proprieties from one object into another object. If there is a key that is present in both objects, the
         last object spreaded will win.
 
+        <h3>Rest syntax</h3>
+        <p>Captures the arguments of a function and hold them inside an array.</p>
+        <pre><code>
+            function raceResults(gold, silver, ...everyoneElse){
+                console.log(`GOLD MEDAL GOES TO ${gold}`);
+                console.log(`SILVER MEDAL GOES TO ${silver}`);
+                console.log(`AND THANKS TO ${everyoneElse}`);
+            }
+            raceResults('Tammy','Tina','Trevor', 'Tony', 'Jack');
+            //GOLD MEDAL GOES TO Tammy
+            //SILVER MEDAL GOES TO Tina
+            //AND THANKS TO Trevor, Tony, Jack
+
+        </code></pre>
+
+        <h3>Destructuring arrays</h3>
+        It is the same as calling an element from the array using array[0], but it can simplify the work.
+        <pre><code>
+            const scores = [893898, 827832, 786367, 783454];
+            
+            let gold = score[0];
+            let silver = score[1]; <span class="red">this is the old-fashioned way of doing it!</span>
+
+            let [gold, silver] = scores;
+            gold;
+            //893898
+            silver;
+            //827832
+
+            let [gold, silver, ...everyoneElse] = scores;
+            gold;
+            //893898
+            silver;
+            //827832
+            everyoneElse;
+            //[786367, 783454]
+
+        </code></pre>
+
+        <h3>Destructuring objects</h3>
+        It is more common to use than deconstructuring arrays.
+        <pre><code>
+            const user = {
+                email: 'harveym@gmail.com',
+                password: 'jdhsjdh',
+                firstName: 'Harvey',
+                lastName: 'Milk',
+                born: 1930,
+                died: 1978,
+                bio: 'Harvey Milk was an American politician.',
+                city: 'San Francisco',
+                state: 'California'
+            }
+            const first = user.firstName;
+            const last = user.lastName; 
+            <span class="red">this is the old way of doing!</span>
+            const { firstName, lastName, email} = user;
+            <span class="red">it will declare a new variable called firstName, etc. and assing the value "Harvey", etc. for them.</span>
+
+            const { born: birthYear } = user;
+            <span class="red">that will create a new variable called birthYear and assign the value of "born" key to it. That is used if you don't want the new variable to have the same name of the key.</span>
+        </code></pre>
+
+        <h4>Destructuring params</h4>
+        Used to retrieve a few properties' values from an object.
+        <pre><code>
+            const user = {
+                email: 'harveym@gmail.com',
+                password: 'jdhsjdh',
+                firstName: 'Harvey',
+                lastName: 'Milk',
+                born: 1930,
+                died: 1978,
+                bio: 'Harvey Milk was an American politician.',
+                city: 'San Francisco',
+                state: 'California'
+            }
+            <span class="red">To get the fullName of any user, there are 3 ways. First, using a regular function:</span>
+            function fullName(user) {
+                return `${user.firstName} ${user.lastName}`;
+            }
+            <span class="red">Second, deconstructing the object inside of function's block:</span>
+            function fullName(user) {
+                const { firstName, lastName } = user;
+                return `${firstName} ${lastName};
+            }
+            <span class="red">Third, deconstructing the object inside of function's params:</span>
+            function fullName({ firstName, lastName }) {
+                return `${firstName} ${lastName}`;
+            }
+        </code></pre>
+        Another example:
+        <pre><code>
+            const movies = [
+            {
+                title: 'Amadeus',
+                score: 99,
+                year: 1984
+            },
+            {
+                title: 'Sharknado',
+                score: 35,
+                year: 2013
+            },
+            {
+                title: '13 Going On 30',
+                score: 70,
+                year: 2004
+            },
+            {
+                title: 'Stand by me',
+                score: 85,
+                year: 1986
+            },
+            {
+                title: 'Parasite',
+                score: 95,
+                year: 2019
+            }
+            ]
+            <span class="red">
+            To filter only the movies with a score higher than 90, there are two ways. First using pure filter method:</span>
+            movies.filter((movie) => movie.score >= 90);
+            <span class="red">The second way is by using filter with deconstructed param.</span>
+            movies.filter(({ score }) => score >= 90);
+        </code></pre>
+        Another example:
+        <pre><code>
+            const movies = [
+            {
+                title: 'Amadeus',
+                score: 99,
+                year: 1984
+            },
+            {
+                title: 'Sharknado',
+                score: 35,
+                year: 2013
+            },
+            {
+                title: '13 Going On 30',
+                score: 70,
+                year: 2004
+            },
+            {
+                title: 'Stand by me',
+                score: 85,
+                year: 1986
+            },
+            {
+                title: 'Parasite',
+                score: 95,
+                year: 2019
+            }
+            ]
+            <span class="red">To create an array describing each movie, there are two ways. First, we can use a simple maps method:</span>
+            movies.map(movie => {
+                return `${movie.title}, released in ${movie.year} is rated ${movie.score}`;
+            })
+            <span class="red">Otherwise, we can create a map and destructure the objects` properties:</span>
+            movies.map(({ title, score, year }) => {
+                return `${title}, relased in ${year} is rated ${score}`;
+            })
+        </code></pre>
+
+        <h4>Recursion</h4>
+        <p>In computer science, recursion is a method of solving a problem where the solution depends on solutions to
+            smaller instances of the same problem.</p>
+        <p>Recursion is any situation where you do something, and depending on the results, you might do it again.
+        </p>
+        <p>Any iterator function (aka function with a loop) can be recursive instead.</p>
+        <p>A recursive function is a function that, inside of its block, recalls itself.</p>
+        Parts of a recursive function:
+        function processDoll(doll) {
+        //1) Base case: it stops the function to run if a condition is reached.
+        if (found the piece of chocolate inside of the smallest doll)
+        return "Yum yum";
+        //2) Recursive call to itself.
+        else
+        processDoll(the smaller doll);
+        }
+
 
 
         <script src="app.js"></script>
