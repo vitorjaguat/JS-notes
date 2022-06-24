@@ -1,3 +1,5 @@
+"use strict";
+
 // // console.log("HELLO WORLD!");
 // // let random = Math.random();
 // // if (random < 0.5) {
@@ -541,25 +543,40 @@
 //     dice = Math.trunc(Math.random() * 6) + 1;
 // }
 
-let bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
-tips = [];
-totals = [];
-const calcTip = function (bill) {
-    return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
-}
+// let bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+// tips = [];
+// totals = [];
+// const calcTip = function (bill) {
+//     return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+// }
 
-for (let i = 0; i < bills.length; i++) {
-    tips.push(calcTip(bills[i]));
-    totals.push(calcTip(bills[i]) + bills[i]);
-}
+// for (let i = 0; i < bills.length; i++) {
+//     tips.push(calcTip(bills[i]));
+//     totals.push(calcTip(bills[i]) + bills[i]);
+// }
 
-//Bonus:
-const calcAverage = function (arr) {
-    let sum = 0;
+// //Bonus:
+// const calcAverage = function (arr) {
+//     let sum = 0;
+//     for (let i = 0; i < arr.length; i++) {
+//         sum += arr[i];
+//     }
+//     return sum / arr.length;
+// }
+// console.log(calcAverage(tips));
+// console.log(calcAverage(totals));
+
+// Jonas sc 5 challenge 1
+
+const printForecast = function (arr) {
+    let oneDay = "";
+    let allDays = "";
     for (let i = 0; i < arr.length; i++) {
-        sum += arr[i];
+        oneDay = `... ${arr[i]} degrees Celsius in ${i + 1} days `;
+        allDays += oneDay;
     }
-    return sum / arr.length;
-}
-console.log(calcAverage(tips));
-console.log(calcAverage(totals));
+    return allDays;
+};
+
+printForecast([17, 21, 23]);
+printForecast([12, 5, -5, 0, 4]);
