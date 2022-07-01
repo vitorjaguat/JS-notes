@@ -1498,6 +1498,43 @@ workout;
         </code></pre>
 
         <h4>The keyword "this"</h4>
+        <p>The this keyword/variable is a special variable that is created for every execution context (every function).
+            It takes the value of (points to) the "owner" of the function in which it is used.</p>
+        <p>"this" is NOT static. It depends on HOW the function is called, and its value is only assigned when the
+            function <b>is actually called</b>.</p>
+        <h5>this inside of Methods</h5>
+        <pre><code>
+        const jonas = {
+            name: 'Jonas',
+            year: 1989,
+            calcAge: function() {
+                return 2022 - this.year;
+            }
+        } <span class="red">here, this' value is jonas.</span>
+        jonas.calcAge(); 
+        //33
+
+        </code></pre>
+
+        <h5>this in the global scope</h5>
+        Refers directly to the window object.
+
+        <h5>this in simple function call</h5>
+        In this case, in strict mode, this' value will be undefined.
+        If strict mode is not activated (sloppy mode), this' value will point to the window object.
+
+        <h5>this in Arrow functions</h5>
+        this' value will point to the parent function. It is called "lexical this", because it retains the value of the
+        outer lexical scope. That is, arrow functions do not get their own this keyword, as they don't have it.
+
+        <h5>this in EventListeners</h5>
+        this' value will point to the DOM element that the handler is attached to.
+
+        <h5>new, call, apply, bind Methods</h5>
+        Still to come...
+
+
+
         <p>In methods inside of an object, use "this" to access other properties on the same object. This keyword is a
             complicated one, so just keep this simple concept.</p>
         <p>Example. Define an object called hen. It should have three properties:
@@ -1586,19 +1623,21 @@ workout;
         </code></pre>
         <div class="alert-info p-3">
             <h5>Functions Review</h5>
-            Function declaration: can be used before it's declared.
+            Function declaration: can be used before it's declared, because it is HOISTED, that is, it is read alongside
+            the global (first) execution of code.
             <pre><code>
             function calcAge(birthYear){
                 return 2022 - birthYear;
             }
         </code></pre>
-            Function expression: essencially a function value stored in a variable.
+            Function expression: essencially a function value stored in a variable. It is not HOISTED, that is, can't be
+            used before it is declared. Behaves just as a const, let or var variable.
             <pre><code>
             const calcAge = function (birthYear) {
                 return 2022 - birthYear;
             }
         </code></pre>
-            Arrow function: great for quick one-line functions. Doesn't accept "this" keyword.
+            Arrow function: great for quick one-line functions. Doesn't accept "this" keyword. Not HOISTED.
 
             <pre><code>
             const calcAge = birthYear => 2022 - birthYear;
@@ -1635,7 +1674,9 @@ workout;
         </code></pre>
 
         <h3>Arrow functions</h3>
-        <p>Arrow functions are a more modern, more simple way of making a function expression.</p>
+        <p>Arrow functions are a more modern, more simple way of making a function expression. Arrow functions don't
+            create 'arguments' property, as the other types of functions do. And their 'this' keyword points to the
+            parent element.</p>
         <pre><code>
             const add = (x, y) => {
                 return x + y;
@@ -1816,9 +1857,12 @@ workout;
         </code></pre>
 
         <h3>Spread</h3>
-        <p>Spread syntax (...) allows an iterable such as an array to be <b>expanded</b> in places where zero or more
+        <p>Spread syntax (...) allows an iterable* such as an array to be <b>expanded</b> in places where zero or more
             arguments (for function calls) or elements (for array literals) are expected, or an object expression to be
             expanded in places where zero or more key-value pairs (for object literals) are expected.</p>
+        <span class="red">* Iterables: strings, arrays, maps, sets, but NOT objects.</span>
+        <p>Spread is similar to destructuring, but it won't create variables, and it is only useful in places that
+            receives elements separated by comma.</p>
         <pre><code>
             Math.max(3,4,32,5,76,54,32345);
             //32345 <span class="red">this Math returns the higher number amongst its arguments.</span>
@@ -1846,9 +1890,94 @@ workout;
             //['Jojo','Lili','Toto','Tutu']
         </code></pre>
 
+        <h4>Making a copy of an array using Spread</h4>
+        <pre><code>
+            const restaurant = {
+                name: 'Classico Italiano',
+                location: 'Via Angelo Tavanti, 23, Firenze, Italy',
+                categories: ['Italian', 'Pizzeria', 'Organic'],
+                starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+                mainMenu: ['Pizza', 'Pasta', 'Risotto']
+            }
+
+            const mainMenuCopy = [...restaurant.mainManu]; <span class="red">mainMenuCopy is assigned to ['Pizza', 'Pasta', 'Risotto']</span>
+
+            const mainMenuPlus = [...restaurant.mainMenu, 'Gnocchi']; <span class="red">mainMenuCopy is assigned to ['Pizza', 'Pasta', 'Risotto', 'Gnocchi']</span>
+        </code></pre>
+
+        <h4>Merging two or more arrays</h4>
+        <pre><code>
+            const restaurant = {
+                name: 'Classico Italiano',
+                location: 'Via Angelo Tavanti, 23, Firenze, Italy',
+                categories: ['Italian', 'Pizzeria', 'Organic'],
+                starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+                mainMenu: ['Pizza', 'Pasta', 'Risotto']
+            }
+
+            const completeMenu = [...starterMenu, ...mainMenu];
+        </code></pre>
+
+        <h4>Spreading arrays inside of params</h4>
+        <pre><code>
+            const restaurant = {
+                name: 'Classico Italiano',
+                location: 'Via Angelo Tavanti, 23, Firenze, Italy',
+                categories: ['Italian', 'Pizzeria', 'Organic'],
+                starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+                mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+                orderPasta: function (ing1, ing2, ing3) {
+                    console.log(`Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3});
+                } <span class="red">this is a method using the ingredients as params</span>
+            }
+
+            const ingredients = [
+            prompt('Let/'s make pasta! Ingredient 1?'), 
+            prompt('Ingredient 2?'), 
+            prompt('Ingredient 3?')
+            ]; <span class="red">building an array by asking the user to input 3 ingredients.</span>
+
+            <span class="red">now let's call the method:</span>
+            restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]); <span class="red">this is the old way of doing it</span>
+            restaurant.orderPasta(...ingredients) <span class="red">this is much better! The array will be spreaded into 3 elements, which will be the params ing1, ing2, ing3 in the method's function.</span>
+        </code></pre>
+
         <h4>Spread with objects</h4>
         Copies proprieties from one object into another object. If there is a key that is present in both objects, the
         last object spreaded will win.
+
+        <pre><code>
+            const restaurant = {
+                name: 'Classico Italiano',
+                location: 'Via Angelo Tavanti, 23, Firenze, Italy',
+                categories: ['Italian', 'Pizzeria', 'Organic'],
+                starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+                mainMenu: ['Pizza', 'Pasta', 'Risotto']
+            };
+
+            const newRestaurant = {
+                ...restaurant,
+                founder: 'Giuseppe',
+                foundedIn: 1999
+            }
+            <span class="red">The new object should contain the original object data, plus 2 new properties.</span>
+        </code></pre>
+
+        <h4>Making a copy of an object</h4>
+        <pre><code>
+            const restaurant = {
+                name: 'Classico Italiano',
+                location: 'Via Angelo Tavanti, 23, Firenze, Italy',
+                categories: ['Italian', 'Pizzeria', 'Organic']
+            }
+
+            const restaurantCopy = { ...restaurant };
+            <span class="red">creates a new copy of that object</span>
+
+            restaurantCopy.name = 'Ristorante Roma';
+            <span class="red">changes the value of 'name' property, and the original object remains unaltered!</span>
+        </code></pre>
 
         <h3>Rest syntax</h3>
         <p>Captures the arguments of a function and hold them inside an array.</p>
@@ -1866,7 +1995,10 @@ workout;
         </code></pre>
 
         <h3>Destructuring arrays</h3>
-        It is the same as calling an element from the array using array[0], but it can simplify the work.
+
+        <p>Destructuring is a way of unpacking values from an array or an object into separate variables. That is, to
+            break a big data structure into smaller data structures. It is a non-destructive method.</p>
+        <p>It is the same as calling an element from the array using array[0], but it can simplify the work.</p>
         <pre><code>
             const scores = [893898, 827832, 786367, 783454];
             
@@ -1887,6 +2019,47 @@ workout;
             everyoneElse;
             //[786367, 783454]
 
+        </code></pre>
+
+        <h4>Destructuting an array generated by a function</h4>
+        <pre><code>
+            const restaurant = {
+                name: 'Classico Italiano',
+                location: 'Via Angelo Tavanti, 23, Firenze, Italy',
+                categories: ['Italian', 'Pizzeria', 'Organic'],
+                starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+                mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+                order: function(starterIndex, mainIndex) {
+                    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+                    <span class="red">the function order returns an array</span>
+                }
+            }
+
+            const order1 = restaurant.order(2, 0);
+            console.log(order1);
+            //['Garlic Bread', 'Pizza']
+            
+            const [starterCourse, mainCourse] = rastaurant.order(2, 0); <span class="red">the returned array will be destructured into 2 variables</span>
+            console.log(starterCourse, mainCourse);
+            //Garlic Bread  Pizza
+        </code></pre>
+
+        <h4>Skipping elements and Destructing nested arrays</h4>
+        <pre><code>
+            const nested = [2, 4, [5, 6]];
+            const [i, , j] = nested;
+            <span class="red">the item 4 has been skipped; i is assigned to 2, j is assigned to [5,6]</span>
+            const [x, , [y, z]] = nested;
+            <span class="red">the item 4 has been skipped and the elements have been assigned one by one to its respective variables.</span>
+
+        </code></pre>
+
+        <h4>Setting defaults values to destructed variables</h4>
+        <p>It is useful when we don't know the length of the array, then there won't be undefined values.</p>
+        <pre><code>
+            const [p=1, q=1, r=1] = [8, 9];
+            <span class="red">p is assigned to 8, q is assigned to 9, r is assigned to 1.</span>
         </code></pre>
 
         <h3>Destructuring objects</h3>
@@ -1911,6 +2084,121 @@ workout;
 
             const { born: birthYear } = user;
             <span class="red">that will create a new variable called birthYear and assign the value of "born" key to it. That is used if you don't want the new variable to have the same name of the key.</span>
+        </code></pre>
+
+        <h4>Destructuring nested objects</h4>
+        <pre><code>
+            const restaurant = {
+                name: 'Classico Italiano',
+                location: 'Via Angelo Tavanti, 23, Firenze, Italy',
+                categories: ['Italian', 'Pizzeria', 'Organic'],
+                starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+                mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+                order: function(starterIndex, mainIndex) {
+                    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+                },
+
+                openingHours: {
+                    fri: {
+                        open: 12,
+                        close: 22
+                    },
+                    sat: {
+                        open: 11,
+                        close: 23
+                    },
+                    sun: {
+                        open: 11,
+                        close: 22
+                    }
+                }
+            }
+
+            const {fri: {open, close}} = restaurant.openingHours;
+            <span class="red">variable open will be created and assigned to 12, close will be assigned to 22.</span>
+        </code></pre>
+
+        <h4>Destructing objects inside of a method's params</h4>
+        <pre><code>
+            const restaurant = {
+                name: 'Classico Italiano',
+                location: 'Via Angelo Tavanti, 23, Firenze, Italy',
+                categories: ['Italian', 'Pizzeria', 'Organic'],
+                starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+                mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+                order: function(starterIndex, mainIndex) {
+                    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+                },
+
+                openingHours: {
+                    fri: {
+                        open: 12,
+                        close: 22
+                    },
+                    sat: {
+                        open: 11,
+                        close: 23
+                    },
+                    sun: {
+                        open: 11,
+                        close: 22
+                    }
+                },
+
+                orderDelivery: function ({starterIndex, mainIndex, time, address}) <span class="red">The parameter is an object that will be immediately destructured into 4 parameters.</span> {
+                    console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`)
+                }
+            }
+
+            restaurant.orderDelivery({
+                time: '22:30',
+                address: 'Via del Sole, 21',
+                mainIndex: 2,
+                starterIndex: 2
+            }); <span class="red">This is an ordered that was actually received. It is a function with ONE parameter, which is an object.</span>
+            //'Order received! Garlic Bread and Risotto will be delivered to Via del Sole, 21 at 22:30'
+
+        </code></pre>
+        Same case, using default values:
+        <pre><code>
+            const restaurant = {
+                name: 'Classico Italiano',
+                location: 'Via Angelo Tavanti, 23, Firenze, Italy',
+                categories: ['Italian', 'Pizzeria', 'Organic'],
+                starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+                mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+                order: function(starterIndex, mainIndex) {
+                    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+                },
+
+                openingHours: {
+                    fri: {
+                        open: 12,
+                        close: 22
+                    },
+                    sat: {
+                        open: 11,
+                        close: 23
+                    },
+                    sun: {
+                        open: 11,
+                        close: 22
+                    }
+                },
+
+                orderDelivery: function ({starterIndex=0, mainIndex=0, time='20:00', address}) <span class="red">The parameter is an object that will be immediately destructured into 4 parameters.</span> {
+                    console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`)
+                }
+            }
+
+            restaurant.orderDelivery({
+                address: 'Via del Sole, 21',
+                mainIndex: 2
+            }); <span class="red">Here, the client did not specify the time and the starterIndex, so the system will assign default values.</span>
+            //'Order received! Focaccia and Risotto will be delivered to Via del Sole, 21 at 20:00'
         </code></pre>
 
         <h4>Destructuring params</h4>
@@ -2031,6 +2319,226 @@ workout;
         else
         processDoll(the smaller doll);
         }
+
+
+        <h2>DOM</h2>
+        <p>Stands for 'Document Object Model'.</p>
+        <h3>Selecting elements, classes etc.</h3>
+        <pre><code>
+            getElementById('idOfTheElement')
+            getElementByTagName('img')
+            getElementByClassName('classname')
+            querySelector('.classname'), querySelector('#idname'), querySelector('element'),
+            querySelector('element[attribute="value"]')
+            querySelectorAll
+        </code></pre>
+        <h3>Selecting the text content</h3>
+        <pre><code>
+            document.querySelector('p').innerText <span class="red">selects readable text</span>
+            document.querySelector('p').textContent <span class="red">selects readable text with markups applied</span>
+            document.querySelector('p').innerHTML <span class="red">selects HTML code</span>
+        </code></pre>
+        <h3>Selecting and manipulating attributes</h3>
+        <pre><code>
+            document.querySelector('element').attribute; <span class="red">simply calls the attribute</span>
+            document.querySelector('element').attribute = 'newValue'; <span class="red">defines a new value to the attribute</span>
+            Eg:
+            document.querySelector('#banner').src = "anotherchickenIMG.img"; 
+            document.querySelector('#banner').id = "anotherID";
+
+            document.querySelector('element').getAttribute('attribute') <span class="red">checks if there is that attibute and returns its value</span>
+
+            document.querySelector('element').setAttribute('attribute', 'value'); <span class="red">creates an new attribute and its value</span>
+        </code></pre>
+
+        <h3>Changing (CSS) styles</h3>
+        <pre><code>
+            document.querySelector('element').style.backgroundColor = 'purple'; 
+
+            window.getComputedStyle(document.querySelector('element')).color <span class="red">accesses the actual computed style of that element (if there are styles applied using html, css and js, for ex.)</span>
+        </code></pre>
+
+        <h3>classList</h3>
+        <pre><code>
+            document.querySelector('element').setAttribute('class', 'classname'); <span class="red">already seen</span>
+
+            document.querySelector('element'). classList <span class="red">lists the classes</span>
+            document.querySelector('element'). classList.add('classname') <span class="red">add a new class</span>
+            document.querySelector('element').classList.remove('classname') <span class="red">removes the class</span>
+            document.querySelector('element').classList.toggle('classname') <span class="red">adds/remove the class, depending on the case</span>
+            document.querySelector('element').classList.contains('classname') <span class="red">checks if the class is applied, returns boolean</span>
+        </code></pre>
+
+        <h3>Parent / Child / Sibling</h3>
+        <pre><code>
+            document.querySelector('element').parentElement
+
+            document.querySelector('element').childElementCount <span class="red">counts the number of childs of the element</span>
+            document.querySelector('element').children <span class="red">lists the children</span>
+            document.querySelector('element').children[0] <span class="red">returns the first child</span>
+            
+            document.querySelector('element').previousSibling <span class="red">returns the previous DOM node (it can be only an empty line)</span>
+            document.querySelector('element').nextSibling
+            document.querySelector('element').previousElementSibling <span class="red">returns the previous element sibling MOST USED</span>
+            document.querySelector('element').nextElementSibling <span class="red">returns the next element sibling MOST USED</span>
+            
+        </code></pre>
+
+        <h3>append / appendChild</h3>
+        <pre><code>
+            document.createElement('img') <span class="red">creates an img element, but it's still nowhere on the page</span>
+
+            const newImg = document.createElement('img');
+            newImg.src = 'http://www.hjh.com/img.png';
+
+            document.body.appendChild(newImg); <span class="red">appends the img as the last child on the body</span>
+
+            document.querySelector('element').append('new text!'); <span class="red">appends the text on the string next to that element. The append method is more flexible than the appendChild!</span>
+            document.querySelector('element').append('new text!', 'new text too!'); <span class="red">appends 2 pieces of text</span>
+
+            document.querySelector('element').prepend(newImg); <span class="red">prepends the newly created newImg as the first child of this element</span>
+
+            document.querySelector('element').insertAdjacentElement(beforebegin, 'otherElement');
+            document.querySelector('element').insertAdjacentElement(afterbegin, 'otherElement!');
+            document.querySelector('element').insertAdjacentElement(beforeend, 'otherElement!');
+            document.querySelector('element').insertAdjacentElement(afterend, 'otherElement!'); <span class="red">append otherElement after the end of the element-target</span>
+
+            document.querySelector('element').after('otherElement'); <span class="red">appends otherElement after the element-target</span>
+        </code></pre>
+
+        <h3>Remove element</h3>
+        <pre><code>
+            document.querySelector('body').removeChild('img'); <span class="red">removes the first image that is a child of body</span>
+
+            document.querySelector('element').remove; <span class="red">removes the element</span>
+        </code></pre>
+
+        <h3>Events</h3>
+
+        <h4>Inline events</h4>
+        Directly on HTML code. Not recommended.
+        <pre><code>
+            <button onclick="alert('You clicked me!')">Click Me</button>
+
+            <button onclick="alert('You clicked me!'); alert('Stop clicking me!'">Click Me</button>
+        </code></pre>
+
+        <h4>The onclick property</h4>
+        On JS file:
+        <pre><code>
+            const btn2 = document.querySelector('#btn2');
+            btn2.onclick = function(){
+                console.log('You clicked me!');
+                console.log('I hope it worked!');
+            }
+
+            btn2.onmouseenter = function(){
+                console.log('Click click!');
+            } <span class="red">onmouseenter is just equivalent to hover</span>
+
+            btn2.onclick = () => console.log('Using arrow function!');
+        </code></pre>
+
+        <h4>The addEventListener method</h4>
+        Best choice.
+        <pre><code>
+            btn3 = document.querySelector(#btn3);
+
+            btn3.addEventListener('click', function(){
+                alert('Clicked!');
+            })
+
+            btn3.addEventListener('dblclick', () => console.log('Arrow!'));
+        </code></pre>
+        Instead of 'click', there are other parameters such as 'mouseenter', 'mouseleave', 'dblclick' etc.
+
+
+        <h4>Keyboard event & Event Objects</h4>
+        <pre><code>
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                        closeModal();
+                    }
+                })
+                <span class="red">
+                The 'e' parameter receives the key that was pressed. The 'e.key' is a property of the object e, and refers to the actual key that was pressed.</span>
+                <br>
+                <span class="red">The 'e' object also has a e.code property, this refers to the code of the key that was pressed, and is useful if the users are from different countries that use different keyboard settings. </span>
+
+                window.addEventListener('keydown', function() {
+                    switch (e.code) {
+                        case 'ArrowUp':
+                            console.log('UP!');
+                            break;
+                        case 'ArrowDown':
+                            console.log('DOWN!');
+                            break;
+                        case 'ArrowLeft':
+                            console.log('LEFT!');
+                            break;
+                        case 'ArrowRight':
+                            console.log('RIGHT!');
+                            break;
+                        default:
+                            console.log("IGNORED!")
+                    }
+                }) <span class="red">this code may be useful to make a first person role play game</span>
+            </code></pre>
+
+        There is also a 'keydown' parameter, that refers to when the key is released after being pressed.
+
+        <h4>Form Events & PreventDefault</h4>
+        <pre><code>
+                const form = document.querySelector('#myForm');
+                const input = document.querySelector('#inputtext');
+                const list = document.querySelector('ul');
+
+                form.addEventListener('submit', function(e){
+                    e.preventDefault(); <span class="red">this line prevents that the default behavior when submitting a form is executed. The default behavior use to be go to the address where the form is being submitted.</span>
+                    <span class="red">Now let's use the input data to append new text to the page:</span>
+                    const newLI = document.createElement('li'); <span class="red">creates a new empty li</span>
+                    newLI.innerText = input.value; <span class="red">sets the input value to be the inner text of the new element</span>
+                    list.append(newLI); <span class="red">append the li to the list on the page</span>
+                    input.value = ''; <span class="red">resets the input value to empty</span>
+                })
+            </code></pre>
+
+        <h4>Change & Input Events</h4>
+        <p>Change events are executed whenever the user changes the value of input AND moves the cursor out of the input
+            field (when the input is BLURED).</p>
+        <pre><code>
+                const input = document.querySelector('input');
+
+                input.addEventListener('change', function (e) {
+                    console.log('Changed the value!')
+                })
+            </code></pre>
+        <p>Input events fires as soon as the user types something on the input.</p>
+        <pre><code>
+                const input = document.querySelector('input');
+
+                input.addEventListener('input', function (e) {
+                    console.log('Input event!');
+                })
+            </code></pre>
+        <p>Input events can be used to live-sync the value of input on a page element:</p>
+        <pre><code>
+                const input = document.querySelector('input');
+                const h1 = document.querySelector('h1');
+
+                input.addEventListener('input', function (e) {
+                    h1.innerText = input.value;
+                })
+            </code></pre>
+
+        <h4>Event Bubbling</h4>
+        <p>When there are two or more eventListeners triggered by a click, we can prevent it to propagate (bubbling) by
+            adding the code <b>e.stopPropagation()</b> to the function of the first eventListener's function. </p>
+
+        <h4>Event Delegation</h4>
+        <p></p>
+
+
 
 
 
