@@ -688,83 +688,143 @@
 
 
 //Jonas sc 9 challenge 2:
-const game = {
-    team1: 'Bayern Munich',
-    team2: 'Borrussia Dortmund',
-    players: [
-        [
-            'Neuer',
-            'Pavard',
-            'Martinez',
-            'Alaba',
-            'Davies',
-            'Kimmich',
-            'Goretzka',
-            'Coman',
-            'Muller',
-            'Gnarby',
-            'Lewandowski',
-        ], [
-            'Burki',
-            'Schulz',
-            'Hummels',
-            'Akanji',
-            'Hakimi',
-            'Weigl',
-            'Witsel',
-            'Hazard',
-            'Brandt',
-            'Sancho',
-            'Gotze',
-        ],],
-    score: '4:0',
-    scored: ['Lewandowski', 'Gnarby', 'Lewandowski',
-        'Hummels'],
-    date: 'Nov 9th, 2037',
-    odds: {
-        team1: 1.33,
-        x: 3.25,
-        team2: 6.5,
-    },
-};
+// const game = {
+//     team1: 'Bayern Munich',
+//     team2: 'Borrussia Dortmund',
+//     players: [
+//         [
+//             'Neuer',
+//             'Pavard',
+//             'Martinez',
+//             'Alaba',
+//             'Davies',
+//             'Kimmich',
+//             'Goretzka',
+//             'Coman',
+//             'Muller',
+//             'Gnarby',
+//             'Lewandowski',
+//         ], [
+//             'Burki',
+//             'Schulz',
+//             'Hummels',
+//             'Akanji',
+//             'Hakimi',
+//             'Weigl',
+//             'Witsel',
+//             'Hazard',
+//             'Brandt',
+//             'Sancho',
+//             'Gotze',
+//         ],],
+//     score: '4:0',
+//     scored: ['Lewandowski', 'Gnarby', 'Lewandowski',
+//         'Hummels'],
+//     date: 'Nov 9th, 2037',
+//     odds: {
+//         team1: 1.33,
+//         x: 3.25,
+//         team2: 6.5,
+//     },
+// };
 
-//1.
-const goals = game.scored;
-console.log(goals)
-for (const [index, item] of goals.entries()) {
-    console.log(`Goal ${index + 1}: ${item}`)
-}
-
-//2.
-const odds = Object.values(game.odds)
-// console.log(odds)
-let avg = 0;
-let sum = 0;
-for (const x of odds) {
-    sum += x;
-}
-avg = sum / odds.length;
-console.log(avg);
-
-//3.
-const [y, z, w] = odds;
-console.log(`Odd of victory ${game.team1}: ${y}`);
-console.log(`Odd of draw: ${z}`);
-console.log(`Odd of victory ${game.team2}: ${w}`);
-
-//4.
-const scorers = {}
-let sumGoals
-
-
-// scorers[goals[0]] = 1;
-
-// for (const i of scored) {
-//     scored.filter(j => j === i).length;
+// //1.
+// const goals = game.scored;
+// console.log(goals)
+// for (const [index, item] of goals.entries()) {
+//     console.log(`Goal ${index + 1}: ${item}`)
 // }
 
-for (const player of game.scored) {
-    scorers[player] ? scorers[player]++ : (scorers[player] = 1);
-}
-console.log(scorers)
-//wow! it worked!
+// //2.
+// const odds = Object.values(game.odds)
+// // console.log(odds)
+// let avg = 0;
+// let sum = 0;
+// for (const x of odds) {
+//     sum += x;
+// }
+// avg = sum / odds.length;
+// console.log(avg);
+
+// //3.
+// const [y, z, w] = odds;
+// console.log(`Odd of victory ${game.team1}: ${y}`);
+// console.log(`Odd of draw: ${z}`);
+// console.log(`Odd of victory ${game.team2}: ${w}`);
+
+// //4.
+// const scorers = {}
+// let sumGoals
+
+
+// // scorers[goals[0]] = 1;
+
+// // for (const i of scored) {
+// //     scored.filter(j => j === i).length;
+// // }
+
+// for (const player of game.scored) {
+//     scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+// }
+// console.log(scorers)
+// //wow! it worked!
+
+//Jonas sc 9 challenge 3
+// const gameEvents = new Map([
+//     [17, '⚽ GOAL'],
+//     [36, '🔁 Substitution'],
+//     [47, '⚽ GOAL'],
+//     [61, '🔁 Substitution'],
+//     [64, '🔶 Yellow card'],
+//     [69, '🔴 Red card'],
+//     [70, '🔁 Substitution'],
+//     [72, '🔁 Substitution'],
+//     [76, '⚽ GOAL'],
+//     [80, '⚽ GOAL'],
+//     [92, '🔶 Yellow card'],
+// ]);
+//1.
+// const events = []
+// for (const [key, value] of gameEvents) {
+//     events.push(value);
+// }
+// const eventsSet = new Set(events)
+// console.log(eventsSet)
+// const uniqueEventsArr = [...eventsSet]
+// console.log(uniqueEventsArr)
+
+// //Jonas' solution:
+// gameEvents.values(); //Map's values
+// new Set(gameEvents.values()) //set of values
+// //solution:
+// const events = [...new Set(gameEvents.values())];
+// console.log(events)
+
+// //2.
+// gameEvents.delete(64)
+// console.log(gameEvents)
+
+// //3. 
+// const avg = 90 / gameEvents.size;
+// console.log(`An event happened, on avarage, every ${avg} minutes`)
+
+// //4.
+// for (const [min, ev] of gameEvents) {
+//     if (min <= 45) {
+//         console.log(`[FIRST HALF] ${min}: ${ev}`)
+//     } else {
+//         console.log(`[SECOND HALF] ${min}: ${ev}`)
+//     }
+// }
+// // Jonas'solution:
+// for (const [min, ev] of gameEvents) {
+//     const half = min <= 45 ? 'FIRST' : 'SECOND';
+//     console.log(`[${half} HALF] ${min}: ${ev}`)
+// }
+
+const adjustName = function (passengerName) {
+    return passengerName.toLowerCase()[0].toUpperCase() + passengerName.toLowerCase().slice(1);
+};
+console.log(adjustName('vItoR'));
+
+console.log('a+very+nice+string'.split('+'));

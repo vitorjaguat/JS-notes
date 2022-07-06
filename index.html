@@ -2635,8 +2635,160 @@ workout;
             console.log(...question.entries());
             console.log(...question.keys());
             console.log(...question.values());
- 
+        </code></pre>
 
+        <h4>String methods (2/2) REVIEW</h4>
+        <pre><code>
+            const airline = 'TAP Air Portugal';
+            const plane = 'A320';
+
+            console.log(plane[0]);
+            //B 
+            console.log('B737'[2]);
+            //3
+
+            console.log(airline.length);
+            //16
+            console.log('B737'.length);
+            //4
+
+            console.log(airline.indexOf('r'));
+            //6
+            console.log(lastIndexOf('r'));
+            //10
+            console.log(indexOf('Portugal'));
+            //8
+            
+            console.log(airline.slice(4));
+            //Air Portugal
+            console.log(airline.slice(4,7));
+            //Air
+
+            console.log(airline.slice(0, airline.indexOf[' ']));
+            //TAP
+            console.log(airline.slice(airline.lastIndexOf(' ')+1);
+            //Portugal
+            console.log(airline.slice(-2));
+            //al
+            console.log(airline.slice(1,-1));
+            //AP Air Portuga
+            
+            <span class="red">Checking if airplain seat is a middle seat (last letter of seat is 'B' or 'E'):</span>
+            const checkMiddleSeat = function(seat){
+                const s = seat.slice(-1);
+                if(s === 'B' || s === 'E'){
+                    console.log('You got the middle seat :(');
+                } else console.log('You got lucky!');
+            }
+            checkMiddleSeat('11B');
+            //'You got the middle seat :('
+            checkMiddleSeat('23C');
+            //'You got lucky!'
+            checkMiddleSeat('3E');
+            //'You got the middle seat :('
+
+        </code></pre>
+        <p>Why do strings accept methods? Shouldn't methods only work on objects or arrays? That is because JS converts
+            strings to objects. This automatic conversion is called BOXING.</p>
+
+        <pre><code>
+            <span class="red">Adjusting upper and lowercase in a proper name (capitalizing 1/2):</span>
+            const passenger = 'jOnAS';
+            const passengerLower = passenger.toLowerCase();
+            const passengerCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1);
+            console.log(passengerCorrect);
+
+            <span class="red">As a function:</span>
+            const adjustName = function(passengerName){
+                return passenger.toLowerCase()[0].toUpperCase() + passenger.toLowerCase().slice(1);
+            }
+            console.log(adjustName('vItoR'));
+            //Vitor
+        </code></pre>
+        <pre><code>
+            <span class="red">Comparing e-mails:</span>
+            const email = 'hello@jonas.io';
+            const loginEmail = '   Hello@jonas.Io  \n' <span class="red">\n stands for press Enter key</span>
+
+            const normalizedEmail = loginEmail.toLowerCase().trim
+            console.log(email === normalizedEmail);
+            //true
+        </code></pre>
+        <pre><code>
+            <span class="red">Replacing pieces of strings:</span>
+            const priceUK = '288,97£';
+            const priceUS = priceUK.replace('£','$').replace(',','.');
+            console.log(priceUS);
+            //288.97$
+
+            <span class="red">Replacing all occurances:</span>
+            const announcement = 'All passengers come to boarding door 23. Boarding door 23!';
+            console.log(announcement.replace(/door/g, 'gate'));
+            <span class="red">/g is a regular expression.</span>
+        </code></pre>
+        <pre><code>
+            <span class="red">Methods that return booleans:</span>
+            const plane = 'Airbus A320neo';
+            
+            console.log(plane.includes('A320'));
+            //true
+            console.log(plane.includes('Boeing'));
+            //false
+            console.log(plane.startsWith('Air'));
+            //true
+
+            if (plane.startsWith('Airbus') && plane.endsWith('neo')){
+                console.log('Part of the NEW Airbus family');
+            }
+        </code></pre>
+        <pre><code>
+            console.log('a+very+nice+string'.split('+'));
+            //['a', 'very', 'nice', 'string']
+
+            console.log('Jonas Schmedtmann'.split(' '));
+            //['Jonas', 'Schmedtmann']
+
+            <span class="red">Destructuring the resulting array of split method to obtain 2 variables:</span>
+            const [firstName, lastName] = 'Jonas Schmedtmann'.split(' ');
+
+            const newName = ['Mr.', firstName, lastName.toUppercase()].join('---');
+            console.log(newName);
+            //Mr.---Jonas---SCHMEDTMANN
+            <span class="red">The join() method is the opposite of the split() method.</span>
+
+            <span class="red">Capitalizing (2/2) a long name:</span>
+            const capitalizeName = function(name){
+                const names = name.split(' ');
+                const namesUpper = [];
+                for(const n of names) {
+                    namesUpper.push(n[0].toUpperCase() + n.slice(1)); <span class="red">this part can also be written like this: namesUpper.push(n.replace(n[0], n[0].toUpperCase()))</span>
+                } 
+                console.log(namesUpper.join(' '));
+            }
+            capitalizeName('jessica ann smith davidson');
+            //Jessica Ann Smith Davidson 
+        </code></pre>
+        <pre><code>
+            <span class="red">Padding a string (adding a number of character into the string until the string has a certain desired length):</span>
+            const message = 'Go to gate 23!';
+            console.log(message.padStart(25, '+').padEnd(30, '+'));
+            //+++++Go to gate 23!++++++++++
+
+            <span class="red">Masking a credit card number:</span>
+            const maskCred = function(number){
+                const str = number + ''; <span class="red">this converts the number into a string</span>
+                const lastFour = str.slice(-4);
+                return lastFour.padStart(srt.length, '*');
+            }
+            console.log(maskCred(736627288373882));
+            //***********3882
+
+            <span class="red">Repeat:</span>
+            const message2 = 'Bad weather... All departures delayed...'
+            console.log(message.repeat(5));
+            //Bad weather... All departures delayed...Bad weather... All departures delayed...Bad weather... All departures delayed...Bad weather... All departures delayed...Bad weather... All departures delayed...
+
+            
         </code></pre>
 
 
