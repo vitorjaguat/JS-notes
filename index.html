@@ -1660,7 +1660,7 @@ workout;
             })
         </code></pre>
 
-        <h4>Maps</h4>
+        <h4>Maps (1/2)</h4>
         <p>Calls the function for each element and creates a new array for them.</p>
         <pre><code>
             const numbers = [1,2,3,4];
@@ -1980,6 +1980,20 @@ workout;
         </code></pre>
 
         <h3>Rest syntax</h3>
+        <p>It can be saird that the Rest syntax does the opposite of the Spread syntax. The Rest syntax collects the
+            remaining elements of an interable into an array.The Spread operator is used where otherwise we would see
+            <b>values</b> separated by commas. On the other hand, the Rest operator is basically used where otherwise we
+            would see <b>variable</b> names separated by commas.
+        </p>
+        <pre><code>
+            const arr = [1, 2, ...[3, 4]];
+            <span class="red">This ... stands for the spread syntax, because it is being used on the RIGHT side of =.</span>
+
+            const [ a, b, ...others ] = [1, 2, 3, 4, 5];
+            <span class="red">The others variable will be assigned to [3, 4, 5]. This ... stands for the Rest syntax, because it appears on the LEFT side of =.</span>
+        </code></pre>
+
+
         <p>Captures the arguments of a function and hold them inside an array.</p>
         <pre><code>
             function raceResults(gold, silver, ...everyoneElse){
@@ -2320,6 +2334,311 @@ workout;
         processDoll(the smaller doll);
         }
 
+        <h4>Short circuiting (&& and ||)</h4>
+        <p>&& and || can be used to substitute simple if statements. This is called short-circuit evaluation.</p>
+        <pre><code>
+            ------|| OR------
+            console.log(3 || 'Jonas');
+            //3
+            <span class="red">will return the first truthy value.</span>
+
+            console.log('' || 'Jonas');
+            //'Jonas'
+            console.log(true || 0);
+            //true
+            console.log(undefined || null);
+            //null
+            <span class="red">both are falsy values, so the second is returned.</span>
+
+            console.log(undefined || '' || 0 || 'Hello' || 23);
+            //'Hello'
+
+            -------&& AND-------
+            console.log(0 && 'Jonas');
+            //0
+            <span class="red">will return the first falsy value.</span>
+            
+            console.log(7 && 'Jonas');
+            //'Jonas'
+            <span class="red">both values are truthy, so the second is returned.</span>
+
+            console.log('Hello' && 23 && null && 'Jonas');
+            //null
+
+            <span class="red">It is used to substitute an if statement if we don't know if a certain element actually exists. For example, in rock-paper-scissors project:</span>
+            document.querySelector('.newLine') && document.querySelector('.newLine').remove();
+            <span class="red">the line only will be removed if it exists. This code prevents error message in the case of the .newLine class doesn't exist. The same could be done this way:
+                if (document.querySelector('.newLine')) {
+                    document.querySelector('.newLine').remove();
+                };
+            </span>
+        </code></pre>
+
+        <h4>Nullish Coalescing Operator (??)</h4>
+        <p>Introduced in 2020. The same as || but it recognizes 0 as a truthy value. Nullish values are null and
+            undefined. This operator only recognizes these as falsy.</p>
+        <pre><code>
+            let restaurant.numGuests = 0;
+            guests = restaurant.numGuests || 10;
+            console.log(guests);
+            //10 
+            <span class="red">|| recognizes 0 as a falsy value.</span>
+
+            let restaurant.numGuests = 0;
+            guests2 = restaurant.numGuests ?? 10;
+            console.log(guests2);
+            //0 
+            <span class="red">?? recognizes 0 as a truthy value.</span>
+        </code></pre>
+
+        <h4>Logical assignment operators</h4>
+        <p>Introduced in 2021.</p>
+        <pre><code>
+            ----------||=------------
+            const rest1 = {
+                name: 'Capri',
+                numGuests: 20
+            }
+            const rest 2 = {
+                name: 'La Piazza',
+                owner: 'Giovanni Rossi'
+            }
+
+            To apply a property with a default value to all objects that still don't have this property:
+            <span class="red">Using the || operator:</span>
+            rest1.numGuests = rest1.numGuests || 10;
+            rest2.numGuests = rest2.numGuests || 10;
+
+            <span class="red">|| assigning operator:</span>
+            rest1.numGuests ||= 10;
+            rest2.numGuests ||= 10;
+
+            -----------??=----------
+            const rest1 = {
+                name: 'Capri',
+                numGuests: 0
+            }
+            const rest 2 = {
+                name: 'La Piazza',
+                owner: 'Giovanni Rossi'
+            }
+            <span class="red">using the ||=, 0 would be considered a falsy value and reassigned to 10.</span>
+            rest1.numGuests ??= 10;
+            rest2.numGuests ??= 10;
+            <span class="red">using the ??= (nulish assignment operator) considers 0 to be a truthy value, and will mantain the 0 number of guests untouched :)</span>
+
+            ----------&&=------------
+            const rest1 = {
+                name: 'Capri',
+                numGuests: 20
+            }
+            const rest 2 = {
+                name: 'La Piazza',
+                owner: 'Giovanni Rossi'
+            }
+            <span class="red">To change the value of a property only if this property exists:</span>
+            <span class="red">Using the && operator:</span>
+            rest1.owner = rest1.owner && '<ANONYMOUS>';
+            rest2.owner = rest2.owner && '<ANONYMOUS>';
+            <span class="red">Using && assignment operator:</span>
+            rest1.owner &&= '<ANONYMOUS>';
+            rest2.owner &&= '<ANONYMOUS>'; 
+                <span class="red">only rest2.owner will change.</span>
+
+        </code></pre>
+
+        <h4>Optional chaining ?.</h4>
+        <p>Introduced in 2020. It is used when we don't know whether a property is present in a given object. It
+            substitutes an if statement or a ternary operator.</p>
+        <pre><code>
+            const mon = restaurant.openingHours.mon?.open;
+            <span class="red">we don't know whether this restaurant has the object mon inside of openingHours object. If it has, then the open property's value will be returned.</span>
+
+            const restaurant = {
+                name: 'Classico Italiano',
+                location: 'Via Angelo Tavanti, 23, Firenze, Italy',
+                categories: ['Italian', 'Pizzeria', 'Organic'],
+                starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+                mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+                order: function(starterIndex, mainIndex) {
+                    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+                },
+
+                openingHours: {
+                    fri: {
+                        open: 12,
+                        close: 22
+                    },
+                    sat: {
+                        open: 11,
+                        close: 23
+                    },
+                    sun: {
+                        open: 11,
+                        close: 22
+                    }
+                }
+            }
+            <span class="red">Checking which days does this restaurant open:</span>
+            const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+            for (const day of days){
+                const openYN = restaurant.openingHours[day]?.open;
+                console.log(`On ${day}, we open at ${open}.`)
+            }
+
+            <span class="red">Checking if a method exists:</span>
+            restaurant.order?.(0,1);
+            <span class="red">Together with nulish coalescence operator:</span>
+            restaurant.order?.(0,1) ?? 'Method does not exist.'
+
+            <span class="red">Checking whether an array is empty:</span>
+            const users = [{name: 'Jonas', email: 'hello@jonas.com'}];
+            console.log(users[0]?.name ?? 'User array empty');
+            <span class="red">without JS new features:</span>
+            if(users.length > 0) console.log(users[0].name); else console.log('User array empty')
+        </code></pre>
+
+        <h4>Looping objects: object keys, values and entries</h4>
+        <p></p>
+        <pre><code>
+            Object.keys(objectName)
+            Object.values(objectName)
+            Object.entries(objectName)
+            <span class="red">These methods will return, respectively, an array with the keys, the values and the key-value pairs of the object.</span>
+
+            <span class="red">to get entries of arrays, the syntax is different:</span>
+            arrayName.entries()
+
+            <span class="red">looping through an object:</span>
+            const entries = Object.entries(openingHours);
+            for (const x of entries){
+                console.log(x)
+            }
+
+        </code></pre>
+
+        <h4>Sets</h4>
+        <p>Sets are a new data structure introduced in ES6. Sets contain unique values; are iterable; aren't indexed.
+        </p>
+        <pre><code>
+            const ordersSet = new Set([
+            'Pasta',
+            'Pizza',
+            'Pizza',
+            'Risotto',
+            'Pasta',
+            'Pizza'
+            ]);
+            console.log(ordersSet);
+            //{'Pasta', 'Pizza', 'Risotto'}
+
+            console.log(ordersSet.size);
+            //3
+
+            ordersSet.has('Pizza');
+            //true
+            ordersSet.has('Bread');
+            //false
+            <span class="red">has method is similar to includes method in arrays.</span>
+
+            ordersSet.add('Garlic Bread');
+
+            ordersSet.delete('Pizza');
+
+            <span class="red">There is no way to retrieve data from a set, we only can check if data is present or not.</span>
+
+            <span class="red">Transforming a set into an array:</span>
+            const ordersArray = [...ordersSet];
+        </code></pre>
+
+        <h4>Maps (data structure)</h4>
+        <p>Maps can be compared to objects, but its "keys" can be of any type (strings, numbers, arrays, objects, maps
+            etc).</p>
+        <pre><code>
+            const rest = new Map();
+            <span class="red">creates an empty map.</span>
+            rest.set('name', 'Classico Italiano');
+            rest.set(1, 'Firenze, Italy');
+            <span class="red">adding values to the map.</span>
+
+            console.log(rest.set(2, 'Lisbon, Portugal'));
+            <span class="red">.set not only adds values to the map, it also return the entire map:</span>
+            //{'name' => 'Classico Italiano', 1 => 'Firenze, Italy', 2 => 'Lisbon, Italy'}
+
+            rest
+                .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+                .set('open', 11)
+                .set('close', 23)
+                .set(true, 'We are open :D')
+                .set(false, 'We are closed :(');
+            <span class="red">.set can be chained.</span>
+
+            <span class="red">Maps' values can be retrieved with .get</span>
+            console.log(rest.get('name'));
+            //Classico Italiano
+            console.log(rest.get(true));
+            //We are open :D
+
+            <span class="red">Checking if the restaurant is open in a given time:</span>
+            const time = 21;
+            console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+            //We are open :D
+
+            console.log(rest.has('categories'));
+            //true
+            <span class="red">.has checks if there is a given key on the map.</span>
+
+            rest.delete(2)
+            <span class="red">.delete deletes a key-value pair.</span>
+
+            console.log(rest.size);
+            //7
+
+            rest.clear()
+            <span class="red">map turns into an empty map.</span>
+        </code></pre>
+
+        <h5>Maps: iteration, etc.</h5>
+        <pre><code>
+            const question = new Map([
+                ['question', 'What is the best programming language in the world?'],
+                [1, 'C'],
+                [2, 'Java'],
+                [3, 'JavaScript'],
+                ['correct', 3],
+                [true, 'Correct!'],
+                [false, 'Try again!']
+            ]);
+
+            <span class="red">Converting an object into a map:</span>
+            const openingHoursMap = new Map(Object.entries(openingHours));
+
+            <span class="red">Iterating through maps:</span>
+            for (const [key, value] of question){ <span class="red">here we are deconstructing each array key-value into two variables.</span>
+                if (typeof key === 'number'){
+                    console.log(`Answer ${key}: ${value}`);
+                }
+            }
+
+            <span class="red">Example: checking whether the prompted answer is correct:</span>
+            const answer = Number(prompt('Your answer:'))
+            if (answer === question.get('correct')){
+                prompt(question.get(true))
+            } else prompt(question.get(false));
+            <span class="red">Jonas' solution:</span>
+            const answer = Number(prompt('Your answer:'));
+            console.log(question.get(question.get('correct') === answer));
+
+            <span class="red">Convert map to array:</span>
+            console.log(...question);
+            console.log(...question.entries());
+            console.log(...question.keys());
+            console.log(...question.values());
+ 
+
+        </code></pre>
+
 
         <h2>DOM</h2>
         <p>Stands for 'Document Object Model'.</p>
@@ -2537,6 +2856,8 @@ workout;
 
         <h4>Event Delegation</h4>
         <p></p>
+
+
 
 
 

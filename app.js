@@ -568,15 +568,203 @@
 
 // Jonas sc 5 challenge 1
 
-const printForecast = function (arr) {
-    let oneDay = "";
-    let allDays = "";
-    for (let i = 0; i < arr.length; i++) {
-        oneDay = `... ${arr[i]} degrees Celsius in ${i + 1} days `;
-        allDays += oneDay;
-    }
-    return allDays;
+// const printForecast = function (arr) {
+//     let oneDay = "";
+//     let allDays = "";
+//     for (let i = 0; i < arr.length; i++) {
+//         oneDay = `... ${arr[i]} degrees Celsius in ${i + 1} days `;
+//         allDays += oneDay;
+//     }
+//     return allDays;
+// };
+
+// printForecast([17, 21, 23]);
+// printForecast([12, 5, -5, 0, 4]);
+
+//Jonas sc 9 challenge 1:
+
+// const game = {
+//     team1: 'Bayern Munich',
+//     team2: 'Borrussia Dortmund',
+//     players: [
+//         [
+//             'Neuer',
+//             'Pavard',
+//             'Martinez',
+//             'Alaba',
+//             'Davies',
+//             'Kimmich',
+//             'Goretzka',
+//             'Coman',
+//             'Muller',
+//             'Gnarby',
+//             'Lewandowski',
+//         ], [
+//             'Burki',
+//             'Schulz',
+//             'Hummels',
+//             'Akanji',
+//             'Hakimi',
+//             'Weigl',
+//             'Witsel',
+//             'Hazard',
+//             'Brandt',
+//             'Sancho',
+//             'Gotze',
+//         ],],
+//     score: '4:0',
+//     scored: ['Lewandowski', 'Gnarby', 'Lewandowski',
+//         'Hummels'],
+//     date: 'Nov 9th, 2037',
+//     odds: {
+//         team1: 1.33,
+//         x: 3.25,
+//         team2: 6.5,
+//     },
+// };
+
+// 1.
+// // let players1 = game.players[0];
+// // let players2 = game.players[1];
+// let [players1, players2] = game.players;
+// console.log(players1);
+// console.log(players2);
+
+
+
+// 2.
+// let [gk, ...fieldPlayers] = players1;
+// console.log(gk);
+// console.log(fieldPlayers);
+
+
+// //3. 
+// let allPLayers = [...players1, ...players2]
+// console.log(allPLayers)
+
+// //4.
+// let players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic']
+// console.log(players1Final)
+
+// //5.
+// let { team1, x: draw, team2 } = game.odds
+// console.log(team1)
+// console.log(draw)
+// console.log(team2)
+
+// // //6.
+// const printGoals = function (pla1, ...pla) {
+//     let plaT = [pla1, ...pla];
+//     let numGoals = 0;
+//     let scored = game.scored;
+//     //     // for (let player of plaT) {
+//     //     //     if (scored.includes(player)) {
+//     //     //         numGoals++
+
+//     //     //     }
+
+//     //     // }
+//     for (let player of plaT) {
+//         for (let goal of scored) {
+//             if (player === goal) {
+//                 numGoals++
+//             }
+//         }
+//     }
+//     console.log(numGoals);
+// }
+// printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
+
+
+// //7.
+// const odds1 = game.odds.team1; // already assigned
+// const odds2 = game.odds.team2; // already assigned
+// console.log(odds1 < odds2 && 'team1');
+// console.log(odds1 > odds2 && 'team2');
+
+//Jonas' solution:
+// team1 < team2 && console.log('Team 1 is more likely to win');
+// team1 > team2 && console.log('Team 2 is more likely to win');
+
+
+//Jonas sc 9 challenge 2:
+const game = {
+    team1: 'Bayern Munich',
+    team2: 'Borrussia Dortmund',
+    players: [
+        [
+            'Neuer',
+            'Pavard',
+            'Martinez',
+            'Alaba',
+            'Davies',
+            'Kimmich',
+            'Goretzka',
+            'Coman',
+            'Muller',
+            'Gnarby',
+            'Lewandowski',
+        ], [
+            'Burki',
+            'Schulz',
+            'Hummels',
+            'Akanji',
+            'Hakimi',
+            'Weigl',
+            'Witsel',
+            'Hazard',
+            'Brandt',
+            'Sancho',
+            'Gotze',
+        ],],
+    score: '4:0',
+    scored: ['Lewandowski', 'Gnarby', 'Lewandowski',
+        'Hummels'],
+    date: 'Nov 9th, 2037',
+    odds: {
+        team1: 1.33,
+        x: 3.25,
+        team2: 6.5,
+    },
 };
 
-printForecast([17, 21, 23]);
-printForecast([12, 5, -5, 0, 4]);
+//1.
+const goals = game.scored;
+console.log(goals)
+for (const [index, item] of goals.entries()) {
+    console.log(`Goal ${index + 1}: ${item}`)
+}
+
+//2.
+const odds = Object.values(game.odds)
+// console.log(odds)
+let avg = 0;
+let sum = 0;
+for (const x of odds) {
+    sum += x;
+}
+avg = sum / odds.length;
+console.log(avg);
+
+//3.
+const [y, z, w] = odds;
+console.log(`Odd of victory ${game.team1}: ${y}`);
+console.log(`Odd of draw: ${z}`);
+console.log(`Odd of victory ${game.team2}: ${w}`);
+
+//4.
+const scorers = {}
+let sumGoals
+
+
+// scorers[goals[0]] = 1;
+
+// for (const i of scored) {
+//     scored.filter(j => j === i).length;
+// }
+
+for (const player of game.scored) {
+    scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+}
+console.log(scorers)
+//wow! it worked!
