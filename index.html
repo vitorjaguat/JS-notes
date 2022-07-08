@@ -605,9 +605,11 @@
         <br>array1 === array2 //true
         <p>What is being compared is the reference of the arrays, not the items inside of it.</p>
         <h3>Nested arrays</h3>
-        let gameBoard = [["X", "O", "X"], ["O", null, "X"], ["O","O", "X"];
+        let gameBoard = [["X", "O", "X"], ["O", null, "X"], ["O","O", "X"]];
         <br>To return the second item in second row:
         <br>gameBoard[1][1]; //null
+
+
 
         <h2>Objects</h2>
         <p>Just like arrays, objects are data structures. Inside objects, order doesn't matter. An object is
@@ -771,7 +773,7 @@
         <pre><code>
             const years = [1991, 2007, 1983, 1984, 1990];
             const ages = [];
-            for (let i=0; i<years.length; i++) {
+            for (let i=0; i&ltyears.length; i++) {
                 ages.push(2022-years[i])
             }
         </code></pre>
@@ -1411,7 +1413,10 @@ workout;
         </code></pre>
 
         <h4>Higher order functions</h4>
-        Using a function as an argument to an other function. For example, creating a function to run twice another
+        <p>Using a function as an argument to an other function OR returning a function from a function. The "secondary"
+            function that is called or returned is called Callback Function.</p>
+        <p>Higher order functions add a level of abstraction into the code.</p>
+        For example, creating a function to run twice another
         function:
         <pre><code>
             function callTwice(func){
@@ -1425,11 +1430,12 @@ workout;
             callTwice(rollDie);
             //4
             //3
+            <span class="red">In this example, callTwice is the Higher Order Function, and rollDie is the Callback Function.</span>
         </code></pre>
         For example, creating a function to run ten times another function:
         <pre><code>
             function callTenTimes(funct){
-                for (let i=0; i<10; i++) {
+                for (let i=0; i&lt10; i++) {
                     funct();
                 }
             }
@@ -1441,9 +1447,40 @@ workout;
 
             callTenTimes(rollDie);
         </code></pre>
+        Another example (Jonas):
+        <pre><code>
+            const oneWord = function (str) {
+                return str.replace(/ /g, '').toLowerCase();
+            }; <span class="red">this function deletes all empty spaces on the string and converts it to lower case.</span>
+
+            const upperFirstWord = function (str) {
+                const [first, ...others] = str.split(' ');
+                return [first.toUpperCase(), ...others].join(' ');
+            }; <span class="red">this function converts the first word to uppercase. in order to do that, we used array Deconstructing, Rest and Spread.</span>
+
+            const transformer = function(str, fn) {
+                console.log(`Original string: ${str}`);
+                console.log(`Transformed string: ${fn(str)}`);
+                console.log(`Transformed by: ${fn.name}`);
+            }; <span class="red">this Higher Order Function takes one function and a string, and calls the function with the string as its argument. The name of the function that was called is retrieved by the property .name;</span>
+
+            transformer('JavaScript is the best!', oneWord);
+            //Original string: JavaScript is the best!
+            //Transformed string: javascriptisthebest!
+            //Transformed by: oneWord
+
+            transformer('JavaScript is the best!', upperFirstWord);
+            //Original string: JavaScript is the best!
+            //Transformed string: JAVASCRIPT is the best!
+            //Transformed by: upperFirstWord
+
+        </code></pre>
+
+
 
         <h4>Return function</h4>
-        <p>Returning a function as a value from within a function.</p>
+        <p>Returning a function as a value from within a function. This feature allows us to make some sort of "function
+            factories", that is, a function that creates other functions.</p>
         <pre><code>
             function makeBetweenFunc(min, max){
                 return function(num){
@@ -1462,6 +1499,27 @@ workout;
             isSenior(66);
             //true 
             
+        </code></pre>
+        <p>Another example (Jonas):</p>
+        <pre><code>
+            const greet = function (greeting) {
+                return function (name) {
+                    console.log(`${greeting}, ${name}`);
+                };
+            };
+
+            const greeterHey = greet('Hey');
+
+            greeterHey('Jonas');
+            //Hey, Jonas
+            greeterHey('Steven');
+            //Hey, Steven
+            
+            greet('Hello')('Jonas');
+            //Hello, Jonas
+
+            <span class="red">Using arrow functions:</span>
+            const greet = greeting => name => console.log(`${greeting}, ${name}`);
         </code></pre>
 
         <h4>Defining Methods</h4>
@@ -1530,8 +1588,91 @@ workout;
         <h5>this in EventListeners</h5>
         this' value will point to the DOM element that the handler is attached to.
 
-        <h5>new, call, apply, bind Methods</h5>
-        Still to come...
+        <!-- <h5>new, call, apply, bind Methods</h5> -->
+        <h5>call, apply, bind methods</h5>
+        <p>These methods are used to force the this keyword to refer to a specific object.</p>
+        <pre><code>
+            const lufthansa = {
+                airline: 'Lufthansa',
+                iataCode: 'LH',
+                bookings: [],
+                book(flightNum, name) {
+                    console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`);
+                    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+                }
+            };
+
+            lufthansa.book(239, 'Jonas Schmedtmann'); <span class="red">works fine.</span>
+
+            const eurowings = {
+                airline: 'Eurowings',
+                iataCode: 'EW',
+                bookings: []
+            };
+
+            const book = lufthansa.book;
+
+            book(23, Sarah Williams); <span class="red">doesn't work, because the this keyword will refer to the window object!</span>
+
+            book.call(eurowings, 23, 'Sarah Williams'); <span class="red">the CALL method receives as arguments: 1st the object target by the this keyword, 2nd the function's other arguments</span>
+
+            book.call(lufthansa, 239, 'Mary Cooper');
+        </code></pre>
+        <p>The apply method works the same way as the call method, but receives an array of arguments as the function's
+            arguments.</p>
+        <pre><code>
+            const flightData = [583, 'George Cooper'];
+            book.apply(eurowings, flightData);
+
+            <span class="red">nowadays, the apply method isn't very used. Instead, we use spread operator and call method:</span>
+            book.call(eurowings, ...flightData);
+        </code></pre>
+        <p>The bind method works the same way as the call method, but it generates a new function where the this keyword
+            is set on stone.</p>
+        <pre><code>
+            const bookEW = book.bind(eurowings);
+            const bookLH = book.bind(lufthansa);
+
+            bookEW(23, 'Steven Williams');
+            <span class="red">only need to write the arguments of the function. In the example, the function book takes as parameters (flightNum, name).</span>
+
+            const bookEW334 = book.bind(eurowings, 334); <span class="red">this function has the this keyword set to the eurowings object, and the first argument is set to 334. This is called Partial Application.</span>
+            bookEW334('Mary Dritschel');
+
+            <span class="red">Using bind method with Event Listener:</span>
+            const lufthansa = {
+                airline: 'Lufthansa',
+                iataCode: 'LH',
+                bookings: [],
+                book(flightNum, name) {
+                    console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`);
+                    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+                },
+                planes: 300,
+                buyPlane() {
+                    this.planes++
+                }
+            };
+            
+            document.querySelector(#buttonX).addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+            <span class="red">If there wasn't a bind method, the this keyword in the function buyPlane would be set to be the #buttonX element!</span>
+
+            <span class="red">Using bind Method and Partial Application to create new functions from a function:</span>
+            const addTax = (rate, value) => value + value * rate;
+
+            const addVAT = addTax.bind(null, 0.23);
+            <span class="red">This function has no this keyword, so we write null in the first place. </span>
+            <span class="red">This is equal to: addVAT = value => value + value * 0.23 </span>
+            <span class="red">This is also equal to (using high order function):</span>
+            const addTax2 = function (rate){
+                return function (value){
+                    return value + value*rate;
+                };
+            };
+            const addVAT2 = addTax2(0.23)
+            console.log(addVAT2(100));
+            //123
+        </code></pre>
 
 
 
@@ -1642,6 +1783,23 @@ workout;
             <pre><code>
             const calcAge = birthYear => 2022 - birthYear;
         </code></pre>
+            IIFE (Immediately Invoked Function Expression): are used to protect variables inside their scope. IIFE also
+            can be very useful in Async.
+            <pre><code>
+            (function () {
+                console.log('This will never run again');
+            })();
+
+            <span class="red">In arrow mode:</span>
+            (() => console.log('This will never run again'));
+
+            <span class="red">In order to protect variables from being invoked outside of a certain scope, we can also create a simple block {} and define the functions inside of this block.</span>
+            {
+                const isPrivate = 23;
+                var isNotPrivate = 24;
+                let privateToo = 25;
+            }
+        </code></pre>
 
         </div>
 
@@ -1660,7 +1818,7 @@ workout;
             })
         </code></pre>
 
-        <h4>Maps (1/2)</h4>
+        <h4>.map method (the map method is different from the Map type of object!)</h4>
         <p>Calls the function for each element and creates a new array for them.</p>
         <pre><code>
             const numbers = [1,2,3,4];
@@ -2791,6 +2949,51 @@ workout;
             
         </code></pre>
 
+        <h3>ARRAY METHODS (Jonas)</h3>
+        <h4>forEach method</h4>
+        <p>Basically the same as for...of loops. Accepts a callback function. The parameters of this callback function
+            are, by default: (1st, 2nd, 3rd), 1st being the item, 2nd being the item's index, 3rd being the entire
+            array.</p>
+        <pre><code>
+            const movements = [200, -400, 100];
+
+            <span class="red">Using for...of:</span>
+            for (const movement of movements) {
+                if (movement < 0){
+                    console.log(`You deposited ${movement}`);
+                } else {
+                    console.log(`You withdrew ${Math.abs(movement)}`);
+                }
+            }
+
+            <span class="red">Using forEach:</span>
+            movements.forEach(function (movement) {
+                if (movement < 0){
+                    console.log(`You deposited ${movement}`);
+                } else {
+                    console.log(`You withdrew ${Math.abs(movement)}`);
+                }
+            })
+
+            <span class="red">To obtain also the index of each item, using for...of:</span>
+            for (const [i, movement] of movements.entries()) {
+                if (movement < 0){
+                    console.log(`Movement ${i+1} You deposited ${movement}`);
+                } else {
+                    console.log(`Movement ${i+1} You withdrew ${Math.abs(movement)}`);
+                }
+            }
+
+            <span class="red">Obtaining also the index, using forEach:</span>
+            movements.forEach(function (movement, i) {
+                if (movement < 0){
+                    console.log(`Movement ${i+1} You deposited ${movement}`);
+                } else {
+                    console.log(`Movement ${i+1} You withdrew ${Math.abs(movement)}`);
+                }
+            })
+
+        </code></pre>
 
         <h2>DOM</h2>
         <p>Stands for 'Document Object Model'.</p>

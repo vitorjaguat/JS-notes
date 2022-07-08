@@ -822,9 +822,171 @@
 //     console.log(`[${half} HALF] ${min}: ${ev}`)
 // }
 
-const adjustName = function (passengerName) {
-    return passengerName.toLowerCase()[0].toUpperCase() + passengerName.toLowerCase().slice(1);
-};
-console.log(adjustName('vItoR'));
 
-console.log('a+very+nice+string'.split('+'));
+//Jonas sc 9 challenge 4
+
+// const txt = document.createElement('textarea')
+// txt.style.width = '400px';
+// txt.style.height = '300px';
+
+// document.body.append(txt);
+// const btn = document.createElement('button');
+// btn.style.width = '100px';
+// btn.style.height = '50px';
+// btn.textContent = 'Convert!'
+// document.body.append(btn);
+
+// btn.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     const inputValue = document.querySelector('textarea').value;
+//     console.log(inputValue)
+//     const arr = inputValue.split('\n')
+//     console.log(arr)
+//     let vSign = '';
+//     for (const x of arr) {
+
+//         vSign += '✅';
+//         const line = x.trim().toLowerCase()
+//         const line2 = line.slice(0, line.indexOf('_')) + line[line.indexOf('_') + 1].toUpperCase() + line.slice(line.indexOf('_') + 2);
+//         const line3 = line2.padEnd(20, ' ') + vSign;
+//         console.log(line3)
+//     }
+// })
+
+//Jonas' solution (worse than mine, I guess, cause he divided each word into 2 parts and then joined the parts together again...)
+
+// document.querySelector('button').addEventListener('click', function () {
+//     const text = document.querySelector('textarea').value;
+//     const rows = text.split('\n');
+
+//     for (const [i, row] of rows.entries()) {
+//         const [first, second] = row.toLowerCase().trim().split('_');
+
+//         const output = `${first}${second.replace(second[0], second[0].toUpperCase())}`;
+//         console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`)
+//     }
+// })
+
+// underscoreCase     
+// underscore_case
+//  first_name
+// Some_Variable
+//   calculate_AGE
+// delayed_departure
+
+//Jonas sc 9 Extra challenge (video 125)
+// const flights =
+//     '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+// MY FIRST TRY:
+// const arrFlights = flights.split('+');
+// console.log(arrFlights)
+// for (const line of arrFlights) {
+//     const step1 = line.replace('_', ' ');
+//     const step2 = arrFlights.indexOf(line) % 2 !== 1 ? '🔴' + step1 : step1;
+//     // console.log(step2)
+//     const step3 = step2.slice(0, step2.indexOf(';')) + step2.slice(step2.indexOf(';') + 1, step2.indexOf(';') + 4).toUpperCase() + step2.slice(step2.indexOf(';') + 4)
+//     const step4 = step3.replace('_', ' ').replace(';', ' ')
+//     console.log(step4)
+// }
+
+
+//SECOND TRY based on Jonas' solution:
+
+// const arrFlights = flights.split('+');
+// for (const flight of arrFlights) {
+//     const [type, from, to, time] = flight.split(';');
+//     // console.log(type, from, to, time)
+//     const output = `${type.startsWith('_Del') ? '🔴' + type.replaceAll('_', ' ') : '' + type.replaceAll('_', ' ')} from ${from.slice(0, 3).toUpperCase()} to ${to.slice(0, 3).toUpperCase()}  (${time})`.padStart(45, ' ');
+
+//     console.log(output)
+// }
+
+
+// 🔴 Delayed Departure from FAO to TXL (11h25)
+//              Arrival from BRU to FAO (11h45)
+//   🔴 Delayed Arrival from HEL to FAO (12h05)
+//            Departure from FAO to LIS (12h30)
+
+
+
+//Jonas sc 10 challenge 1
+//MY SOLUTION:
+
+// const poll = {
+//     question: "What is your favourite programming language?",
+//     options: ["0: JavaScript", "1: Python", "2: Rust", "3: C++"],
+//     // This generates [0, 0, 0, 0]. More in the next section! 
+//     answers: new Array(4).fill(0),
+//     registerNewAnswer() {
+//         let [op0, op1, op2, op3] = this.answers;
+//         let input = Number(prompt("What is your favourite programming language? \n 0: JavaScript \n 1: Python \n 2: Rust \n 3: C++ \n (Write option number"));
+//         if (typeof input === 'number' && input >= 0 && input <= 3) {
+//             if (input === 0) {
+//                 this.answers[0]++
+//             } else if (input === 1) {
+//                 this.answers[1]++
+//             } else if (input === 2) {
+//                 this.answers[2]++
+//             } else if (input === 3) {
+//                 this.answers[3]++
+//             }
+//         } else console.log('WRONG!');
+//         this.displayResults();
+//     },
+//     displayResults() {
+//         console.log(`Poll results are ${this.answers}`)
+//     }
+// };
+
+// document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll));
+
+// const data1 = { answers: [5, 2, 3] };
+// const data2 = { answers: [1, 5, 3, 9, 6, 1] };
+
+// const data1Display = poll.displayResults.bind(data1)();
+// console.log(data1Display);
+// const data2Display = poll.displayResults.bind(data2)();
+// console.log(data2Display);
+
+
+//JONAS' SOLUTION:
+// const poll = {
+//     question: "What is your favourite programming language?",
+//     options: ["0: JavaScript", "1: Python", "2: Rust", "3: C++"],
+//     // This generates [0, 0, 0, 0]. More in the next section! 
+//     answers: new Array(4).fill(0),
+//     registerNewAnswer() {
+//         //the question and options can be imported from the object!
+//         const answer = Number(prompt(`${this.question}\n${this.options.join('\n')}\n(Write option number)`));
+//         //using short-circuiting &&
+//         typeof answer === 'number' && answer < this.answers.length && this.answers[answer]++;
+
+//         this.displayResults();
+//         this.displayResults('string');
+//     },
+//     displayResults(type = 'array') {
+//         if (type === 'array') {
+//             console.log(this.answers);
+//         } else if (type === 'string') {
+//             console.log(`Poll results are ${this.answers.join(', ')}`)
+//         }
+//     }
+// };
+
+// document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll));
+
+// poll.displayResults.call({ answers: [5, 2, 3] })
+// poll.displayResults.call({ answers: [5, 2, 3] }, 'string')
+
+// poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] })
+// poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string')
+
+
+//Jonas sc 10 challenge 2
+//My solution:
+(function () {
+    const header = document.querySelector('h1'); header.style.color = 'red';
+    document.body.addEventListener('click', function () {
+        header.style.color = 'blue'
+    })
+})();
