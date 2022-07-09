@@ -2995,6 +2995,32 @@ workout;
 
         </code></pre>
 
+        <h5>forEach with Maps and Sets</h5>
+        <p>When using forEach with maps, the function's parameters will correspond to the Map's value, key, entireMap -
+            respectively.</p>
+        <pre><code>
+            const currencies = new Map([
+            ['USD', 'United States Dollar'],
+            ['EUR', 'Euro'],
+            ['GBP', 'Pound Sterling']
+            ]);
+            currencies.forEach(function(value, key, map){
+                console.log(`${key}: ${value}`);
+            })
+            //USD: United States Dollar
+            //EUR: Euro
+            //GBP: Pound Sterling
+        </code></pre>
+        <p>When using forEach with sets, the function's parameters will correspond to the Set's value, value again,
+            entireMap - respectively. There are two value parameters, which are the same, just because sets don't have
+            keys.</p>
+        <pre><code>
+            const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+            currenciesUnique.forEach(function (value, _, set){
+                console.log(`${value})
+            })
+        </code></pre>
+
         <h2>DOM</h2>
         <p>Stands for 'Document Object Model'.</p>
         <h3>Selecting elements, classes etc.</h3>
