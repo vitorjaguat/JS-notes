@@ -1820,6 +1820,7 @@ workout;
 
         <h4>.map method (the map method is different from the Map type of object!)</h4>
         <p>Calls the function for each element and creates a new array for them.</p>
+        <p>This method is similar to forEach method, but it allows us to create a new array.</p>
         <pre><code>
             const numbers = [1,2,3,4];
 
@@ -1829,6 +1830,18 @@ workout;
 
             doubles;
             //[2,4,6,8]
+        </code></pre>
+        <pre><code>
+            const movements = [200, 450, -400];
+            const eurToUSD = 1.1;
+            const movementsUSD = movements.map(function(mov) {
+                return mov * eurToUSD;
+            })
+            console.log(movementsUSD);
+            //[220, 495, -440]
+
+            <span class="red">Using arrow function:</span>
+            const movementsUSD = movements.map(mov => mov * eurToUSD);
         </code></pre>
 
         <h3>Arrow functions</h3>
@@ -1975,6 +1988,97 @@ workout;
             <span class="red">this will return only the titles of the movies with scores higher than 80</span>
         </code></pre>
 
+        <h4>Reduce Method</h4>
+        <p>Reduces an array to a single value. The callback function has the following parameters:
+            <br>.reduce(function(acc, cur, i, arr){
+            <span class="red">function content</span>
+            }, init);
+            <br>acc -> is like a snowball, on each iteration keeps the returned value of the previous iteration;
+            <br>cur -> the current item being iterated;
+            <br>i -> the index of the current item;
+            <br>init -> the inital value of the accumulator; default: 0;
+        </p>
+        <pre><code>
+            <span class="red">Summing up all items of an array:</span>
+            const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+            const balance = movements.reduce(function (acc, cur, i, arr) {
+                return acc + cur
+            }, 0)
+            
+            console.log(balance);
+            //3840
+
+            <span class="red">Using arrow function:</span>
+            const balance = movements.reduce((acc, cur) => acc + cur, 0);
+
+            <span class="red">The same, using for...of loop:</span>
+            let balance = 0;
+            for (const mov of movements) balance += mov;
+        </code></pre>
+        <pre><code>
+            <span class="red">Getting the maximum value out of an array:</span>
+            const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+            const max = movements.reduce((acc, mov) => {
+                if (acc > mov)
+                    return acc;
+                else    
+                    return mov;
+            }, movements[0]);
+            console.log(max);
+            //3000
+        </code></pre>
+
+        <h4>Find Method</h4>
+        <p>Basically equal to the filter method, but it only returns the first value.</p>
+        <pre><code>
+            const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+            const firstWithdrawal = movements.find(mov => mov < 0);
+            console.log(firstWithdrawal);
+            //-400
+        </code></pre>
+        <p>Find method in objects:</p>
+        <pre><code>
+            const account1 = {
+                owner: 'Jonas Schmedtmann',
+                movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
+                interestRate: 1.2, // %
+                pin: 1111,
+              };
+              
+              const account2 = {
+                owner: 'Jessica Davis',
+                movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+                interestRate: 1.5,
+                pin: 2222,
+              };
+              
+              const account3 = {
+                owner: 'Steven Thomas Williams',
+                movements: [200, -200, 340, -300, -20, 50, 400, -460],
+                interestRate: 0.7,
+                pin: 3333,
+              };
+              
+              const account4 = {
+                owner: 'Sarah Smith',
+                movements: [430, 1000, 700, 50, 90],
+                interestRate: 1,
+                pin: 4444,
+              };
+              
+              const accounts = [account1, account2, account3, account4];
+
+              const wantedAccount = accounts.find(account => account.owner === 'Jessica Davis');
+
+              console.log(wantedAccount);
+              //{
+                owner: 'Jessica Davis',
+                movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+                interestRate: 1.5,
+                pin: 2222,
+              }
+        </code></pre>
+
         <h4>every and some Methods</h4>
         <p>The every Method tests whether ALL elements in the array pass the provided function. It returns a boolean
             value.</p>
@@ -1994,7 +2098,7 @@ workout;
         </code></pre>
 
         <h2>Newer JS Features</h2>
-        <h3>Defaut Param</h3>
+        <h3>Default Param</h3>
         <p>Sets up a default argument for a given param in a function.</p>
         This is the old way of doing it:
         <pre><code>
@@ -3105,6 +3209,9 @@ workout;
 
             document.querySelector('element').after('otherElement'); <span class="red">appends otherElement after the element-target</span>
         </code></pre>
+        <p>Another way for appending code to the HTML is using the .insertAdjacentHTML method. It accepts two strings as
+            parameters: one is the position 'beforebegin' 'afterbegin' 'beforeend' 'afterend', the other is the HTML
+            code itself (usually inside of a variable). See Jonas 147.</p>
 
         <h3>Remove element</h3>
         <pre><code>
