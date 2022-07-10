@@ -2079,6 +2079,45 @@ workout;
               }
         </code></pre>
 
+        <h4>findIndex Method</h4>
+        <p>This method is similar to .indexOf('x') method, but it accepts functions as an argument, and is used with
+            arrays.</p>
+        <pre><code>
+            const account1 = {
+                owner: 'Jonas Schmedtmann',
+                movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
+                interestRate: 1.2, // %
+                pin: 1111,
+              };
+              
+              const account2 = {
+                owner: 'Jessica Davis',
+                movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+                interestRate: 1.5,
+                pin: 2222,
+              };
+              
+              const account3 = {
+                owner: 'Steven Thomas Williams',
+                movements: [200, -200, 340, -300, -20, 50, 400, -460],
+                interestRate: 0.7,
+                pin: 3333,
+              };
+              
+              const account4 = {
+                owner: 'Sarah Smith',
+                movements: [430, 1000, 700, 50, 90],
+                interestRate: 1,
+                pin: 4444,
+              };
+              
+              const accounts = [account1, account2, account3, account4];
+
+              const index = accounts.findIndex(acc => acc.username === 'jd'); <span class="red">Here we are finding the index of the account that has 'jd' as its username.</span>
+
+                accounts.splice(index, 1); <span class="red">Then we are removing this entire object from the accounts array.</span>
+        </code></pre>
+
         <h4>every and some Methods</h4>
         <p>The every Method tests whether ALL elements in the array pass the provided function. It returns a boolean
             value.</p>
@@ -2090,6 +2129,8 @@ workout;
         </code></pre>
         <p>The some Method is similar to every, but returns true if ANY of the array elements pass the test function.
         </p>
+        <p>It is also similar to .includes method, but it accepts a function as its argument, while .includes only
+            accepts a primitive.</p>
         <pre><code>
             const examsScores = [90,49,92,99,76,83];
             examsScores.some(score => score >=60);
