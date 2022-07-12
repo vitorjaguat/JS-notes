@@ -1124,14 +1124,18 @@ const dogs = [
 // dogs = dogs.map(dog => dog.recommendedFood = dog.weight ** 0.75 * 28)
 // console.log(dogs)
 
-dogs.forEach(dog => dog.recommendedFood = dog.weight ** 0.75 * 28);
-console.log(dogs)
+dogs.forEach(dog => dog.recommendedFood = Math.trunc(dog.weight ** 0.75 * 28));
+console.log(dogs);
 
 //2.
 const sarahDog = dogs.filter(dog => dog.owners.includes('Sarah'))
+//Could have used .find method!
 console.log(sarahDog)
 // console.log(dogs.owners.find('Sarah') && curFood > recommendedFood ? 'Eating too much' : 'Eating too little')
 console.log(`${sarahDog.curFood > sarahDog.recommendedFood}` ? 'Eating too much' : 'Eating too little')
+
+// //Jonas' solution part2:
+// console.log(`Sarah's dog is eating too ${dogSarah.curFood > dogSarah.recommendedFood ? 'much' : 'little'}`);
 
 //3. 
 const EatTooMuch = dogs.filter(function (dog) {
@@ -1142,10 +1146,20 @@ const EatTooMuch = dogs.filter(function (dog) {
 const ownersEatTooMuch = EatTooMuch.map(dog => dog.owners).flat()
 console.log(ownersEatTooMuch)
 
+// //Jonas' solution
+// const ownersEatTooMuch = dogs
+//     .filter(dog => dog.curFood > dog.recommendedFood)
+//     .flatMap(dog => dog.owners);
+
 const EatTooLittle = dogs.filter(dog => dog.curFood < dog.recommendedFood && dog)
 console.log(EatTooLittle)
 const ownersEatTooLittle = EatTooLittle.map(dog => dog.owners).flat()
 console.log(ownersEatTooLittle)
+
+// //Jonas' solution
+// const ownersEatTooLittle = dogs
+//     .filter(dog => dog.curFood < dog.recommendedFood)
+//     .flatMap(dog => dog.owners);
 
 //4.
 const tooMuchJoin = ownersEatTooMuch.join(' and ');
@@ -1154,9 +1168,15 @@ console.log(`${ownersEatTooLittle.join(' and ')}'s dogs eat too little!`)
 
 //5.
 console.log(dogs.find(dog => dog.curFood === dog.recommendedFood) ? true : false)
+// //Jonas' solution (MUCH BETTER!):
+// console.log(dogs.some(dog => dog.curFood === dog.recommendedFood))
 
 //6.
-console.log(dogs.find(dog => Math.abs(dog.curFood - dog.recommendedFood) <= 0.1 * dog.recommendedFood) ? true : false)
+// console.log(dogs.some(dog => Math.abs(dog.curFood - dog.recommendedFood) <= 0.1 * dog.recommendedFood))
+
+// //Jonas' solution:
+// console.log(dogs.some(
+//     dog => dog.recommendedFood * 0.9 && dog.curFood < dog.recommendedFood * 1.1));
 
 //7.
 const dogsOk = dogs.filter(dog => Math.abs(dog.curFood - dog.recommendedFood) <= 0.1 * dog.recommendedFood)
@@ -1167,6 +1187,10 @@ const dogs2 = [...dogs]
 console.log(dogs2)
 const dogsSorted = dogs2.sort((a, b) => a.recommendedFood - b.recommendedFood)
 console.log(dogsSorted)
+
+//Jonas' solution:
+const dogsSorted = dogs.slice().sort((a, b) => a.recommendedFood - b.recommendedFood);
+console.log(dogsSorted);
 
 // movements.sort((a, b) => a - b);
 

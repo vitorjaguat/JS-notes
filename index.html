@@ -3243,6 +3243,190 @@ workout;
             })
         </code></pre>
 
+        <h3>NUMBERS, DATES, TIMERS, INTL (Jonas sc12)</h3>
+        <h4>Numbers methods</h4>
+        <pre><code>
+            Number.parseInt('23')
+            //23
+            Number.parseFloat('  2.5rem   ')
+            //2.5
+            <span class="red">best choice to get a number from a string like CSS values.</span>
+
+            Number.isNaN('23');
+            //true
+            Number.isFinite(23)
+            //true
+            <span class="red">best choice to check if a value is a number.</span>
+
+            Number.isInteger(23);
+            //true
+        </code></pre>
+        <h4>Math methods</h4>
+        <pre><code>
+            Math.sqrt(25)
+            //5
+            25 ** (1/2)
+            //5
+            8 ** (1/3)
+            //2
+
+            Math.max(2,5,6,3,44,5)
+            //44
+            Math.min(2,3,6,4,0.2,4)
+            //0.2
+
+            Math.PI * Number.parseFloat('10px') ** 2)
+            <span class="red">calculates the area of a circle with 10px radius</span>
+
+            Math.floor(Math.random() * 6) + 1
+            //random number from 1 to 6
+
+            const randomInt = (min, max) => Math.floor(Math.random() * (max - min) + 1) + min;
+            //random number from min to max
+            
+            Math.round(23.3)
+            //23
+            Math.round(23.9)
+            //24
+
+            Math.ceil(23.5)
+            //24
+
+            Math.floor(23.7)
+            //23
+            Math.floor('23.4')
+            //23
+
+            Math.trunc(23.33432223)
+            //23
+            <span class="red">just deletes the decimals</span>
+
+            (2.7).toFixed(2)
+            //2.70
+            (2.783728).toFixed(3)
+            //2.783
+        </code></pre>
+
+        <h4>Dates and times
+        </h4>
+        <pre><code>
+            <span class="red">Create a date</span>
+            const now = new Date(); <span class="red">will give the time from now</span>
+
+            console.log(new Date('Aug 02 2020 18:05;41'))
+            <span class="red">returns the complete date, including weekday and timezone</span>
+            //Sun Aug 02 2020 18:05:41 GMT+0100 (Western European Summer Time)
+
+            console.log(new Date(2037, 10, 19, 15, 23, 5));
+            //Thu Nov 19 2037 15:23:05 GMT+0000 (Western European Standard Time)
+            <span class="red">the month is 0-based, so month 10 is Nov</span>
+
+            console.log(new Date(0));
+            //Thu Jan 01 1970 01:00:00 GMT+0100 (Western European Standard Time)
+            <span class="red">the first second in Unix-time</span>
+
+            console.log(new Date(3 * 24 * 60 * 60 * 1000));
+            //Sun Jan 04 1970 01:00:00 GMT+0100 (Western European Standard Time)
+            <span class="red">3 days after first Unix-time</span>
+        </code></pre>
+
+        <p>Date methods:</p>
+        <pre><code>
+            const future = new Date(2037, 10, 19, 15, 23);
+            future.getFullYear();
+            //2037
+
+            future.getMonth();
+            //10
+            <span class="red">the month is 0-based!</span>
+
+            future.getDate();
+            //19
+            <span class="red">this is the day of the month</span>
+
+            future.getDay();
+            //4 
+            <span class="red">(day of the week, 0 is Sunday)</span>
+
+            future.getHours();
+            future.getMinutes();
+            future.getSeconds();
+
+            future.toISOString();
+            //2037-11-19T15:23:00.000Z
+            <span class="red">date in ISO International Standard format</span>
+
+            future.getTime();
+            //2142256980000
+            <span class="red">total of miliseconds passed after the first Unix day (1970). This timestamp also can be created like this:</span>
+            Date.now();
+
+            future.setFullYear(2040);
+            <span class="red">changes the year to 2040</span>
+        </code></pre>
+        <p>Operations with dates:</p>
+        <pre><code>
+            const future = new Date(2037, 10, 19, 15, 23);
+            console.log(+future);
+            <span class="red">converts a date to a timestamp (transcurred time from Unix-day in 1970, in miliseconds</span>
+            //2142256980000
+
+            const calcDaysPassed = (date1, date2) => Math.abs(date1 - date2) / (1000 * 60 * 60 * 24);
+
+            <span class="red">How many days from 14/3/2037 to 24/3/2037?</span>
+            const days1 = calcDaysPassed(new Date(2037, 3, 14), new Date(2037, 3, 24));
+            console.log(days1);
+            //10
+
+            
+        </code></pre>
+        For more precise date calculations, use Moment.JS library.
+        <pre><code>
+            const account1 = {
+                owner: 'Jonas Schmedtmann',
+                movements: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
+                interestRate: 1.2, // %
+                pin: 1111,
+              
+                movementsDates: [
+                  '2019-11-18T21:31:17.178Z',
+                  '2019-12-23T07:42:02.383Z',
+                  '2020-01-28T09:15:04.904Z',
+                  '2020-04-01T10:17:24.185Z',
+                  '2020-05-08T14:11:59.604Z',
+                  '2020-05-27T17:01:17.194Z',
+                  '2020-07-11T23:36:17.929Z',
+                  '2020-07-12T10:51:36.790Z',
+                ],
+                currency: 'EUR',
+                locale: 'pt-PT', // de-DE
+              };
+              
+              const account2 = {
+                owner: 'Jessica Davis',
+                movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+                interestRate: 1.5,
+                pin: 2222,
+              
+                movementsDates: [
+                  '2019-11-01T13:15:33.035Z',
+                  '2019-11-30T09:48:16.867Z',
+                  '2019-12-25T06:04:23.907Z',
+                  '2020-01-25T14:18:46.235Z',
+                  '2020-02-05T16:33:06.386Z',
+                  '2020-04-10T14:43:26.374Z',
+                  '2020-06-25T18:49:59.371Z',
+                  '2020-07-26T12:01:20.894Z',
+                ],
+                currency: 'USD',
+                locale: 'en-US',
+              };
+              
+              const accounts = [account1, account2];
+
+              console.log()
+        </code></pre>
+
         <h2>DOM</h2>
         <p>Stands for 'Document Object Model'.</p>
         <h3>Selecting elements, classes etc.</h3>
