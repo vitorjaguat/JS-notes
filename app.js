@@ -1097,100 +1097,167 @@
 // § Use many different tools to solve these challenges, you can use the summary lecture to choose between them 😉
 // § Being within a range 10% above and below the recommended portion means: current > (recommended * 0.90) && current < (recommended * 1.10). Basically, the current portion should be between 90% and 110% of the recommended portion.
 
-const dogs = [
-    {
-        weight: 22,
-        curFood: 250,
-        owners: ['Alice', 'Bob']
-    },
-    {
-        weight: 8,
-        curFood: 200,
-        owners: ['Matilda']
-    },
-    {
-        weight: 13,
-        curFood: 275,
-        owners: ['Sarah', 'John']
-    },
-    {
-        weight: 32,
-        curFood: 340,
-        owners: ['Michael']
-    },
-];
+// const dogs = [
+//     {
+//         weight: 22,
+//         curFood: 250,
+//         owners: ['Alice', 'Bob']
+//     },
+//     {
+//         weight: 8,
+//         curFood: 200,
+//         owners: ['Matilda']
+//     },
+//     {
+//         weight: 13,
+//         curFood: 275,
+//         owners: ['Sarah', 'John']
+//     },
+//     {
+//         weight: 32,
+//         curFood: 340,
+//         owners: ['Michael']
+//     },
+// ];
 
-//1.
-// dogs = dogs.map(dog => dog.recommendedFood = dog.weight ** 0.75 * 28)
-// console.log(dogs)
+// //1.
+// // dogs = dogs.map(dog => dog.recommendedFood = dog.weight ** 0.75 * 28)
+// // console.log(dogs)
 
-dogs.forEach(dog => dog.recommendedFood = Math.trunc(dog.weight ** 0.75 * 28));
-console.log(dogs);
+// dogs.forEach(dog => dog.recommendedFood = Math.trunc(dog.weight ** 0.75 * 28));
+// console.log(dogs);
 
-//2.
-const sarahDog = dogs.filter(dog => dog.owners.includes('Sarah'))
-//Could have used .find method!
-console.log(sarahDog)
-// console.log(dogs.owners.find('Sarah') && curFood > recommendedFood ? 'Eating too much' : 'Eating too little')
-console.log(`${sarahDog.curFood > sarahDog.recommendedFood}` ? 'Eating too much' : 'Eating too little')
+// //2.
+// const sarahDog = dogs.filter(dog => dog.owners.includes('Sarah'))
+// //Could have used .find method!
+// console.log(sarahDog)
+// // console.log(dogs.owners.find('Sarah') && curFood > recommendedFood ? 'Eating too much' : 'Eating too little')
+// console.log(`${sarahDog.curFood > sarahDog.recommendedFood}` ? 'Eating too much' : 'Eating too little')
 
-// //Jonas' solution part2:
-// console.log(`Sarah's dog is eating too ${dogSarah.curFood > dogSarah.recommendedFood ? 'much' : 'little'}`);
+// // //Jonas' solution part2:
+// // console.log(`Sarah's dog is eating too ${dogSarah.curFood > dogSarah.recommendedFood ? 'much' : 'little'}`);
 
-//3. 
-const EatTooMuch = dogs.filter(function (dog) {
-    if (dog.curFood > dog.recommendedFood) {
-        return dog
-    }
-})
-const ownersEatTooMuch = EatTooMuch.map(dog => dog.owners).flat()
-console.log(ownersEatTooMuch)
+// //3. 
+// const EatTooMuch = dogs.filter(function (dog) {
+//     if (dog.curFood > dog.recommendedFood) {
+//         return dog
+//     }
+// })
+// const ownersEatTooMuch = EatTooMuch.map(dog => dog.owners).flat()
+// console.log(ownersEatTooMuch)
 
-// //Jonas' solution
-// const ownersEatTooMuch = dogs
-//     .filter(dog => dog.curFood > dog.recommendedFood)
-//     .flatMap(dog => dog.owners);
+// // //Jonas' solution
+// // const ownersEatTooMuch = dogs
+// //     .filter(dog => dog.curFood > dog.recommendedFood)
+// //     .flatMap(dog => dog.owners);
 
-const EatTooLittle = dogs.filter(dog => dog.curFood < dog.recommendedFood && dog)
-console.log(EatTooLittle)
-const ownersEatTooLittle = EatTooLittle.map(dog => dog.owners).flat()
-console.log(ownersEatTooLittle)
+// const EatTooLittle = dogs.filter(dog => dog.curFood < dog.recommendedFood && dog)
+// console.log(EatTooLittle)
+// const ownersEatTooLittle = EatTooLittle.map(dog => dog.owners).flat()
+// console.log(ownersEatTooLittle)
 
-// //Jonas' solution
-// const ownersEatTooLittle = dogs
-//     .filter(dog => dog.curFood < dog.recommendedFood)
-//     .flatMap(dog => dog.owners);
+// // //Jonas' solution
+// // const ownersEatTooLittle = dogs
+// //     .filter(dog => dog.curFood < dog.recommendedFood)
+// //     .flatMap(dog => dog.owners);
 
-//4.
-const tooMuchJoin = ownersEatTooMuch.join(' and ');
-console.log(`${tooMuchJoin}'s dogs eat too much!`)
-console.log(`${ownersEatTooLittle.join(' and ')}'s dogs eat too little!`)
+// //4.
+// const tooMuchJoin = ownersEatTooMuch.join(' and ');
+// console.log(`${tooMuchJoin}'s dogs eat too much!`)
+// console.log(`${ownersEatTooLittle.join(' and ')}'s dogs eat too little!`)
 
-//5.
-console.log(dogs.find(dog => dog.curFood === dog.recommendedFood) ? true : false)
-// //Jonas' solution (MUCH BETTER!):
-// console.log(dogs.some(dog => dog.curFood === dog.recommendedFood))
+// //5.
+// console.log(dogs.find(dog => dog.curFood === dog.recommendedFood) ? true : false)
+// // //Jonas' solution (MUCH BETTER!):
+// // console.log(dogs.some(dog => dog.curFood === dog.recommendedFood))
 
-//6.
-// console.log(dogs.some(dog => Math.abs(dog.curFood - dog.recommendedFood) <= 0.1 * dog.recommendedFood))
+// //6.
+// // console.log(dogs.some(dog => Math.abs(dog.curFood - dog.recommendedFood) <= 0.1 * dog.recommendedFood))
+
+// // //Jonas' solution:
+// // console.log(dogs.some(
+// //     dog => dog.recommendedFood * 0.9 && dog.curFood < dog.recommendedFood * 1.1));
+
+// //7.
+// const dogsOk = dogs.filter(dog => Math.abs(dog.curFood - dog.recommendedFood) <= 0.1 * dog.recommendedFood)
+// console.log(dogsOk)
+
+// //8.
+// const dogs2 = [...dogs]
+// console.log(dogs2)
+// const dogsSorted = dogs2.sort((a, b) => a.recommendedFood - b.recommendedFood)
+// console.log(dogsSorted)
 
 // //Jonas' solution:
-// console.log(dogs.some(
-//     dog => dog.recommendedFood * 0.9 && dog.curFood < dog.recommendedFood * 1.1));
+// const dogsSorted = dogs.slice().sort((a, b) => a.recommendedFood - b.recommendedFood);
+// console.log(dogsSorted);
 
-//7.
-const dogsOk = dogs.filter(dog => Math.abs(dog.curFood - dog.recommendedFood) <= 0.1 * dog.recommendedFood)
-console.log(dogsOk)
+// // movements.sort((a, b) => a - b);
 
-//8.
-const dogs2 = [...dogs]
-console.log(dogs2)
-const dogsSorted = dogs2.sort((a, b) => a.recommendedFood - b.recommendedFood)
-console.log(dogsSorted)
 
-//Jonas' solution:
-const dogsSorted = dogs.slice().sort((a, b) => a.recommendedFood - b.recommendedFood);
-console.log(dogsSorted);
+//Jonas sc 12 video 180
+// setInterval(function () {
+//     const now = new Date();
+//     const hour = now.getHours();
+//     const minute = now.getMinutes();
+//     const second = now.getSeconds();
+//     console.log(`${hour}:${minute}:${second}`);
+// }, 1000)
 
-// movements.sort((a, b) => a - b);
+// setInterval(function () {
+//     const now = new Intl.DateTimeFormat('pt-BR', { hour: 'numeric', minute: 'numeric', second: 'numeric' }).format(new Date());
+//     console.log(now)
+// }, 1000)
 
+//Timer Bozo
+const fimBozo = new Date(2023, 1, 1);
+// console.log(fimBozo)
+const now = new Date();
+
+//1.
+// const timerDays = Math.floor((fimBozo - now) / (1000 * 60 * 60 * 24));
+// let timestamp = fimBozo - now
+// console.log(timestamp)
+// const timerHours = Math.floor(((fimBozo - now) % (1000 * 60 * 60 * 24))) * 24;
+// const timerSeconds = Math.floor((((fimBozo - now) % (1000 * 60 * 60 * 24)) * 24) * 60)
+
+//2.
+// let delta = (fimBozo - now) / 1000; //s
+// const timerDays = Math.floor(delta / (60 * 60 * 24))
+// delta -= timerDays * 60 * 60 * 24;
+// const timerHours = delta / (24 * 60 * 60);
+// const timerMinutes = 0
+// const timerSeconds = 0;
+
+//3.
+
+
+setInterval(function () {
+    const fimBozo = new Date(2023, 1, 1);
+    // console.log(fimBozo)
+    const now = new Date();
+
+    const second = 1000
+    const minute = second * 60
+    const hour = minute * 60
+    const day = hour * 24
+
+    const distance = fimBozo - now;
+    const timerDays = Math.floor(distance / day);
+    const timerHours = Math.floor(distance % day / hour);
+    const timerMinutes = Math.floor(distance % hour / minute);
+    const timerSeconds = Math.floor(distance % minute / second)
+    const timer = `${timerDays} dias, ${timerHours} horas, ${timerMinutes} minutos e ${timerSeconds} segundos`
+    console.log(timer);
+}, 1000)
+
+
+
+//Jonas video 180 setTimeout
+// const pizzaFunction = function (...ingredients) {
+//     setTimeout(
+//         (ing1, ing2) => console.log(`Here is your pizza with ${ing1} and ${ing2}`), 3000, ...ingredients
+//     );
+// }
+
+// pizzaFunction('chocolate', 'cheese')
