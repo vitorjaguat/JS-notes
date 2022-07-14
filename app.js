@@ -1210,9 +1210,9 @@
 // }, 1000)
 
 //Timer Bozo
-const fimBozo = new Date(2023, 1, 1);
-// console.log(fimBozo)
-const now = new Date();
+// const fimBozo = new Date(2023, 1, 1);
+// // console.log(fimBozo)
+// const now = new Date();
 
 //1.
 // const timerDays = Math.floor((fimBozo - now) / (1000 * 60 * 60 * 24));

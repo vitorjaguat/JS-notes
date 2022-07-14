@@ -3469,9 +3469,16 @@ workout;
         <p>Stands for 'Document Object Model'.</p>
         <h3>Selecting elements, classes etc.</h3>
         <pre><code>
+            document.documentElement
+            document.head 
+            document.body 
+
+            
             getElementById('idOfTheElement')
-            getElementByTagName('img')
+            getElementByTagName('img') 
             getElementByClassName('classname')
+            <span class="red">These selectors return an HTML live Collection, which is always uptodate.</span>
+
             querySelector('.classname'), querySelector('#idname'), querySelector('element'),
             querySelector('element[attribute="value"]')
             querySelectorAll
@@ -3493,13 +3500,48 @@ workout;
             document.querySelector('element').getAttribute('attribute') <span class="red">checks if there is that attibute and returns its value</span>
 
             document.querySelector('element').setAttribute('attribute', 'value'); <span class="red">creates an new attribute and its value</span>
+
+            elementIMG.src
+            <span class="red">returns the absolute source address</span>
+            elementIMG.getAttribute('src')
+            <span class="red">returns the relative source address</span>
+
+            <span class="red">Data attributes:
+                on HTML:
+                <img data-version-number = "3.0">
+                On JS:
+            </span>
+            elementIMG.dataset.versionNumber;
+            //3.0
+
+            element.dataset.versionNumber;
+
         </code></pre>
 
         <h3>Changing (CSS) styles</h3>
         <pre><code>
             document.querySelector('element').style.backgroundColor = 'purple'; 
 
-            window.getComputedStyle(document.querySelector('element')).color <span class="red">accesses the actual computed style of that element (if there are styles applied using html, css and js, for ex.)</span>
+            window.getComputedStyle(document.querySelector('element')).color <span class="red">accesses the actual computed styles of that element (if there are styles applied using html, css and js, for ex.)</span>
+
+            element.style.height = Number.parseFloat(getComputedStyle(element).height, 10) + 30 + 'px';
+            <span class="red">Adds 30px to the actual computed height.</span>
+        </code></pre>
+        <p><b>Defining variables in CSS:</b> Defining variables in CSS, we can call these values wherever we want, both
+            in CSS file and in JS file (when defining CSS style using JS). The root in CSS is equivalent to document in
+            DOM or window in JS..</p>
+        <pre><code>
+            <span class="red">in the beginning of the CSS file:</span>
+            :root {
+                --color-primary: #5ec576;
+                --color-secundary: #ffcb03;
+                --gradient-primary: linear-gradient(to top left, #39b385, #9be15d);
+            }
+
+            <span class="red">Then, in JS...</span>
+
+            element.style.setProperty('--color-primary', 'orangered');
+            <span class="red">changes the root in CSS, substituting all --color-primary (property) for orangered (value).</span>
         </code></pre>
 
         <h3>classList</h3>
@@ -3508,6 +3550,7 @@ workout;
 
             document.querySelector('element'). classList <span class="red">lists the classes</span>
             document.querySelector('element'). classList.add('classname') <span class="red">add a new class</span>
+            classList.add('classname1', 'classname2') <span class="red">add 2 new classes</span>
             document.querySelector('element').classList.remove('classname') <span class="red">removes the class</span>
             document.querySelector('element').classList.toggle('classname') <span class="red">adds/remove the class, depending on the case</span>
             document.querySelector('element').classList.contains('classname') <span class="red">checks if the class is applied, returns boolean</span>
@@ -3526,6 +3569,36 @@ workout;
             document.querySelector('element').previousElementSibling <span class="red">returns the previous element sibling MOST USED</span>
             document.querySelector('element').nextElementSibling <span class="red">returns the next element sibling MOST USED</span>
             
+        </code></pre>
+
+        <h3>Creating / inserting elements</h3>
+        <pre><code>
+            .insertAdjacentHTML('<p>text here</p>');
+
+            const newEl = document.createElement('div');
+            newEl.classList('cookie-message');
+            newEl.textContent = 'We use cookies for improved functionality and analytics.';
+            newEl.innerHTML = 'We use cookies for improved functionality and analytics. <button class="btn btn--close-cookie">Got it!</button>';
+
+            element.prepend(newEl);
+            <span class="red">Adds newEl as the first child of element.</span>
+            element.append(newEl);
+            <span class="red">Adds newEl as last child of element..</span>
+
+            element.append(newEl.cloneNode(true));
+            <span class="red">Newly created elements can only be inserted once, so if you want to append more than one, you have to first make a copy, using .cloneNode(true); "true" means that all element's children will be copied.</span>
+
+            element.after(newEl);
+            <span class="red">Adds newEl as a sibling of element, after it.</span>
+            element.before(newEl);
+            <span class="red">Adds newEl as a sibling of element, before it.</span>
+
+            newEl.remove();
+            <span class="red">Deletes the newEl.This is a recent method; before, we would have to select the parent and remove a child:</span>
+
+            newEl.parentElement.removeChild(newEl);
+
+
         </code></pre>
 
         <h3>append / appendChild</h3>
@@ -3597,7 +3670,18 @@ workout;
 
             btn3.addEventListener('dblclick', () => console.log('Arrow!'));
         </code></pre>
-        Instead of 'click', there are other parameters such as 'mouseenter', 'mouseleave', 'dblclick' etc.
+        Besides 'click', there are other parameters such as 'mouseenter', 'mouseleave', 'dblclick' etc.
+
+        <h5>Removing event listener</h5>
+        <p>If we want the event listener to work only once:</p>
+        <pre><code>
+            const h1 = document.querySelector('h1');
+            const alertH1 = function(e) {
+                alert('Great!');
+                h1.removeEventListener('mouseenter', alertH1);
+            }
+            h1.addEventListener('mouseenter', alertH1);
+        </code></pre>
 
 
         <h4>Keyboard event & Event Objects</h4>
@@ -3678,12 +3762,74 @@ workout;
                 })
             </code></pre>
 
+
+        <h4>Scroll events</h4>
+        <p>Finding the coordinates:</p>
+        <pre><code>
+            element.getBoundingClientRect();
+            <span class="red">returns the DOMRect object, which contains the x and y coordinates of that element. The x and y coordinates are the CURRENT position of that element on the client viewport.</span>
+
+            window.pageXOffset
+            window.pageYOffset
+            <span class="red">returns the x and y coordinates of the area currently displayed on the client viewport. Y refers to the distance from the top of the page to the top of the currently viewed area.</span>
+
+            document.documentElement.clientHeight 
+            document.documentElement.clientWidth 
+            <span class="red">returns the current height and width of the client viewport.</span>
+        </code></pre>
+        <p>.scrollTo method:</p>
+        <pre><code>
+            window.scrollTo(
+                element.getBoundingClientRect().left + window.pageXOffset, 
+                element.getBoundingClientRect().top + window.pageYOffset);
+
+            window.scrollTo({
+                left: element.getBoundingClientRect().left + window.pageXOffset, 
+                top: element.getBoundingClientRect().top + window.pageYOffset),
+                behavior: 'smooth'
+            })
+            <span class="red">implements smooth scroll to that element</span>
+        </code></pre>
+        <p>More modern way of scroll to:</p>
+        <pre><code>
+            section1.scrollIntoView({behavior: 'smooth'});
+            <span class="red">simple and easy!</span>
+
+            <span class="red">Complete code of event:</span>
+            const btnScrollTo = document.querySelector('.btn--scroll-to');
+            const section1 = document.querySelector('#section--1');
+            btnScrollTo.addEventListener      ('click', function () {
+                section1.scrollIntoView({ behavior: 'smooth' });
+})
+        </code></pre>
+
         <h4>Event Bubbling</h4>
         <p>When there are two or more eventListeners triggered by a click, we can prevent it to propagate (bubbling) by
             adding the code <b>e.stopPropagation()</b> to the function of the first eventListener's function. </p>
 
         <h4>Event Delegation</h4>
-        <p></p>
+        <p>Sets an event when the specific target is clicked.</p>
+        <p>Useful to set events for elements which are not present on the page when it is loaded.</p>
+        <pre><code>
+            <span class="red">Using .forEach to add eventListeners to several elements in a navbar and setting them to scroll each to a specific id section on the page:</span>
+            document.querySelectorAll('.nav__link').forEach(function (el) {
+                el.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const id = this.getAttribute('href');
+                    document.querySelector(id).scrollIntoView({behavior: 'smooth'});
+                });
+            });
+            <span class="red">This method works ok, but for a large number of elements it can make the page too heavy to load. Besides, it can't set events to elements that at the loading of the page, still are not created. That's why the Event Delegation is useful:</span>
+
+            document.querySelector('.nav__links')<span class="red">this is the parent element to the targeted elements</span>.addEventListener('click', function (e) {
+                e.preventDefault();
+                <span class="red">Mathing strategy:</span>
+                if (e.target.classList.contains('nav__link')) {
+                    const id = e.target.getAttribute('href');
+                    document.querySelector(id).scrollIntoView({behavior: 'smooth'});
+                }
+            });
+        </code></pre>
 
 
 
