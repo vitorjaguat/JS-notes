@@ -3556,18 +3556,28 @@ workout;
             document.querySelector('element').classList.contains('classname') <span class="red">checks if the class is applied, returns boolean</span>
         </code></pre>
 
-        <h3>Parent / Child / Sibling</h3>
+        <h3>Parent / Child / Sibling (DOM Traversing)</h3>
         <pre><code>
+            <span class="red">PARENT:</span>
             document.querySelector('element').parentElement
 
+            document.querySelector('element').closest('.header') <span class="red">selects the closest parent with the .header class</span>
+            document.querySelector('element').closest('element') <span class="red">selects the element itself</span>
+
+            <span class="red">CHILDREN:</span>
             document.querySelector('element').childElementCount <span class="red">counts the number of childs of the element</span>
             document.querySelector('element').children <span class="red">lists the children</span>
             document.querySelector('element').children[0] <span class="red">returns the first child</span>
             
+            <span class="red">SIBLINGS:</span>
             document.querySelector('element').previousSibling <span class="red">returns the previous DOM node (it can be only an empty line)</span>
             document.querySelector('element').nextSibling
             document.querySelector('element').previousElementSibling <span class="red">returns the previous element sibling MOST USED</span>
             document.querySelector('element').nextElementSibling <span class="red">returns the next element sibling MOST USED</span>
+            document.querySelector('element').parentElement.children <span class="red">selects all the siblings, including the element itself</span>
+            [...element.parentElement.children].forEach(function (el) {
+                if (el !== h1) el.style.color = 'grey';
+            }); <span class="red">turns every sibling of element into grey color, except for the element itself</span>
             
         </code></pre>
 
