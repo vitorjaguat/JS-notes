@@ -3840,6 +3840,24 @@ workout;
                 }
             });
         </code></pre>
+        <p>Guard clause: if the user clicks an area of the parent element that is outside of any target, the function
+            stops; it is the same as envolve the rest of the function inside a if(target) block.</p>
+        <pre><code>
+            const tabs = document.querySelectorAll('.operations__tab');
+            const tabsContainer = document.querySelector('.operations__tab-container');
+            const tabsContent = document.querySelectorAll('.operations__content');
+
+            tabsContainer.addEventListener('click', function(e) {
+            const clicked = e.target.closest('.operations__tab');
+            console.log(clicked);
+
+            <span class="red">Guard clause (if the user clicks an area of the tab-container that is outside of any button, the function stops; it is the same as envolve the rest of the function inside a if(clicked) block;):</span> 
+            if(!clicked) return;
+
+            clicked.classList.add('operations__tab--active');
+})
+        </code></pre>
+
 
 
 
