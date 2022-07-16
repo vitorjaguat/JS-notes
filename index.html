@@ -3681,6 +3681,8 @@ workout;
             btn3.addEventListener('dblclick', () => console.log('Arrow!'));
         </code></pre>
         Besides 'click', there are other parameters such as 'mouseenter', 'mouseleave', 'dblclick' etc.
+        PS: 'mouseenter' doesn't bubble, 'mouseover' is the same, but it bubbles, so that it can be used in Event
+        Delegation. The opposite of 'mouseenter' is 'mouseleave', the opposite of 'mouseover' is 'mouseout'.
 
         <h5>Removing event listener</h5>
         <p>If we want the event listener to work only once:</p>
@@ -3773,7 +3775,7 @@ workout;
             </code></pre>
 
 
-        <h4>Scroll events</h4>
+        <h4>scrollTo method</h4>
         <p>Finding the coordinates:</p>
         <pre><code>
             element.getBoundingClientRect();
@@ -3782,6 +3784,10 @@ workout;
             window.pageXOffset
             window.pageYOffset
             <span class="red">returns the x and y coordinates of the area currently displayed on the client viewport. Y refers to the distance from the top of the page to the top of the currently viewed area.</span>
+
+            window.scrollY
+            window.scrollX
+            <span class="red">the same as pageYOffset and pageXOffset</span>
 
             document.documentElement.clientHeight 
             document.documentElement.clientWidth 
@@ -3812,6 +3818,57 @@ workout;
                 section1.scrollIntoView({ behavior: 'smooth' });
 })
         </code></pre>
+
+        <h4>Scroll events</h4>
+        <p>There are two methods for doing scroll events. The first one is not that good, because the scroll argument in
+            the addEventListener function keeps reading every scrolling that the user makes on the page:</p>
+        <pre><code>
+            const initialCoords = section1.getBoundingClientRect();
+
+            window.addEventListener('scroll', function () {
+                if (this.window.scrollY > initialCoords.top) nav.classList.add('sticky');
+                else nav.classList.remove('sticky');
+            });
+        </code></pre>
+
+        <h4>.getBoundingClientRect() </h4>
+        <p>This is a DOM method that returns an object with several key/value pairs with information about the element's
+            size and positioning within the webpage.</p>
+        <pre><code>
+            element.getBoundingClientRect();
+            //{
+                top: 450,
+                left: 400,
+                right: 825,
+                bottom: 500,
+                x: 400,  
+                y: 450,  
+                width: 425,
+                height: 50
+              }
+        </code></pre>
+
+        <h4>Intersection Observer API</h4>
+        <p>Enables that an element can be "observed", and notifies when the element enters or leaves the viewport.</p>
+        <pre><code>
+            const header = document.querySelector('.header');
+            const navHeight = nav.getBoundingClientRect().height;
+
+            const stickyNav = function (entries) {
+            const [entry] = entries;
+            console.log(entry);
+                if (!entry.isIntersecting) nav.classList.add('sticky'); else nav.classList.remove('sticky');
+            }
+            <span class="red">this function is used as an argument of the observer, and will be called whenever the observed element (header) intersects the root (viewport) at the threshold that we defined.</span>
+
+            const headerObserver = new IntersectionObserver(<b>stickyNav</b>, {
+                root: null, <span class="red">selects the viewport as the root</span>
+                threshold: 0, <span class="red">the percentage of intersection at which the callback function will be called; if this value is set to an array, for example, [0, 0.2], then the callback function will be called whenever the target moves completely out of the view (0) and also when it enters the view (0.2)</span>
+                rootMargin: `-${navHeight}px` <span class="red">sets a "margin" to the root</span>
+            }); <span class="red">the options object can be defined separately as a variable</span>
+            headerObserver.observe(header); <span class="red">don't forget to call the observer with the element to be observed as an argument.</span>
+        </code></pre>
+        <p>See Reveal hidden sections as user scrolls page, on Jonas lecture 198.</p>
 
         <h4>Event Bubbling</h4>
         <p>When there are two or more eventListeners triggered by a click, we can prevent it to propagate (bubbling) by
