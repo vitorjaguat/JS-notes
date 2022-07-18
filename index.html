@@ -3868,7 +3868,8 @@ workout;
             }); <span class="red">the options object can be defined separately as a variable</span>
             headerObserver.observe(header); <span class="red">don't forget to call the observer with the element to be observed as an argument.</span>
         </code></pre>
-        <p>See Reveal hidden sections as user scrolls page, on Jonas lecture 198.</p>
+        <p>See Reveal hidden sections as user scrolls page, on Jonas lecture 198, lazy imgs 199, slide carousel 200/201.
+        </p>
 
         <h4>Event Bubbling</h4>
         <p>When there are two or more eventListeners triggered by a click, we can prevent it to propagate (bubbling) by
@@ -3915,13 +3916,278 @@ workout;
 })
         </code></pre>
 
+        <h4>Lifecycle DOM Events</h4>
+        <pre><code>
+            document.addEventListener('DOMContentLoaded', function (e){
+                console.log('HTML parsed and DOM tree built!', e);
+            });
 
+            window.addEventListener('load', function (e){
+                console.log('Page fully loaded', e);
+            });
 
+            window.addEventListener('beforeunload', function (e){
+                e.preventDefault();
+                console.log(e);
+                e.returnValue = '';
+            })
+            <span class="red">This one is useful to prevent user to leave the website when filling forms, etc. It prompts an alert alerting changes have been made and changes will be lost if leave page.</span>
+        </code></pre>
 
+        <h3>OOP Object Oriented Programming</h3>
+        <p>A joke:</p>
+        OOP
+        <br> which kind of coding paradigm do you prefer?
+        <br> A) OOP
+        <br> B) FP
+        <br> C) Spaghetti code <br>
 
+        <h4>Constructor Functions</h4>
+        <ol>
+            <li>New object is created</li>
+            <li>When function is called, this keyword is the newly created object</li>
+            <li>The object is linked to prototype
+            </li>
+            <li>Function automatically returns the object</li>
+        </ol>
 
+        <pre><code>
+            const Person = function (first, birth) {
+                this.firstName = first;
+                this.birthYear = birth;
+            };
 
+            const jonas = new Person('Jonas', 1991);
+            const matilda = new Person('Matilda', 2001);
+            const jack = new Person('Jack', 1982);
+            <span class="red">the operator new creates a new object, that instantiates the "class" of objects Person, inheriting its properties.</span>
 
+            console.log(jonas instanceof Person);
+            //true
+
+        </code></pre>
+
+        <h4>Prototypes</h4>
+        <p>Always when an array, object or function is created, they receive a special property called prototype. The
+            prototype contains all the methods that are inside that object.</p>
+        <pre><code>
+            Person.prototype.calcAge = function(){
+                console.log(2022 - this.birthYear);
+            };
+
+            jonas.calcAge();
+            //31
+            matilda.calcAge();
+            //21
+            jack.calcAge();
+            //40
+            <span class="red">once assigned to the prototype, a function is inherited by all the constructor's children.</span>
+
+            console.log(jonas.__proto__);
+            //returns the prototype of the constructor function that ganerated the object jonas
+
+            console.log(jonas.__proto__ === Person.prototype);
+            //true
+
+            console.log(Person.prototype.isPrototypeOf(jonas));
+            //true
+
+            console.log(Person.prototype.isPrototypeOf(Person));
+            //false
+            <span class="red">it is only prototype of the child objects</span>
+
+            Person.prototype.species = 'Homo sapiens';
+            console.log(jonas.species);
+            //'Homo sapiens'
+
+            console.log(jonas.hasOwnProperty('firstName'));
+            //true
+            console.log(jonas.hasOwnProperty('species'));
+            //false
+            <span class="red">species is only a property inherited from the prototype of Person, but it is still not directly assigned to the object jonas</span>
+        </code></pre>
+        <p>All arrays have also a prototype. It's in this prototypes that the array methods lie, just waiting for us to
+            use them: .filter(), .fill(), etc.</p>
+        <pre><code>
+            jonas.__proto__
+            <span class="red">prototype inherited from the Person constructor</span>
+
+            jonas.__proto__.__proto__ 
+            <span class="red">Object.prototype, general prototype for all objects /  arrays / functions</span>
+
+            jonas.__proto__.__proto__.__proto__
+            <span class="red">returns null, because the Object.prototype is the top of the prototype chain.</span>
+        </code></pre>
+        <pre><code>
+            const arr = [3, 4, 3, 5, 3, 4, 4];
+            <span class="red">This is equal to write const arr = new Array(3, 4, 3, 5, 3, 4, 4)</span>
+            console.log(arr.__proto__);
+            <span class="red">returns the prototype inherited by all arrays</span>
+            console.log(arr.__proto__ === Array.prototype);
+            //true
+        </code></pre>
+        <p>We can add new methods to all arrays by adding methods to the Array.prototipe object.</p>
+        <pre><code>
+            Array.prototype.unique = function () {
+                return [...new Set(this)];
+            };
+            console.log(arr.unique());
+            //[3, 4, 5]
+        </code></pre>
+
+        <h4>ES6 Classes</h4>
+        <p>ES6 introduced a new way of creating "classes" in JS. However, it is perfectly acceptable to continue to
+            create them using Constructor Functions.</p>
+        <pre><code>
+            <span class="red">class expression:</span>
+            const PersonCl = class {}
+
+            <span class="red">class declaraion (BETTER)</span>
+            class PersonCl {
+                constructor(first, birth) {
+                    this.firstName = first;
+                    this.birthYear = birth;
+                },
+                calcAge(){
+                    console.log(2022 - this.birthYear);
+                }, <span class="red">the method can be inserted inside of the class, no problem</span>
+            }
+
+            const jessica = new PersonCl('jessica', 1996);
+            jessica.calcAge();
+            //26
+
+            <span class="red">Methods can also be added later:</span>
+            PersonCl.prototype.greet = function() {
+                console.log(`Hey ${this.firstName}`);
+            }
+            jessica.greet();
+            //Hey Jessica
+        </code></pre>
+        <p>Classes' characteristics:
+        <ol>
+            <li>Classes are not HOISTED, ie, you can not use them before they are declared on the code.</li>
+            <li>Classes are first-class citizens, ie, it is possible to call them into functions and also to return them
+                from functions.</li>
+            <li>The body of a class is always executed in strict mode.</li>
+        </ol>
+        </p>
+
+        <h4>Setters and getters</h4>
+        <p>These are special ways of defining methods inside of an object or a class.</p>
+        <pre><code>
+            <span class="red">Getters and Setters in literal objects:</span>
+            
+            const account = {
+                owner: 'Jonas',
+                movements: [200, 530, 120, 300],
+
+                get latest() {
+                    return this.movements.slice(-1).pop();
+                },
+
+                set latest(mov) {
+                    this.movements.push(mov);
+                },
+            }
+
+            console.log(account.latest); <span class="red">there is no need to call by adding ()</span>
+            //300
+
+            account.latest = 50;
+            console.log(account.movements);
+            //[200, 530, 120, 300, 50]
+        </code></pre>
+        <pre><code>
+            <span class="red">Getters and Setters in classes:</span>
+            class PersonCl {
+                constructor(first, birth) {
+                    this.firstName = first;
+                    this.birthYear = birth;
+                },
+                calcAge(){
+                    console.log(2022 - this.birthYear);
+                },
+                greet(){
+                    console.log(`Hey ${this.firstName}`);
+                },
+                get adultYear() {
+                    return this.birthYear + 18;
+                },
+            }
+
+            const jessica = new PersonCl('Jessica', 1996)
+            jessica.calcAge();
+            //26
+            console.log(jessica.age);
+            //2014
+        </code></pre>
+
+        <h4>Static methods</h4>
+        <p>These are methods that belong to the constructor, and are not inherited by the instances.</p>
+        <pre><code>
+            For example:
+            Array.from(document.querySelectorAll('h1'));
+            <span class="red">transform a node list into an array. This method belongs to the Array constructor, and cannot be called like this: arrayx.from()</span>
+
+            Number.parseFloat(12)
+
+            <span class="red">Adding a static method to the Person constructor:</span>
+            Person.hey = function(){
+                console.log('Hey there!');
+                console.log(this);
+            };
+            Person.hey();
+            //Hey there!
+            //entire Constructor Function
+
+            <span class="red">Adding a static method to a class:</span>
+            class PersonCl {
+                constructor(first, birth) {
+                    this.firstName = first;
+                    this.birthYear = birth;
+                },
+                <span class="red">Instance methods (will be added to the .prototype property and therefore will be inherited by the instances):</span> 
+                calcAge(){
+                    console.log(2022 - this.birthYear);
+                },
+                <span class="red">Static method:</span>
+                static hey() {
+                    console.log('Hey there!');
+                    console.log(this);
+                }
+            };
+
+            PersonCl.hey();
+            //Hey there!
+            //entire Class
+        </code></pre>
+
+        <h4>Object.create()</h4>
+        <p>This is the third (and less used) method to create an object from a prototype.</p>
+        <pre><code>
+            <span class="red">first, create the prototype:</span>
+            const PersonProto = {
+                calcAge() {
+                    console.log(2022 - this.birthYear);
+                },
+                init(first, birth){
+                    this.firstName = first;
+                    this.birthYear = birth;
+                } <span class="red">this is a pseudo constructor function used to create the object's properties that are not methods</span>
+            };
+
+            <span class="red">then, create a new object containing this prototype:</span>
+            const steven = Object.create(PersonProto);
+            steven.init('Steven', 2002);
+            steven.calcAge();
+
+            console.log(steven.__proto__ === PersonProto);
+            //true
+
+            const sarah = Object.create(PersonProto);
+            sarah.init('Sarah', 1979);
+        </code></pre>
         <script src="app.js"></script>
 
 

@@ -1232,24 +1232,24 @@
 //3.
 
 
-setInterval(function () {
-    const fimBozo = new Date(2023, 1, 1);
-    // console.log(fimBozo)
-    const now = new Date();
+// setInterval(function () {
+//     const fimBozo = new Date(2023, 1, 1);
+//     // console.log(fimBozo)
+//     const now = new Date();
 
-    const second = 1000
-    const minute = second * 60
-    const hour = minute * 60
-    const day = hour * 24
+//     const second = 1000
+//     const minute = second * 60
+//     const hour = minute * 60
+//     const day = hour * 24
 
-    const distance = fimBozo - now;
-    const timerDays = Math.floor(distance / day);
-    const timerHours = Math.floor(distance % day / hour);
-    const timerMinutes = Math.floor(distance % hour / minute);
-    const timerSeconds = Math.floor(distance % minute / second)
-    const timer = `${timerDays} dias, ${timerHours} horas, ${timerMinutes} minutos e ${timerSeconds} segundos`
-    console.log(timer);
-}, 1000)
+//     const distance = fimBozo - now;
+//     const timerDays = Math.floor(distance / day);
+//     const timerHours = Math.floor(distance % day / hour);
+//     const timerMinutes = Math.floor(distance % hour / minute);
+//     const timerSeconds = Math.floor(distance % minute / second)
+//     const timer = `${timerDays} dias, ${timerHours} horas, ${timerMinutes} minutos e ${timerSeconds} segundos`
+//     console.log(timer);
+// }, 1000)
 
 
 
@@ -1261,3 +1261,37 @@ setInterval(function () {
 // }
 
 // pizzaFunction('chocolate', 'cheese')
+
+
+//Jonas sc 14 challenge 1
+//1. Use a constructor function to implement a 'Car'. A car has a 'make' and a 'speed' property. The 'speed' property is the current speed of the car in km/h
+//2. Implement an 'accelerate' method that will increase the car's speed by 10, and log the new speed to the console
+//3. Implementa 'brake' method that will decrease the car's speed by 5,and log the new speed to the console
+// 4. Create 2 'Car' objects and experiment with calling 'accelerate'and 'brake' multiple times on each of them
+// Test data:
+// § Data car 1: 'BMW' going at 120 km/h
+// § Data car 2: 'Mercedes' going at 95 km/h
+
+//MY SOLUTION:
+
+const Car = function (name, inSpeed) {
+    this.make = name;
+    this.speed = inSpeed;
+};
+Car.prototype.accelerate = function () {
+    this.speed += 10;
+    console.log(this.speed);
+};
+Car.prototype.brake = function () {
+    this.speed -= 5;
+    console.log(this.speed);
+}
+const car1 = new Car('BMW', 120);
+console.log(car1);
+car1.accelerate();
+car1.brake();
+
+const car2 = new Car('Mercedes', 95);
+console.log(car2);
+car2.accelerate();
+car2.brake();
