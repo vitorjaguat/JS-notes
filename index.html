@@ -4042,7 +4042,7 @@ workout;
             <span class="red">class expression:</span>
             const PersonCl = class {}
 
-            <span class="red">class declaraion (BETTER)</span>
+            <span class="red">class declaration (BETTER)</span>
             class PersonCl {
                 constructor(first, birth) {
                     this.firstName = first;
@@ -4074,7 +4074,8 @@ workout;
         </p>
 
         <h4>Setters and getters</h4>
-        <p>These are special ways of defining methods inside of an object or a class.</p>
+        <p>These are special ways of defining methods inside of an object or a class. Getters turn a method into a
+            property.</p>
         <pre><code>
             <span class="red">Getters and Setters in literal objects:</span>
             
@@ -4121,6 +4122,44 @@ workout;
             //26
             console.log(jessica.age);
             //2014
+        </code></pre>
+        <p>Another example (from Jonas lecture 217 (challenges 1 and 2).</p>
+        <pre><code>
+            1. Use ES6 class to implement a 'Car'. A car has a 'make' and a 'speed' property. The 'speed' property is the current speed of the car in km/h
+            2. Implement an 'accelerate' method that will increase the car's speed by 10, and log the new speed to the console
+            3. Implementa 'brake' method that will decrease the car's speed by 5,and log the new speed to the console
+            4. Add a getter called 'speedUS' which returns the current speed in mi/h (divide by 1.6)
+            3. Add a setter called 'speedUS' which sets the current speed in mi/h (but converts it to km/h before storing the value, by multiplying the input by 1.6)
+            4. Create a new car and experiment with the 'accelerate' and 'brake' 
+            methods, and with the getter and setter.
+            
+            class CarCl {
+                constructor(name, inSpeed) {
+                    this.make = name;
+                    this.speed = inSpeed;
+                }
+                accelerate() {
+                    console.log(this.speed += 10);
+                };
+                brake() {
+                    console.log(this.speed -= 5);
+                };
+                get speedUS() {
+                    return this.speed / 1.6;
+                };
+                set speedUS(givenSpeed) {
+                    this.speed = givenSpeed * 1.6;
+                }
+            
+            }
+            const car3 = new CarCl('Ford', 120);
+            
+            console.log(ford.speedUS);
+            car3.accelerate();
+            car3.brake();
+            
+            ford.speedUS = 50;
+            console.log(ford.speed);
         </code></pre>
 
         <h4>Static methods</h4>

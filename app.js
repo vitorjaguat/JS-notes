@@ -1295,3 +1295,46 @@ const car2 = new Car('Mercedes', 95);
 console.log(car2);
 car2.accelerate();
 car2.brake();
+
+//Jonas sc 14 challenge 2
+
+class CarCl {
+    constructor(name, inSpeed) {
+        this.make = name;
+        this.speed = inSpeed;
+    }
+    accelerate() {
+        console.log(this.speed += 10);
+    };
+    brake() {
+        console.log(this.speed -= 5);
+    };
+    get speedUS() {
+        return this.speed / 1.6;
+    };
+    set speedUS(givenSpeed) {
+        this.speed = givenSpeed * 1.6;
+    }
+
+}
+const car3 = new CarCl('Ford', 120);
+
+console.log(ford.speedUS);
+car3.accelerate();
+car3.brake();
+
+ford.speedUS = 50;
+console.log(ford.speed);
+
+
+// class PersonCl {
+//     constructor(first, birth) {
+//         this.firstName = first;
+//         this.birthYear = birth;
+//     },
+//     calcAge(){
+//         console.log(2022 - this.birthYear);
+//     }, <span class="red">the method can be inserted inside of the class, no problem</span>
+// }
+
+// const jessica = new PersonCl('jessica', 1996);
