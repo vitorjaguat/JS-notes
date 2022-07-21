@@ -1298,33 +1298,33 @@ car2.brake();
 
 //Jonas sc 14 challenge 2
 
-class CarCl {
-    constructor(name, inSpeed) {
-        this.make = name;
-        this.speed = inSpeed;
-    }
-    accelerate() {
-        console.log(this.speed += 10);
-    };
-    brake() {
-        console.log(this.speed -= 5);
-    };
-    get speedUS() {
-        return this.speed / 1.6;
-    };
-    set speedUS(givenSpeed) {
-        this.speed = givenSpeed * 1.6;
-    }
+// class CarCl {
+//     constructor(name, inSpeed) {
+//         this.make = name;
+//         this.speed = inSpeed;
+//     }
+//     accelerate() {
+//         console.log(this.speed += 10);
+//     };
+//     brake() {
+//         console.log(this.speed -= 5);
+//     };
+//     get speedUS() {
+//         return this.speed / 1.6;
+//     };
+//     set speedUS(givenSpeed) {
+//         this.speed = givenSpeed * 1.6;
+//     }
 
-}
-const car3 = new CarCl('Ford', 120);
+// }
+// const car3 = new CarCl('Ford', 120);
 
-console.log(ford.speedUS);
-car3.accelerate();
-car3.brake();
+// console.log(car3.speedUS);
+// car3.accelerate();
+// car3.brake();
 
-ford.speedUS = 50;
-console.log(ford.speed);
+// car3.speedUS = 50;
+// console.log(car3.speed);
 
 
 // class PersonCl {
@@ -1338,3 +1338,99 @@ console.log(ford.speed);
 // }
 
 // const jessica = new PersonCl('jessica', 1996);
+
+//Jonas sc 14 challenge 3
+//1. Use a constructor function to implement an Electric Car (called'EV') as a child "class" of 'Car'. Besides a make and current speed, the 'EV' also has the current battery charge in % ('charge' property)
+//2. Implement a 'chargeBattery' method which takes an argument 'chargeTo' and sets the battery charge to 'chargeTo'
+// 3. Implement an 'accelerate' method that will increase the car's speed by 20, and decrease the charge by 1%. Then log a message like this: 'Tesla going at 140 km/h, with a charge of 22%'
+//4. Create an electric car object and experiment with calling 'accelerate', 'brake' and 'chargeBattery' (charge to 90%). Notice what happens when you 'accelerate'! Hint: Review the definiton of polymorphism 😉
+//Data car 1: 'Tesla' going at 120 km/h, with a charge of 23%
+
+const EV = function (name, inSpeed, inCharge) {
+    Car.call(this, name, inSpeed);
+    this.charge = inCharge;
+};
+
+EV.prototype = Object.create(Car.prototype);
+
+EV.prototype.chargeBattery = function (chargeTo) {
+    this.charge = chargeTo;
+}
+
+EV.prototype.accelerate = function () {
+    this.speed += 20;
+    this.charge--;
+    console.log(`${this.make} going at ${this.speed}km / h, with a charge of ${this.charge}%`);
+}
+
+const EVCar1 = new EV('Tesla', 120, 23);
+console.log(EVCar1);
+
+console.log(EVCar1.accelerate());
+EVCar1.accelerate()
+EVCar1.brake()
+EVCar1.chargeBattery(50);
+console.log(EVCar1.charge)
+
+
+//Jonas sc 14 challenge 4
+//1. Re-create Challenge#3,but this time using ES6 classes: create an 'EVCl' child class of the 'CarCl' class
+//2. Make the 'charge' property private
+//3. Implement the ability to chain the 'accelerate' and 'chargeBattery' methods of this class, and also update the 'brake' method in the 'CarCl' class. Then experiment with chaining!
+//Test data: Data car 1: 'Rivian' going at 120 km/h, with a charge of 23%
+
+class CarCl {
+    constructor(name, inSpeed) {
+        this.make = name;
+        this.speed = inSpeed;
+    }
+    accelerate() {
+        console.log(this.speed += 10);
+    };
+    brake() {
+        console.log(this.speed -= 5);
+    };
+
+    get speedUS() {
+        return this.speed / 1.6;
+    };
+    set speedUS(givenSpeed) {
+        this.speed = givenSpeed * 1.6;
+    }
+}
+
+class EVCl extends CarCl {
+    #charge;
+    constructor(name, inSpeed, inCharge) {
+        super(name, inSpeed);
+        this.#charge = inCharge;
+    }
+    accelerate() {
+        this.speed += 20;
+        this.#charge--;
+        console.log(`${this.make} going at ${this.speed}km / h, with a charge of ${this.#charge}%`);
+        return this;
+    };
+    brake() {
+        console.log(this.speed -= 5);
+        return this;
+    };
+    chargeBattery(chargeTo) {
+        this.#charge = chargeTo;
+    }
+    get speedUS() {
+        return this.speed / 1.6;
+    };
+    set speedUS(givenSpeed) {
+        this.speed = givenSpeed * 1.6;
+    }
+}
+
+const rivian = new EVCl('Rivian', 120, 23);
+
+rivian.brake();
+rivian.accelerate();
+rivian.chargeBattery(80);
+rivian.accelerate().brake().chargeBattery(100);
+console.log(rivian);
+

@@ -4227,7 +4227,221 @@ workout;
             const sarah = Object.create(PersonProto);
             sarah.init('Sarah', 1979);
         </code></pre>
+        <h4>Creating child 'classes' using Constructor Function & Inheritance between 'classes'</h4>
+        <p>Classes created from another class will also inherit its parent's methods and properties.</p>
+        <pre><code>
+            const Person = function (first, birth) {
+                this.firstName = first;
+                this.birthYear = birth;
+            };
+            Person.prototype.calcAge = function (){
+                console.log(2022 - this.birthYear);
+            };
+
+            const Student = function (first, birth, course){
+                Person.call(this, firstName, birthYear);
+                this.course = course;
+            };
+
+            Student.prototype = Object.create(Person.prototype); <span class="red">now all methods and properties inside of Person will also work on Student</span>
+
+            Student.prototype.introduce = function(){
+                console.log(`My name is ${this.firstName} and I study ${this.course}`);
+            };
+
+            const mike = new Student('Mike', 1980, 'Computer Science');
+            
+            mike.introduce();
+            //My name is Mike and I study Computer Science
+
+            <b>mike.calcAge();
+            //42</b>
+        </code></pre>
+        <h4>Creating child 'classes' using ES6 Class keyword</h4>
+        <p>This is a easier and more modern way of doing this.</p>
+        <pre><code>
+            class StudentCl extends PersonCl {
+                constructor(first, birth, course) {
+                    //Always needs to happen first:
+                    super(first, birth);
+                    this.course = course;
+                }
+                introduce(){
+                    console.log(`My name is ${this.firstName} and I study ${this.course}`);
+                }
+
+                calcAge(){
+                    console.log(`I'm ${2022 - this.birthYear} years old, but I feel older`)
+                }; <span class="red">this method will "overwrite" the original method in PersonCl, because JS will find it first on the Prototype Chain. This method will <b>shadow</b> the original one.</span>
+            }
+
+            const martha = new StudentCl('Martha Jones', 1990, 'Computer Science');
+            martha.introduce();
+            //My name is Martha Jones and I study Computer Science.
+            martha.calcAge();
+            //I'm 32 years old, but I feel older
+        </code></pre>
+
+        <h4>Creating child 'classes' using Object.create()</h4>
+        <p>Although more simple, this method is actually not very often seen in the real world.</p>
+        <pre><code>
+            const PersonProto = {
+                calcAge() {
+                    console.log(2022 - this.birthYear);
+                },
+                init(first, birth){
+                    this.firstName = first;
+                    this.birthYear = birth;
+                }
+            };
+
+            const steven = Object.create(PersonProto);
+
+            const StudentProto = Object.create(PersonProto);
+            StudentProto.init = function(first, birth, course){
+                PersonProto.init.call(this, first, birth);
+                this.course = course;
+            };
+
+            StudentProto.introduce = function(){
+                console.log(`My name is ${this.firstName} and I study ${this.course}`)
+            };
+
+            const jay = Object.create(StudentProto);
+            jay.init('Jay', 1991, 'Computer Science');
+            jay.introduce();
+            jay.calcAge();
+        </code></pre>
+
+        <h4>Recap: Creating 'class' using ES6, adding methods</h4>
+        <pre><code>
+            class Account {
+                constructor(owner, currency, pin){
+                    this.owner = owner;
+                    this.currency = currency;
+                    this.pin = pin;
+                    this.movements = [];
+                    this.locale = navigator.language;
+                    console.log(`Thanks for opening an account, ${this.owner`});
+                }
+                <span class="red">here begins the API (public interface), ie, the methods which are accesible outside of the object:</span>
+                deposit(val) {
+                    this.movement.push(val);
+                }
+                withdraw(val) {
+                    this.deposit(-val);
+                }
+            }
+
+            const acc1 = new Account('Jonas', 'EUR', 1111);
+            acc.deposit(250);
+            acc.withdraw(140);
+        </code></pre>
+        <h4>Encapsulation: protected properties and methods</h4>
+        <p>Sometimes we don't want some properties or methods to be changed by functions that are outside of the object.
+            To add _ before the name of these methods/properties is a convention to signal it. However, it doesn't
+            prevent them from be changed, it is just a signaling convention.</p>
+        <pre><code>
+            class Account {
+                constructor(owner, currency, pin){
+                    this.owner = owner;
+                    this.currency = currency;
+                    this._pin = pin; <span class="red">protected</span>
+                    this._movements = []; <span class="red">protected</span>
+                    this.locale = navigator.language;
+                    console.log(`Thanks for opening an account, ${this.owner`});
+                }
+                deposit(val) {
+                    this._movement.push(val);
+                }
+                withdraw(val) {
+                    this.deposit(-val);
+                }
+                getMovements(){
+                    return this._movements;
+                } <span class="red">this method was written specially for the purpose of getting access to the _movements array from outside of the object.</span>
+            }
+
+            acc1.getMovements();
+            //[250, -140]
+        </code></pre>
+        <h4>Encapsulation: protect properties and methods using Private Class Fields and Methods</h4>
+        <p>These JS features, as for 2022, are still under implementation and for now are only available in Chrome.</p>
+        <pre><code>
+            1) Public fields
+            2) Private fields 
+            3) Public methods  = Public interface
+            4) Private methods 
+            
+            class Account {
+                <span class="red">1) Public fields:</span>
+                locale = navigator.language;
+                
+                <span class="red">2) Private fields:</span>
+                #movements = [];
+                #pin; <span class="red">this property is only defined, because it need its value to be taken from the constructor paramenter.</span>
+                
+                constructor(owner, currency, pin){
+                    this.owner = owner;
+                    this.currency = currency;
+                    this.#pin = pin; 
+                    console.log(`Thanks for opening an account, ${this.owner`});
+                }
+                <span class="red">3) Public interface = Public methods</span>
+                deposit(val) {
+                    this.#movement.push(val);
+                }
+                withdraw(val) {
+                    this.deposit(-val);
+                }
+                getMovements(){
+                    return this.#movements;
+                } <span class="red">this method was written specially for the purpose of getting access to the #movements array from outside of the object.</span>
+
+                <span class="red">4) Private methods:</span>
+                #approveLoan(val){
+                    return true;
+                }
+            }
+        </code></pre>
+        <h4>Chaining methods when calling instances' methods</h4>
+        <p>In order to be possible to chain methods when calling instances' methods, the class' methods need to return
+            'this', so that there won't be errors when chaining the methods.</p>
+        <pre><code>
+            class Account {
+                locale = navigator.language;
+                
+                #movements = [];
+                #pin;
+
+                constructor(owner, currency, pin){
+                    this.owner = owner;
+                    this.currency = currency;
+                    this.#pin = pin; 
+                    console.log(`Thanks for opening an account, ${this.owner`});
+                }
+                deposit(val) {
+                    this.#movement.push(val);
+                    return this;
+                }
+                withdraw(val) {
+                    this.deposit(-val);
+                    return this;
+                }
+                getMovements(){
+                    return this.#movements;
+                } 
+            }
+
+            acc1.deposit(300).deposit(500).withdraw(100).withdraw(100);
+            
+        </code></pre>
+
+
+
+
         <script src="app.js"></script>
+
 
 
         <!-- JS Code to enable bootstrap -->
