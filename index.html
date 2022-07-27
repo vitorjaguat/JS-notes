@@ -4438,7 +4438,40 @@ workout;
         </code></pre>
 
         <h2>Asyncronous JavaScript</h2>
-        <p></p>
+        <p>Most code that we've been writing so long is syncronous code, ie, it is executed line by line as soon as the
+            script is loaded; each line of code awaits for the previous line to finish.</p>
+        <p>Asyncronous code is executed after a task that runs in the "background" finishes. Asyncronous code is
+            non-blocking, ie, execution doesn't wait for an asyncronous task to finish its work.</p>
+        <p>Asyncronous programming is to coordinate the behavior of a program over a period of time.</p>
+        <p>Certains functions, as setTimeout and setInterval occur in an asyncronous way. Setting the source attribute
+            of an image (img.src = 'dog.jpg') is an asyncronous method.</p>
+        <pre><code>
+            const img = document.querySelector('.dog');
+            img.src = 'dog.jpg';
+            img.addEventListener('load', function(){
+                img.classList.add('fadeIn');
+            });
+            p.style.width = '300px'
+        </code></pre>
+        <p><b>AJAX Calls</b></p>
+        <p>Asyncronous JavaScript And Xml (AJAX) allows us to communicate with remote web servers in an asyncronous way.
+            With AJAX calls, we can request data from web servers dynamically.</p>
+        <p>Application Programming Interface (<b>API</b>) is a piece of software that can be used by another piece of
+            software, in order to allow applications to talk to each other. There are many types of APIs in web
+            development, eg, DOM API, Geolocation API, or the Class API written by ourselves in a class.</p>
+        <p>Third-party "Online" API, web API or simply API is an application running on a server, that receives requests
+            for data, and sends data back as response. We can build our own web API, but it requires back-end
+            development, eg with node.js .</p>
+        <p>Weather data APIs, data about countries, flights data, currency conversion, APIs for sending e-mails or SMSs,
+            Google Maps, etc.</p>
+        <p>The X in AJAX stands for XML, which is a no-longer used data type. Nowadays, the JSON data format is the
+            first choice, because it simply consists of JS objects converted to strings.</p>
+
+        https://restcountries.com/v2/
+
+        <pre><code>
+            
+        </code></pre>
 
 
 
