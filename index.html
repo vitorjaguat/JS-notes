@@ -4466,11 +4466,119 @@ workout;
             Google Maps, etc.</p>
         <p>The X in AJAX stands for XML, which is a no-longer used data type. Nowadays, the JSON data format is the
             first choice, because it simply consists of JS objects converted to strings.</p>
-
+        <p><b>API endpoint</b> is the URL needed to access a web API from our JS script.</p>
         https://restcountries.com/v2/
 
         <pre><code>
+            <span class="red">Oldschool way of calling AJAX:</span>
+            const request = new XMLHttpRequest();
+            request.open('GET', 'https://restcountries.com/v2/portugal');
+            request.send();
             
+            request.addEventListener('load', function () {
+                const [data] = JSON.parse(this.responseText);
+            <span class="red"> 'this' refers to the request object; 'responseText' is the property with the data retrieved from API</span>
+            <span class="red"> in this case, JSON.parse returns an array containing a single object; in order to transform this array into an object, we are destructuring the array using [];</span>
+            <span class="red">Then it's possible to access different properties from this object.</span>
+        </code></pre>
+        <pre><code>
+            <span class="red">Modern way:</span>
+            const request = fetch('https://restcountries.com/v2/portugal');
+            console.log(request);
+            //Promise {<pending>}</pending>}
+        </code></pre>
+        <h4>Promises</h4>
+        <p>A <b>Promise</b> is an object that is used as a placeholder for the future result of an asynchronous
+            operation. It is like a container for an asynchronously delivered value. It is a container for a future
+            value.</p>
+        <p>With promises, we no longer need to rely on events (addEventListener('load', function)) and callbacks passed
+            into asynchronous functions to handle asynchronous results.</p>
+        <p>Instead of nesting callbacks, we can <b>chain promises</b> for a sequence of asynchronous operations,
+            <b>escaping callback hell</b>.
+        </p>
+        <h5>The lifecycle of a Promise</h5>
+        <p><b>pending</b>: before the future value is available.
+            <br><b>settled</b>: asynchronous task has finished.Settled promises can be <b>fulfilled</b> (when the value
+            is available) or <b>rejected</b> (when an error happened).
+        </p>
+        <p>First, we have to <b>build</b> a promise (using for example, Fetch API), then we can <b>consume</b> the
+            promise, using its returned value to feed our code.</p>
+
+        <h5>Consuming promises: fetch(), json() and then() methods</h5>
+        <pre><code>
+            const getCountryData = function (country) {
+                fetch(`https://restcountries.com/v2/name/${country}`).then(function (response) {
+                    return response.json();
+                }).then(function (data) {
+                    renderCountry(data[0]);
+                })
+            };
+            getCountryData('portugal')
+            
+            <span class="red">then() allows us to access the response of a promise.</span>
+            <span class="red">json() makes the data available and returns a promise.</span>
+            <span class="red">Then we use another then() to access the data returned by json().</span>
+            <span class="red"></span>
+
+            <span class="red">Using arrow functions:</span>
+            const getCountryData = function (country) {
+                fetch(`https://restcountries.com/v2/name/${country}`)
+                    .then(response => response.json())
+                    .then(data => renderCountry(data[0]));
+            }
+            getCountryData('china')
+        </code></pre>
+
+        <h5>Chaining promises</h5>
+        <p>This is useful to avoid the so-called callback hell.</p>
+        <pre><code>
+            const getCountryData = function (country) {
+                //Country 1:
+                fetch(`https://restcountries.com/v2/name/${country}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        renderCountry(data[0]); <span class="red">here the first country card is created</span>
+                        const neighbour = data[0].borders?.[0];
+                        if (!neighbour) return; <span class="red">guarding clause</span>
+            
+                        //Country 2:
+                        return fetch(`https://restcountries.com/v2/alpha/${neighbour}`); <span class="red">the second promise id returned, avoiding callback hell.</span>
+                    })
+                    .then(response => response.json())
+                    .then(data => renderCountry(data, 'neighbour')); <span class="red">consuming the second promise.</span>
+            };
+            getCountryData('china')
+        </code></pre>
+        <h5>then(), catch(), finally()</h5>
+        <p>These are all methods that are only used when a promise is the returned value. They all take callback
+            functions.</p>
+        <pre><code>
+            const getCountryData = function (country) {
+                //Country 1:
+                fetch(`https://restcountries.com/v2/name/${country}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        renderCountry(data[0]);
+                        const neighbour = data[0].borders?.[0];
+                        if (!neighbour) return;
+            
+                        //Country 2:
+                        return fetch(`https://restcountries.com/v2/alpha/${neighbour}`);
+                    })
+                    .then(response => response.json())
+                    .then(data => renderCountry(data, 'neighbour')) <span class="red">'then' will be executed when the promise is fulfilled.</span>
+                    .catch(err => {
+                        console.error(`${err} 💥`);
+                        alert(`${err} 💥💥💥`)
+                    }) <span class="red">'catch' will be executed when the promise is rejected.</span>
+                    .finally(() => {
+                        countriesContainer.style.opacity = 1;
+                    }) <span class="red">'finally' will always be executed at the end.</span>
+            };
+            
+            btn.addEventListener('click', function () {
+                getCountryData('china')
+            })
         </code></pre>
 
 
