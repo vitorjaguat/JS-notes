@@ -4581,6 +4581,66 @@ workout;
             })
         </code></pre>
 
+        <h5>Building a promise</h5>
+        <p>Building a promise is not always very useful, except when we have to promisefy some part of the code.</p>
+        <pre><code>
+            <span class="red">Building the promise:</span>
+            const lotteryPromise = new Promise(function (resolve, reject) <span class="red">"resolve" is the value that is returned if the promise if fulfilled; 
+            "reject" is the value that is returned if the promise is rejected.</span> {
+                console.log('Lottery draw is happening 🔮');
+                setTimeout(function() {
+                    if (Math.random() >= 0.5) {
+                        resolve('You win 💰');
+                    } else {
+                        reject(new Error('You lost your money 💩'));
+                    }
+                }, 2000);
+            });
+
+            <span class="red">Calling and consuming the promise:</span>
+            lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+            <span class="red">"then" will be executed if the promise is fulfilled;
+            "catch" will be executed if the promise is rejected.
+            </span>
+        </code></pre>
+        <pre><code>
+            <span class="red">Promisifying setTimeout</span>
+            const wait = function(seconds){
+                return new Promise(function(resolve){
+                    setTimeout(resolve, seconds * 1000);
+                });
+            };
+
+            wait(1)
+                .then(() => {
+                    console.log('1 second passed');
+                    return wait(1);
+                })
+                .then(() => {
+                    console.log('2 seconds passed');
+                    return wait(1);
+                })
+                .then(() => {
+                    console.log('3 seconds passed');
+                    return wait(1);
+                }).then(() => {
+                    console.log('4 seconds passed');
+                });
+
+                <span class="red">This is the same as (using callback hell):</span>
+                setTimeout(() => {
+                    console.log('1 second passed');
+                    setTimeout(() => {
+                        console.log('2 seconds passed');
+                        setTimeout(() => {
+                            console.log('3 seconds passed');
+                            setTimeout(() => {
+                                console.log('4 seconds passed');
+                            }, 1000);
+                        }, 1000);
+                    }, 1000);
+                }, 1000);
+        </code></pre>
 
 
         <script src="app.js"></script>
