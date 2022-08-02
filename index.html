@@ -1760,7 +1760,16 @@ workout;
                 console.log("THERE IS AN ERROR")
             }
             //"THERE IS AN ERROR"  <span class="red">this just advices that there was an error, but the code is not stopped</span>
-
+        </code></pre>
+        <pre><code>
+            try {
+                let y = 1;
+                const x = 2;
+                x = 3;
+            } catch (err) {
+                alert(err.message);
+            };
+            <span class="red">the err object has a 'message' property.</span>
         </code></pre>
         <div class="alert-info p-3">
             <h5>Functions Review</h5>
@@ -4641,6 +4650,151 @@ workout;
                     }, 1000);
                 }, 1000);
         </code></pre>
+        <pre><code>
+            Promise.resolve('abc').then(x => console.log(x));
+            <span class="red">will be immediately resolved</span>
+            Promise.reject(new Error('Problem!')).catch(x => console.error(x));
+            <span class="red">will be immediately rejected</span>
+        </code></pre>
+
+        <h5>Consuming promises with async/await</h5>
+        <p>This keywords were implemented in 2017. They make the code of a promise look like a synchronous code, but
+            behind the scenes it will not block our code. Async/await is just synthetic sugar over the .then method.</p>
+        <pre><code>
+            const whereAmI = async function (country) {
+                const res = await fetch(`https://restcountries.com/v2/name/${country}`);
+                console.log(res);
+                <span class="red">this is the same as:
+                    fetch(`https://restcountries.com/v2/name/${country}`).then(res => console.log(res));
+                </span>
+            }
+            whereAmI('portugal');
+            console.log('FIRST');
+            <span class="red">'FIRST' will be printed first because the other function is meanwhile being executed in second plan.</span>
+        </code></pre>
+        <pre><code>
+            const whereAmI = async function (country) {
+                const res = await fetch(`https://restcountries.com/v2/name/${country}`);
+                const data = await res.json();
+                <span class="red">now it's possible to avoid anooooother .then after calling .json() to extract the object</span>
+                console.log(data);
+                renderCountry(data[0]);
+            };
+            whereAmI('portugal');
+        </code></pre>
+        <pre><code>
+            const getPosition = function () {
+                return new Promise(function(resolve, reject) {
+                    navigator.geolocation.getCurrentPosition(resolve, reject);
+                });
+            };
+
+            const whereAmI = async function () {
+                <span class="red">Geolocation:</span>
+                const pos = await getPosition();
+                const { latitude: lat, longitude: lng } = pos.coords;
+                
+                <span class="red">Reverse geocoding:</span>
+                const resGeo = await fetch (`https://geocode.xyz/${lat},${lng}?geoit=json`);
+                const dataGeo = await resGeo.json();
+
+                <span class="red">Country data:</span>
+                const res = await fetch(`https://restcountries.com/v2/name/${dataGeo.country}`);
+                const data = await res.json();
+                console.log(data);
+                renderCountry(data[0]);
+            };
+            whereAmI();
+        </code></pre>
+        <p>Handling errors with try catch:</p>
+        <pre><code>
+            const getPosition = function () {
+                return new Promise(function(resolve, reject) {
+                    navigator.geolocation.getCurrentPosition(resolve, reject);
+                });
+            };
+
+            const whereAmI = async function () {
+                try {
+                <span class="red">Geolocation:</span>
+                const pos = await getPosition();
+                const { latitude: lat, longitude: lng } = pos.coords;
+                
+                <span class="red">Reverse geocoding:</span>
+                const resGeo = await fetch (`https://geocode.xyz/${lat},${lng}?geoit=json`);
+                if(!resGeo.ok) throw new Error('Problem getting location data');
+
+                const dataGeo = await resGeo.json();
+
+                <span class="red">Country data:</span>
+                const res = await fetch(`https://restcountries.com/v2/name/${dataGeo.country}`);
+                if(!res.ok) throw new Error('Problem getting country');
+
+                const data = await res.json();
+                console.log(data);
+                renderCountry(data[0]);
+            } catch(err){
+                console.error(`${err} 😟`);
+                renderError(`Something went wrong 😟 ${err}`);
+            }
+        };
+            whereAmI();
+        </code></pre>
+        <h5>Running promises in parallel</h5>
+        <p>If we want to run 3 promises at the same time, and the execution of one does not depend on the result of the
+            previous one, we can use Promise.all to run the 3 at the same time, saving a lot of loading time.</p>
+        <pre><code>
+            const getJSON = function (url, errorMsg = 'Something went wrong') {
+                return fetch(url).then(response => {
+                    if (!response.ok) throw new Error(`${errorMsg} (${response.status})`);
+                    return response.json();
+                });
+            };
+
+            const get3Countries = async function (c1, c2, c3) {
+                try {
+                    const [data1] = await getJSON(`https://restcountries.com/v2/name/${c1}`);
+                    const [data2] = await getJSON(`https://restcountries.com/v2/name/${c2}`);
+                    const [data3] = await getJSON(`https://restcountries.com/v2/name/${c3}`);
+            
+                    console.log([data1.capital, data2.capital, data3.capital]);
+                } catch (err) {
+                    console.error(err);
+                };
+            }
+            get3Countries('portugal', 'canada', 'tanzania');
+            //['Lisbon', 'Ottawa', 'Dodoma']
+            <span class="red">in this case, the second promise will wait for the first one to be fulfilled to start running, but it is useless, because we don't need the result of the first to run the second. So in this case we can execute them at the same time using Promise.all</span>
+
+            const get3CountriesV2 = async function (c1, c2, c3) {
+                try {
+                    const data = await Promise.all([    
+                        getJSON(`https://restcountries.com/v2/name/${c1}`), getJSON(`https://restcountries.com/v2/name/${c2}`), getJSON(`https://restcountries.com/v2/name/${c3}`)
+                        ]);
+                    console.log(data.map(d => d[0].capital));
+                } catch (err) {
+                    console.error(err);
+                }
+            };
+            get3CountriesV2('portugal', 'canada', 'tanzania');
+            //['Lisbon', 'Ottawa', 'Dodoma']
+            <span class="red">in this case, the 3 promises will run at the same time, thus saving loading time</span>
+        </code></pre>
+        <h5>Other promise combinators</h5>
+        <p>Promise.race receives an array of promises and returns only the result of the promise that took less time to
+            fetch.</p>
+        <pre><code>
+            (async function(){
+                const res = await Promise.race([
+                getJSON(`https://restcountries.com/v2/name/italy`), getJSON(`https://restcountries.com/v2/name/mexico`), getJSON(`https://restcountries.com/v2/name/egypt`) 
+                ]);
+                console.log(res)
+            })
+        </code></pre>
+        <p>Promise.allSettled is equal to Promise.all, but it never short-circuit when a promise is rejected, so it will
+            return all results, including errors.</p>
+        <p>Promise.any [ES2021] is equal to Promise.race, but it will ignore rejected promises.</p>
+        <p>The most important promise combinators are Promise.all and Promise.race .</p>
 
 
         <script src="app.js"></script>
