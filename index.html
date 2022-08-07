@@ -4073,6 +4073,38 @@ workout;
             jessica.greet();
             //Hey Jessica
         </code></pre>
+        <p>Colt's example:</p>
+        <pre><code>
+            class Color {
+                constructor(r, g, b, name){
+                    this.r = r;
+                    this.g = g;
+                    this.b = b;
+                    this.name = name;
+                }
+                innerRGB(){
+                    const { r, g, b } = this;
+                    return `${r}, ${g}, ${b}`;
+                } <span class="red">this is a helper function to make rgb and rgba colors (below)</span>
+                rbg(){
+                    return `rgb(${this.innerRGB()})`;
+                }
+                rgba(a = 1.0){
+                    return `rgba(${this.innerRGB()}, ${a})`;
+                }
+                hex(){
+                    const { r, g, b } = this;
+                    return ('#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1));
+                }
+            }
+            const red = new Color(255, 67, 89, 'tomato');
+            red.rgb();
+            //rgb(255, 67, 89)
+            red.rgba();
+            //rgba(255, 67, 89, 1)
+            red.rgba(0.4);
+            ////rgba(255, 67, 89, 0.4)
+        </code></pre>
         <p>Classes' characteristics:
         <ol>
             <li>Classes are not HOISTED, ie, you can not use them before they are declared on the code.</li>
@@ -4266,8 +4298,10 @@ workout;
             <b>mike.calcAge();
             //42</b>
         </code></pre>
-        <h4>Creating child 'classes' using ES6 Class keyword</h4>
+        <h4>Creating child 'classes' using ES6 Class keywords 'extends' and 'super'</h4>
         <p>This is a easier and more modern way of doing this.</p>
+        <p>Colt's course lecture 304 brings a great explanation on this point.</p>
+
         <pre><code>
             class StudentCl extends PersonCl {
                 constructor(first, birth, course) {
