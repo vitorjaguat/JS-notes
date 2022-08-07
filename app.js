@@ -1274,27 +1274,27 @@
 
 //MY SOLUTION:
 
-const Car = function (name, inSpeed) {
-    this.make = name;
-    this.speed = inSpeed;
-};
-Car.prototype.accelerate = function () {
-    this.speed += 10;
-    console.log(this.speed);
-};
-Car.prototype.brake = function () {
-    this.speed -= 5;
-    console.log(this.speed);
-}
-const car1 = new Car('BMW', 120);
-console.log(car1);
-car1.accelerate();
-car1.brake();
+// const Car = function (name, inSpeed) {
+//     this.make = name;
+//     this.speed = inSpeed;
+// };
+// Car.prototype.accelerate = function () {
+//     this.speed += 10;
+//     console.log(this.speed);
+// };
+// Car.prototype.brake = function () {
+//     this.speed -= 5;
+//     console.log(this.speed);
+// }
+// const car1 = new Car('BMW', 120);
+// console.log(car1);
+// car1.accelerate();
+// car1.brake();
 
-const car2 = new Car('Mercedes', 95);
-console.log(car2);
-car2.accelerate();
-car2.brake();
+// const car2 = new Car('Mercedes', 95);
+// console.log(car2);
+// car2.accelerate();
+// car2.brake();
 
 //Jonas sc 14 challenge 2
 
@@ -1346,31 +1346,31 @@ car2.brake();
 //4. Create an electric car object and experiment with calling 'accelerate', 'brake' and 'chargeBattery' (charge to 90%). Notice what happens when you 'accelerate'! Hint: Review the definiton of polymorphism 😉
 //Data car 1: 'Tesla' going at 120 km/h, with a charge of 23%
 
-const EV = function (name, inSpeed, inCharge) {
-    Car.call(this, name, inSpeed);
-    this.charge = inCharge;
-};
+// const EV = function (name, inSpeed, inCharge) {
+//     Car.call(this, name, inSpeed);
+//     this.charge = inCharge;
+// };
 
-EV.prototype = Object.create(Car.prototype);
+// EV.prototype = Object.create(Car.prototype);
 
-EV.prototype.chargeBattery = function (chargeTo) {
-    this.charge = chargeTo;
-}
+// EV.prototype.chargeBattery = function (chargeTo) {
+//     this.charge = chargeTo;
+// }
 
-EV.prototype.accelerate = function () {
-    this.speed += 20;
-    this.charge--;
-    console.log(`${this.make} going at ${this.speed}km / h, with a charge of ${this.charge}%`);
-}
+// EV.prototype.accelerate = function () {
+//     this.speed += 20;
+//     this.charge--;
+//     console.log(`${this.make} going at ${this.speed}km / h, with a charge of ${this.charge}%`);
+// }
 
-const EVCar1 = new EV('Tesla', 120, 23);
-console.log(EVCar1);
+// const EVCar1 = new EV('Tesla', 120, 23);
+// console.log(EVCar1);
 
-console.log(EVCar1.accelerate());
-EVCar1.accelerate()
-EVCar1.brake()
-EVCar1.chargeBattery(50);
-console.log(EVCar1.charge)
+// console.log(EVCar1.accelerate());
+// EVCar1.accelerate()
+// EVCar1.brake()
+// EVCar1.chargeBattery(50);
+// console.log(EVCar1.charge)
 
 
 //Jonas sc 14 challenge 4
@@ -1379,58 +1379,100 @@ console.log(EVCar1.charge)
 //3. Implement the ability to chain the 'accelerate' and 'chargeBattery' methods of this class, and also update the 'brake' method in the 'CarCl' class. Then experiment with chaining!
 //Test data: Data car 1: 'Rivian' going at 120 km/h, with a charge of 23%
 
-class CarCl {
-    constructor(name, inSpeed) {
-        this.make = name;
-        this.speed = inSpeed;
-    }
-    accelerate() {
-        console.log(this.speed += 10);
-    };
-    brake() {
-        console.log(this.speed -= 5);
-    };
+// class CarCl {
+//     constructor(name, inSpeed) {
+//         this.make = name;
+//         this.speed = inSpeed;
+//     }
+//     accelerate() {
+//         console.log(this.speed += 10);
+//     };
+//     brake() {
+//         console.log(this.speed -= 5);
+//     };
 
-    get speedUS() {
-        return this.speed / 1.6;
-    };
-    set speedUS(givenSpeed) {
-        this.speed = givenSpeed * 1.6;
-    }
+//     get speedUS() {
+//         return this.speed / 1.6;
+//     };
+//     set speedUS(givenSpeed) {
+//         this.speed = givenSpeed * 1.6;
+//     }
+// }
+
+// class EVCl extends CarCl {
+//     #charge;
+//     constructor(name, inSpeed, inCharge) {
+//         super(name, inSpeed);
+//         this.#charge = inCharge;
+//     }
+//     accelerate() {
+//         this.speed += 20;
+//         this.#charge--;
+//         console.log(`${this.make} going at ${this.speed}km / h, with a charge of ${this.#charge}%`);
+//         return this;
+//     };
+//     brake() {
+//         console.log(this.speed -= 5);
+//         return this;
+//     };
+//     chargeBattery(chargeTo) {
+//         this.#charge = chargeTo;
+//     }
+//     get speedUS() {
+//         return this.speed / 1.6;
+//     };
+//     set speedUS(givenSpeed) {
+//         this.speed = givenSpeed * 1.6;
+//     }
+// }
+
+// const rivian = new EVCl('Rivian', 120, 23);
+
+// rivian.brake();
+// rivian.accelerate();
+// rivian.chargeBattery(80);
+// rivian.accelerate().brake().chargeBattery(100);
+// console.log(rivian);
+
+
+
+//////Colt explaining promises (lecture 281)(rainbow background example):
+
+const delayedColorChange = (color, delay) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            document.body.style.backgroundColor = color;
+            resolve();
+        }, delay)
+    })
 }
 
-class EVCl extends CarCl {
-    #charge;
-    constructor(name, inSpeed, inCharge) {
-        super(name, inSpeed);
-        this.#charge = inCharge;
-    }
-    accelerate() {
-        this.speed += 20;
-        this.#charge--;
-        console.log(`${this.make} going at ${this.speed}km / h, with a charge of ${this.#charge}%`);
-        return this;
-    };
-    brake() {
-        console.log(this.speed -= 5);
-        return this;
-    };
-    chargeBattery(chargeTo) {
-        this.#charge = chargeTo;
-    }
-    get speedUS() {
-        return this.speed / 1.6;
-    };
-    set speedUS(givenSpeed) {
-        this.speed = givenSpeed * 1.6;
-    }
+// delayedColorChange('red', 1000)
+//     .then(() => delayedColorChange('orange', 1000))
+//     .then(() => delayedColorChange('yellow', 1000))
+//     .then(() => delayedColorChange('green', 1000))
+//     .then(() => delayedColorChange('blue', 1000))
+//     .then(() => delayedColorChange('indigo', 1000))
+//     .then(() => delayedColorChange('violet', 1000))
+
+
+async function rainbow() {
+    await delayedColorChange('red', 1000)
+    await delayedColorChange('orange', 1000)
+    await delayedColorChange('yellow', 1000)
+    await delayedColorChange('green', 1000)
+    await delayedColorChange('blue', 1000)
+    await delayedColorChange('indigo', 1000)
+    await delayedColorChange('violet', 1000)
+    return "ALL DONE!"
 }
 
-const rivian = new EVCl('Rivian', 120, 23);
+// rainbow().then(() => console.log("END OF RAINBOW!"))
 
-rivian.brake();
-rivian.accelerate();
-rivian.chargeBattery(80);
-rivian.accelerate().brake().chargeBattery(100);
-console.log(rivian);
 
+async function printRainbow() {
+    await rainbow();
+    console.log("END OF RAINBOW!")
+}
+
+printRainbow();

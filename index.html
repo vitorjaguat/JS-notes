@@ -4740,6 +4740,66 @@ workout;
         };
             whereAmI();
         </code></pre>
+
+        <h5>Consuming promises with Axios (library)</h5>
+        <p>Axios is an external library that allows us to consume promises without having to use .json() to transform
+            the received data into a JS object - Axios simply do it all at once.</p>
+        <p>Go to Axios' Github repo, go to Installation, copy code of the script to insert in HTML's head (under the
+            title):
+        <pre><code>
+                <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+            </code></pre>
+        </p>
+        <pre><code>
+            <span class="red">Using fetch:</span>
+            fetch("https://swapi.dev/api/people/1/")
+                .then((res) => {
+                    console.log("RESOLVED!", res);
+                    return res.json();
+                })
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((e) => {
+                console.log("ERROR!", e)
+            });
+
+            <span class="red">Using async/await:</span>
+            const loadStarWarsPeople = async () => {
+                try {
+                    const res = await fetch("http://swapi.dev/api/people/1/");
+                    const data = await res.json();
+                    console.log(data);
+                } catch (e) {
+                    console.log("ERROR!", e)
+                }
+            };
+            loadStarWarsPeople();
+
+            <span class="red">Using Axios:</span>
+            axios.get("http://swapi.dev/api/people/1/")
+                .then((res) => {
+                    console.log(res.data)
+                })
+                .catch((e) => {
+                    console.log("ERROR! ", e);
+                });
+
+            <span class="red">Using axios and async/await function:</span>
+            const getStarWarsPerson = async () => {
+                const res = await axios.get("http://swapi.dev/api/people/1/");
+                console.log(res.data);
+            };
+            getStarWarsPerson();
+        </code></pre>
+        <pre><code>
+            const getDadJoke = async () => {
+                const config = { headers: { Accept: 'application/json' } };
+                const res = await axios.get('https://icanhazdadjoke.com/', config);
+                console.log(res.data.joke);
+            } 
+        </code></pre>
+
         <h5>Running promises in parallel</h5>
         <p>If we want to run 3 promises at the same time, and the execution of one does not depend on the result of the
             previous one, we can use Promise.all to run the 3 at the same time, saving a lot of loading time.</p>
