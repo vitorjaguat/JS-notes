@@ -4891,6 +4891,83 @@ workout;
         <p>The most important promise combinators are Promise.all and Promise.race .</p>
 
 
+        <h2>ES6 Modules</h2>
+        <p>Modules are reusable pieces of code that encapsulates implementation details. Usually a standalone file, but
+            it doesn't have to be.</p>
+        <p>The module from which I'm importing code is called <b> dependency</b>. The exported code is also called <b>
+                Public API</b>.</p>
+        <p>Imports are not just a copy of exported values. They are, instead, a live connection.</p>
+        <p>Differences between old-school scripts and ES6 Modules:</p>
+        <!-- Table: -->
+        <style>
+            .demo {
+                border: 1px solid #C0C0C0;
+                border-collapse: collapse;
+                padding: 5px;
+            }
+
+            .demo th {
+                border: 1px solid #C0C0C0;
+                padding: 5px;
+                background: #F0F0F0;
+            }
+
+            .demo td {
+                border: 1px solid #C0C0C0;
+                padding: 5px;
+            }
+        </style>
+        <table class="demo">
+            <caption>Table 1</caption>
+            <thead>
+                <tr>
+                    <th> </th>
+                    <th>ES6 Module</th>
+                    <th>Regular script</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Top-level variables</td>
+                    <td>Scoped to module</td>
+                    <td>Global</td>
+                </tr>
+                <tr>
+                    <td>Default mode</td>
+                    <td>Strict mode</td>
+                    <td>Global</td>
+                </tr>
+                <tr>
+                    <td>Top-level 'this'</td>
+                    <td>undefined</td>
+                    <td>window</td>
+                </tr>
+                <tr>
+                    <td>Imports and exports</td>
+                    <td>YES</td>
+                    <td>NO</td>
+                </tr>
+
+                <tr>
+                    <td>File downloading</td>
+                    <td>Asynchronous*</td>
+                    <td>Synchronous</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            <tbody>
+        </table>
+
+
+        <p>* The module's code is downloaded (parsed) asynchronously; but the code is executed synchronously.</p>
+        <p>Imports need to happen at top-level. Imports are hoisted.</p>
+
+
+
+
         <script src="app.js"></script>
 
 
